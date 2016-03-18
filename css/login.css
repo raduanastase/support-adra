@@ -1,0 +1,14 @@
+body {
+    background: #f1f1f1;
+    padding: 20px;
+}
+
+#log-in-form {
+    background: white;
+}
+
+#log-in-form {
+    padding: 30px;
+    border: 1px solid #cacaca;
+    border-radius: 3px;
+}

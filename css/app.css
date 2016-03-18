@@ -1,0 +1,61 @@
+.logo {
+    width: 200px;
+}
+
+.add-case-button {
+    position: absolute;
+    top: 30px;
+    right: 20px;
+}
+
+.log-out-button {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+}
+
+.thumbnail {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.thumbnail-img {
+    margin-bottom: 10px;
+}
+
+h5 {
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 12px;
+}
+
+.tabs-panel.is-active a {
+    color: black;
+}
+
+.section-title {
+    margin-top: 30px;
+    font-size: 18px;
+    font-style: italic;
+}
+
+.modal-label {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.modal-label-value {
+    font-size: 14px;
+}
+
+.view-case-template {
+    display: none;
+}
+
+.modal-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: red;
+}
