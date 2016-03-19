@@ -64,6 +64,7 @@ $(function () {
 
     function onGetCasesError(data) {
         $errorModal.foundation('open');
+        console.log("open");
     }
 
     function getCase(id) {
