@@ -1,5 +1,5 @@
 <?php
-include("includes/conect_db.php");   
+include("includes/connect_db.php");
 include("includes/functions.php");
 	
 	if($_GET['add-case'] == 1)
