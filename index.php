@@ -1,3 +1,7 @@
+<?php
+include("includes/conect_db.php");   
+include("includes/functions.php");
+?>
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
@@ -16,7 +20,7 @@
             <img class="logo" src="img/adra.png">
         </div>
     </div>
-    <button class="button log-out-button">Ieșire cont</button>
+    <a href="logout.php" class="button log-out-button">Logout</a>
     <button class="button add-case-button" data-open="add-case-modal">Adaugă caz</button>
 
     <ul class="tabs" data-tabs id="example-tabs">
@@ -58,7 +62,7 @@
         <span aria-hidden="true">&times;</span>
     </button>
 
-    <form id="add-case-form" data-abide novalidate>
+    <form id="add-case-form" method="post" action="upload_data.php?add-case=1" data-abide novalidate enctype="multipart/form-data" >
         <div data-abide-error class="alert callout" style="display: none;">
             <p><i class="fi-alert"></i> Unele campuri obligatorii sunt necompletate.</p>
         </div>
@@ -167,7 +171,19 @@
             <div class="small-12 medium-6 columns">
                 <label for="person-region">Judet
                     <small>*</small>
-                    <input type="text" id="person-region" required>
+                    
+                    <select name="person-region" id="person-region"><!-- ADD REQUIRED -->
+                    	<option value="0">Alege</option>
+                    	<?php
+                    		$res_county = mysqli_query($conn, 'select * from ps_state order by name');
+                    		while($row_county = mysqli_fetch_array($res_county))
+							{
+								?>
+										<option value="<?php echo $row_county['ID']?>"><?php echo $row_county['name']?></option>
+								<?php
+							}
+                    	?>
+                    </select>
                     <span class="form-error">Completarea campului este obligatorie</span>
                 </label>
             </div>
@@ -199,7 +215,10 @@
                 </label>
             </div>
         </div>
-
+    <?php
+        if (!(isset($_SESSION['user']))){
+            ?>
+            
         <div class="row">
             <div class="small-12 medium-6 columns">
                 <label for="person-money-total">
@@ -224,6 +243,9 @@
                 </label>
             </div>
         </div>
+        <?php
+        }
+    ?>
 
         <div class="row">
             <div class="small-6 columns">
@@ -362,8 +384,8 @@
     <a data-open="view-case-modal">
         <div class="thumbnail">
             <img class="thumbnail-img" src="img/test.png">
-            <h5>Nume caz</h5>
-            <h6>Lorem ipsum dolor sit amet, no tation putent docendi duo, sit modo deserunt mnesarchum
+            <h5 class="case-name">Nume caz</h5>
+            <h6 class="case-description">Lorem ipsum dolor sit amet, no tation putent docendi duo, sit modo deserunt mnesarchum
                 et, dicant consequuntur definitiones cu eum. </h6>
         </div>
     </a>
