@@ -37,8 +37,6 @@ $(function () {
     var $cases = [];
 
 
-
-
     function init() {
         getCases(CALL_ACCEPTED);
         //getCase('1');
@@ -55,16 +53,13 @@ $(function () {
     }
 
     function onGetCasesSuccess(data) {
-        if(data.success) {
-            data.forEach(function (element, index) {
-                $cases.push($viewCaseTemplate.clone());
-                THUMBNAIL_VALUES.forEach(function (value) {
-                    $cases[index].find(value[0]).text(element[value[1]]);
-                });
+        data.forEach(function (element, index) {
+            $cases.push($viewCaseTemplate.clone());
+            THUMBNAIL_VALUES.forEach(function (value) {
+                $cases[index].find(value[0]).text(element[value[1]]);
             });
-        } else {
-            onGetCasesError();
-        }
+        });
+
     }
 
     function onGetCasesError(data) {
@@ -83,13 +78,10 @@ $(function () {
     }
 
     function onGetCaseSuccess(data) {
-        if(data.success) {
-            MODAL_VIEW_VALUES.forEach(function (value) {
-                $viewCaseModal.find(value[0]).text(element['0'][0][value[1]]);
-            });
-        } else {
-            onGetCaseError();
-        }
+        MODAL_VIEW_VALUES.forEach(function (value) {
+            $viewCaseModal.find(value[0]).text(element['0'][0][value[1]]);
+        });
+
     }
 
     function onGetCaseError(data) {
