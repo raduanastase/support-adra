@@ -47,7 +47,7 @@ $(function () {
     function getCases(typeOfCases) {
         $.ajax({
             type: 'GET',
-            url: '37.139.17.52/data.php?' + typeOfCases,
+            url: 'data.php?' + typeOfCases,
             dataType: 'json',
             success: onGetCasesSuccess,
             error: onGetCasesError
