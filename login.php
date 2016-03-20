@@ -14,8 +14,8 @@
        {
           // username and password sent from form 
           
-          $myusername = mysqli_real_escape_string($_POST['username']);
-          $mypassword = mysqli_real_escape_string($_POST['password']); 
+          $myusername = mysqli_real_escape_string($conn, $_POST['username']);
+          $mypassword = mysqli_real_escape_string($conn, $_POST['password']); 
           
          
           $sql = 'SELECT * FROM adra_users WHERE  username = "'.$_POST['username'].'" and password = "'.md5($_POST['password']).'"';
