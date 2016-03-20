@@ -20,7 +20,11 @@ include("includes/functions.php");
             <img class="logo" src="img/adra.png">
         </div>
     </div>
-    <a href="logout.php" class="button log-out-button">Logout</a>
+    <?php
+        if ((isset($_SESSION['user']))) : ?>
+            <a href="logout.php" class="button log-out-button">Logout</a>
+    <?php endif; 
+    ?>
     <button class="button add-case-button" data-open="add-case-modal">Adaugă caz</button>
 
     <ul class="tabs" data-tabs id="example-tabs">
@@ -215,37 +219,35 @@ include("includes/functions.php");
                 </label>
             </div>
         </div>
-    <?php
-        if (!(isset($_SESSION['user']))){
-            ?>
+       <?php
+        if ((isset($_SESSION['user']))) : ?>
             
-        <div class="row">
-            <div class="small-12 medium-6 columns">
-                <label for="person-money-total">
-                    <span class="row">
-                        <span class="small-12 columns">Suma necesara</span>
-                    </span>
-                    <span class="row">
-                        <span class="small-10 columns"><input type="text" id="person-money-total"></span>
-                        <span class="small-2 columns">RON</span>
-                    </span>
-                </label>
+            <div class="row">
+                <div class="small-12 medium-6 columns">
+                    <label for="person-money-total">
+                        <span class="row">
+                            <span class="small-12 columns">Suma necesara</span>
+                        </span>
+                        <span class="row">
+                            <span class="small-10 columns"><input type="text" id="person-money-total"></span>
+                            <span class="small-2 columns">RON</span>
+                        </span>
+                    </label>
+                </div>
+                <div class="small-12 medium-6 columns">
+                    <label for="person-money-partial">
+                        <span class="row">
+                            <span class="small-12 columns">Suma stransa</span>
+                        </span>
+                        <span class="row">
+                            <span class="small-10 columns"><input type="text" id="person-money-partial"></span>
+                            <span class="small-2 columns">RON</span>
+                        </span>
+                    </label>
+                </div>
             </div>
-            <div class="small-12 medium-6 columns">
-                <label for="person-money-partial">
-                    <span class="row">
-                        <span class="small-12 columns">Suma stransa</span>
-                    </span>
-                    <span class="row">
-                        <span class="small-10 columns"><input type="text" id="person-money-partial"></span>
-                        <span class="small-2 columns">RON</span>
-                    </span>
-                </label>
-            </div>
-        </div>
-        <?php
-        }
-    ?>
+        <?php endif; 
+        ?>
 
         <div class="row">
             <div class="small-6 columns">
