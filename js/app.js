@@ -29,7 +29,7 @@ $(function () {
         ['.case-name', 'xxx'],
         ['.case-description', 'xxx']
     ];
-    var $TABS;
+    var $TABS = {};
 
     var $errorModal = $('#error-modal');
     var $viewCaseTemplate = $('.view-case-template');
@@ -41,10 +41,10 @@ $(function () {
 
 
     function init() {
-        $TABS[CALL_APPROVED] = $('#panel1').find(' .cases-wrapper');
-        $TABS[CALL_RESOLVED] = $('#panel2').find(' .cases-wrapper');
-        $TABS[CALL_PENDING] = $('#panel3').find(' .cases-wrapper');
-        $TABS[CALL_REJECTED] = $('#panel4').find(' .cases-wrapper');
+        $TABS[CALL_APPROVED] = $('#panel1').find('.cases-wrapper');
+        $TABS[CALL_RESOLVED] = $('#panel2').find('.cases-wrapper');
+        $TABS[CALL_PENDING] = $('#panel3').find('.cases-wrapper');
+        $TABS[CALL_REJECTED] = $('#panel4').find('.cases-wrapper');
 
         getCases(CALL_APPROVED);
         //getCase('1');
