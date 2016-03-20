@@ -41,6 +41,10 @@ h6 {
     font-style: italic;
 }
 
+.image-upload-input {
+    display: none;
+}
+
 .modal-label {
     font-weight: bold;
     margin-top: 10px;

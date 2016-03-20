@@ -73,6 +73,13 @@ session_start();
         </div>
 
         <div class="row">
+            <div class="small-12 columns upload-images">
+                <input type="file" id="image-upload-input" multiple accept="image/*">
+                <a class="button" id="image-upload-button">Adauga poze</a>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="small-12 columns section-title">
                 Date de contact ale pesoanei care raporteaza
             </div>

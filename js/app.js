@@ -34,18 +34,28 @@ $(function () {
     var $viewCaseTemplate = $('.view-case-template');
     var $addCaseForm = $('#add-case-form');
     var $viewCaseModal = $('#view-case-modal');
+    var $imageUploadInput = $('.image-upload-input');
+    var $imageUploadButton = $('.image-upload-button');
     var $cases = [];
 
 
     function init() {
-        //getCases(CALL_ACCEPTED);
-        getCase('1');
+        getCases(CALL_ACCEPTED);
+        //getCase('1');
+        $imageUploadButton.on('click', onImageUploadButtonClick);
+    }
+
+    function onImageUploadButtonClick(event) {
+        if ($imageUploadInput) {
+            $imageUploadInput.click();
+        }
+        event.preventDefault(); // prevent navigation to "#"
     }
 
     function getCases(typeOfCases) {
         $.ajax({
             type: 'GET',
-            url: 'data.php?' + typeOfCases,
+            url: 'data.php?' + typeOfCases + '=1',
             dataType: 'json',
             success: onGetCasesSuccess,
             error: onGetCasesError
