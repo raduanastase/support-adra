@@ -4,8 +4,8 @@ include("includes/functions.php");
 	
 	if($_GET['add-case'] == 1)
 	{
-		echo 'here';
-		var_dump($_POST);
+		
+		$_POST['reporter-name'];
 		$qr_requester = 'insert into adra_cases set
 									reporter_first_name = "'.$_POST['reporter-name'].'",
 									reporter_last_name = "'.$_POST['reporter-surname'].'",
@@ -22,10 +22,9 @@ include("includes/functions.php");
 									person_ci_number = "'.$_POST['person-bi-number'].'",		
 									person_county_id = "'.$_POST['person-region'].'",
 									person_city = "'.$_POST['person-city'].'",
-									person_adress = "'.$_POST['person-adress'].'",
-									
-									person_description = "'.$_POST['person-description'].'",
-									IDrequester = "'.$IDrequester.'"									
+									person_adress = "'.$_POST['person-adress'].'",									
+									person_description = "'.$_POST['person-description'].'"
+																		
 						';						
 		mysqli_query($conn,$qr_requester);			
 	}
