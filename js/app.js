@@ -25,7 +25,7 @@ $(function () {
         ['.person-money-partial', 'person_money_partial']
     ];
     var THUMBNAIL_VALUES = [
-        ['.thumnail-img', 'file_path'],
+        ['.thumbnail-img', 'file_path'],
         ['.case-name', 'case_name'],
         ['.case-description', 'person_description']
     ];
@@ -113,5 +113,5 @@ $(function () {
 });
 
 
-$(document).foundation();
+$(document).foundation('reflow');
 
