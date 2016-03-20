@@ -28,15 +28,6 @@ include("includes/functions.php");
 									IDrequester = "'.$IDrequester.'"									
 						';
 						
-		mysqli_query($conn,$qr_requester);
-		$IDrequester = mysql_insert_id();
-			
-		$qr_insert = 'insert into adra_cases set
-									
-										
-								
-					  ';
-		mysqli_query($conn,$qr_insert);
-		$IDcase = mysql_insert_id();			  
+		mysqli_query($conn,$qr_requester);		
 	}
 ?>
