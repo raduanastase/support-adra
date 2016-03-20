@@ -7,7 +7,6 @@
 	if(isset($_GET["case_id"])) 
 	{	
 
-
 		$result = mysqli_query($conn, "SELECT * FROM adra_cases WHERE ID = ".mysqli_real_escape_string($conn, $_GET['case_id']));
 		$result_image = mysqli_query($conn, "SELECT file_path, private_type, is_cover_image FROM adra_cases_doc WHERE ID_case = ".mysqli_real_escape_string($conn, $_GET['case_id']));
 		$raspuns = array();
@@ -19,7 +18,7 @@
 			while ($row = mysqli_fetch_array($result_image, MYSQLI_ASSOC)) {
 				$raspuns_image[] = $row;
 			}
-		echo json_encode(array($raspuns,$raspuns_image));
+		echo json_encode($raspuns_image);
 		die();
 	}
 
