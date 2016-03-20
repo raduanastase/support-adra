@@ -6,30 +6,32 @@ include("includes/functions.php");
 	{
 		echo 'here';
 		var_dump($_POST);
-		$qr_requester = 'insert into adra_requester set
-									first_name = "'.$_POST['reporter-name'].'",
-									last_name = "'.$_POST['reporter-surname'].'",
-									email = "'.$_POST['reporter-email'].'",
-									phone = "'.$_POST['reporter-phone'].'",
-									cnp = "'.$_POST['reporter-cnp'].'",
-									ci_serie = "'.$_POST['reporter-bi-series'].'",
-									ci_nr = "'.$_POST['reporter-bi-number'].'"									
+		$qr_requester = 'insert into adra_cases set
+									reporter_first_name = "'.$_POST['reporter-name'].'",
+									reporter_last_name = "'.$_POST['reporter-surname'].'",
+									reporter_email = "'.$_POST['reporter-email'].'",
+									reporter_phone = "'.$_POST['reporter-phone'].'",
+									reporter_cnp = "'.$_POST['reporter-cnp'].'",
+									reporter_ci_series = "'.$_POST['reporter-bi-series'].'",
+									reporter_ci_number = "'.$_POST['reporter-bi-number'].'",
+									
+									person_first_name = "'.$_POST['person-surname'].'",
+									person_last_name = "'.$_POST['person-name'].'",									
+									person_cnp = "'.$_POST['person-cnp'].'",
+									person_ci_series = "'.$_POST['person-bi-series'].'",
+									person_ci_number = "'.$_POST['person-bi-number'].'",		
+									person_county_id = "'.$_POST['person-region'].'",
+									person_city = "'.$_POST['person-city'].'",
+									person_adress = "'.$_POST['person-adress'].'",
+									
+									person_description = "'.$_POST['person-description'].'",
+									IDrequester = "'.$IDrequester.'"									
 						';
 		mysqli_query($conn,$qr_requester);
 		$IDrequester = mysql_insert_id();
 			
 		$qr_insert = 'insert into adra_cases set
-									first_name = "'.$_POST['person-surname'].'",
-									last_name = "'.$_POST['person-name'].'",									
-									cnp = "'.$_POST['person-cnp'].'",
-									ci_serie = "'.$_POST['person-bi-series'].'",
-									ci_nr = "'.$_POST['person-bi-number'].'",		
-							IDcounty = "'.$_POST['person-region'].'",
-							city = "'.$_POST['person-city'].'",
-							adress = "'.$_POST['person-adress'].'",
-							
-							description = "'.$_POST['person-description'].'",
-							IDrequester = "'.$IDrequester.'"
+									
 										
 								
 					  ';
