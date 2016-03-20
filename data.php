@@ -30,13 +30,15 @@
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.case_name, ac.person_description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=1 AND acd.is_cover_image = 1 ORDER BY ac.ID DESC LIMIT 10 OFFSET ".$page);
 
 		$case_count = mysqli_query($conn, "SELECT COUNT(*) AS case_count FROM adra_cases WHERE type= 1");
-		echo $case_count;
 		$raspuns = array();
 
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 			$raspuns[] = $row;
 		}
-		echo json_encode(array($case_count,$raspuns));
+		while ($row = mysqli_fetch_array($case_count, MYSQLI_ASSOC)) {
+			$raspuns_case[] = $row;
+		}
+		echo json_encode(array($raspuns,$raspuns_case));
 		die();
 	}
 
