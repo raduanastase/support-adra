@@ -38,8 +38,8 @@ $(function () {
 
 
     function init() {
-        getCases(CALL_ACCEPTED);
-        //getCase('1');
+        //getCases(CALL_ACCEPTED);
+        getCase('1');
     }
 
     function getCases(typeOfCases) {
@@ -64,7 +64,6 @@ $(function () {
 
     function onGetCasesError(data) {
         $errorModal.foundation('open');
-        console.log("open");
     }
 
     function getCase(id) {
@@ -72,7 +71,6 @@ $(function () {
             type: 'GET',
             url: 'data.php?case_id=' + id,
             dataType: 'json',
-            data: '1',
             success: onGetCaseSuccess,
             error: onGetCaseError
         })
