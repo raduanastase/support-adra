@@ -80,6 +80,7 @@ $(function () {
                     $cases[index].find(value[0]).text(element[value[1]]);
                 }
             });
+            $cases[index].removeClass('view-case-template');
             $TABS[typeOfCases].append($cases[index]);
         });
         $TABS[typeOfCases].foundation();

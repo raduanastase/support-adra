@@ -38,46 +38,7 @@ session_start();
     <div class="tabs-content" data-tabs-content="example-tabs">
         <div class="tabs-panel is-active" id="panel1">
             <div class="row small-up-2 medium-up-3 large-up-4 cases-wrapper">
-                <div class="column view-case-template">
-                    <a data-open="view-case-modal">
-                        <div class="thumbnail">
-                            <img class="thumbnail-img" src="img/test.png">
-                            <h5 class="case-name">Nume caz</h5>
-                            <h6 class="case-description">Lorem ipsum dolor sit amet, no tation putent docendi duo, sit modo deserunt mnesarchum
-                                et, dicant consequuntur definitiones cu eum. </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="column view-case-template">
-                    <a data-open="view-case-modal">
-                        <div class="thumbnail">
-                            <img class="thumbnail-img" src="img/test.png">
-                            <h5 class="case-name">Nume caz</h5>
-                            <h6 class="case-description">Lorem ipsum dolor sit amet, no tation putent docendi duo, sit modo deserunt mnesarchum
-                                et, dicant consequuntur definitiones cu eum. </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="column view-case-template">
-                    <a data-open="view-case-modal">
-                        <div class="thumbnail">
-                            <img class="thumbnail-img" src="img/test.png">
-                            <h5 class="case-name">Nume caz</h5>
-                            <h6 class="case-description">Lorem ipsum dolor sit amet, no tation putent docendi duo, sit modo deserunt mnesarchum
-                                et, dicant consequuntur definitiones cu eum. </h6>
-                        </div>
-                    </a>
-                </div>
-                <div class="column view-case-template">
-                    <a data-open="view-case-modal">
-                        <div class="thumbnail">
-                            <img class="thumbnail-img" src="img/test.png">
-                            <h5 class="case-name">Nume caz</h5>
-                            <h6 class="case-description">Lorem ipsum dolor sit amet, no tation putent docendi duo, sit modo deserunt mnesarchum
-                                et, dicant consequuntur definitiones cu eum. </h6>
-                        </div>
-                    </a>
-                </div>
+
             </div>
         </div>
         <div class="tabs-panel" id="panel2">
