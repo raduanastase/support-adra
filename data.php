@@ -13,10 +13,10 @@
 		$raspuns = array();
 		$raspuns_image = array();
 
-			while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+			while ($row = mysqli_fetch_array($conn, $result, MYSQLI_ASSOC)) {
 				$raspuns[] = $row;
 			}
-			while ($row = mysqli_fetch_array($result_image, MYSQLI_ASSOC)) {
+			while ($row = mysqli_fetch_array($conn, $result_image, MYSQLI_ASSOC)) {
 				$raspuns_image[] = $row;
 			}
 		echo json_encode(array($raspuns,$raspuns_image));
@@ -32,10 +32,10 @@
 		$case_count = mysqli_query($conn, "SELECT COUNT(*) AS case_count FROM adra_cases WHERE type= 1");
 		$raspuns = array();
 
-		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		while ($row = mysqli_fetch_array($conn, $result, MYSQLI_ASSOC)) {
 			$raspuns[] = $row;
 		}
-		while ($row = mysqli_fetch_array($case_count, MYSQLI_ASSOC)) {
+		while ($row = mysqli_fetch_array($conn, $case_count, MYSQLI_ASSOC)) {
 			$raspuns_case[] = $row;
 		}
 		echo json_encode(array($raspuns,$raspuns_case));
@@ -48,7 +48,7 @@
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=0");
 		$raspuns = array();
 
-		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		while ($row = mysqli_fetch_array($conn, $result, MYSQLI_ASSOC)) {
 			$raspuns[] = $row;
 		}
 		echo json_encode(array('success'=>true,$raspuns));
@@ -61,7 +61,7 @@
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=2");
 		$raspuns = array();
 
-		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		while ($row = mysqli_fetch_array($conn, $result, MYSQLI_ASSOC)) {
 			$raspuns[] = $row;
 		}
 		echo json_encode(array('success'=>true,$raspuns));
@@ -74,7 +74,7 @@
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=3");
 		$raspuns = array();
 
-		while ($row = mysqli_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($conn, $result)) {
 			$raspuns[] = $row;
 		}
 		echo json_encode(array('success'=>true,$raspuns));
@@ -86,7 +86,7 @@
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=1");
 		$raspuns = array();
 
-		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+		while ($row = mysqli_fetch_array($conn, $result, MYSQLI_ASSOC)) {
 			$raspuns[] = $row;
 		}
 		echo json_encode(array('success'=>true,$raspuns));
