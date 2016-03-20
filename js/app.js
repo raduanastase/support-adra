@@ -5,24 +5,24 @@ $(function () {
     var CALL_APPROVED = 'approved';
     var CALL_REJECTED = 'rejected';
     var MODAL_VIEW_VALUES = [
-        ['.reporter-surname-text', 'xxx'],
-        ['.reporter-name-text', 'xxx'],
-        ['.reporter-cnp', 'xxx'],
-        ['.reporter-bi-series', 'xxx'],
-        ['.reporter-bi-number', 'xxx'],
-        ['.reporter-phone', 'xxx'],
-        ['.reporter-email', 'xxx'],
-        ['.person-surname', 'xxx'],
-        ['.person-name', 'xxx'],
-        ['.person-cnp', 'xxx'],
-        ['.person-bi-series', 'xxx'],
-        ['.person-bi-number', 'xxx'],
-        ['.person-region', 'xxx'],
-        ['.person-city', 'xxx'],
-        ['.person-address', 'xxx'],
-        ['.person-description', 'xxx'],
-        ['.person-money-total', 'xxx'],
-        ['.person-money-partial', 'xxx']
+        ['.reporter-last-name', 'reporter_last_name'],
+        ['.reporter-first-name', 'reporter_first_name'],
+        ['.reporter-cnp', 'reporter_cnp'],
+        ['.reporter-ci-series', 'reporter_ci_series'],
+        ['.reporter-ci-number', 'reporter_ci_number'],
+        ['.reporter-phone', 'reporter_phone'],
+        ['.reporter-email', 'reporter_email'],
+        ['.person-last-name', 'person_last_name'],
+        ['.person-name', 'person_first_name'],
+        ['.person-cnp', 'person_cnp'],
+        ['.person-ci-series', 'person_ci_series'],
+        ['.person-ci-number', 'person_ci_number'],
+        ['.person-region', 'person_region'],
+        ['.person-city', 'person_city'],
+        ['.person-address', 'person_address'],
+        ['.person-description', 'person_description'],
+        ['.person-money-total', 'person_money_total'],
+        ['.person-money-partial', 'person_money_partial']
     ];
     var THUMBNAIL_VALUES = [
         ['.thumnail-img', 'xxx'],
@@ -80,7 +80,6 @@ $(function () {
         MODAL_VIEW_VALUES.forEach(function (value) {
             $viewCaseModal.find(value[0]).text(element['0'][0][value[1]]);
         });
-
     }
 
     function onGetCaseError(data) {
