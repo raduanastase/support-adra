@@ -1,8 +1,8 @@
 $(function () {
 
-    var CALL_ACCEPTED = 'accepted';
-    var CALL_PENDING = 'pending';
     var CALL_APPROVED = 'approved';
+    var CALL_RESOLVED = 'resolved';
+    var CALL_PENDING = 'pending';
     var CALL_REJECTED = 'rejected';
     var MODAL_VIEW_VALUES = [
         ['.reporter-last-name', 'reporter_last_name'],
@@ -29,6 +29,7 @@ $(function () {
         ['.case-name', 'xxx'],
         ['.case-description', 'xxx']
     ];
+    var $TABS;
 
     var $errorModal = $('#error-modal');
     var $viewCaseTemplate = $('.view-case-template');
@@ -40,7 +41,12 @@ $(function () {
 
 
     function init() {
-        getCases(CALL_ACCEPTED);
+        $TABS[CALL_APPROVED] = $('#panel1').find(' .cases-wrapper');
+        $TABS[CALL_RESOLVED] = $('#panel2').find(' .cases-wrapper');
+        $TABS[CALL_PENDING] = $('#panel3').find(' .cases-wrapper');
+        $TABS[CALL_REJECTED] = $('#panel4').find(' .cases-wrapper');
+
+        getCases(CALL_APPROVED);
         //getCase('1');
         $imageUploadButton.on('click', onImageUploadButtonClick);
     }
@@ -57,17 +63,20 @@ $(function () {
             type: 'GET',
             url: 'data.php?' + typeOfCases + '=1',
             dataType: 'json',
-            success: onGetCasesSuccess,
+            success: function (data) {
+                onGetCasesSuccess(data, typeOfCases);
+            },
             error: onGetCasesError
         })
     }
 
-    function onGetCasesSuccess(data) {
+    function onGetCasesSuccess(data, typeOfCases) {
         data.forEach(function (element, index) {
             $cases.push($viewCaseTemplate.clone());
             THUMBNAIL_VALUES.forEach(function (value) {
                 $cases[index].find(value[0]).text(element[value[1]]);
             });
+            $TABS[typeOfCases].append($cases[index]);
         });
 
     }
