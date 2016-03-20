@@ -26,8 +26,7 @@ include("includes/functions.php");
 									
 									person_description = "'.$_POST['person-description'].'",
 									IDrequester = "'.$IDrequester.'"									
-						';
-						
+						';						
 		mysqli_query($conn,$qr_requester);	
 			
 	}
