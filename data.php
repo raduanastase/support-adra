@@ -4,21 +4,7 @@
    	session_start();
 
 
-	// if(isset($_GET["case_id"]) && isset($_SESSION['user'])) 
-	// {	
-
-
-	// 	$result = mysqli_query($conn, "SELECT * FROM adra_cases WHERE ID = ".mysqli_real_escape_string($conn, $_GET['case_id']));
-	// 	$raspuns = array();
-
-	// 	while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-	// 		$raspuns[] = $row;
-	// 	}
-	// 	echo json_encode(array('success'=>true,$raspuns));
-	// 	die();
-	// }
-
-	if(isset($_GET["case_id"]) && isset($_SESSION['user'])) 
+	if(isset($_GET["case_id"])) 
 	{	
 
 
@@ -33,7 +19,7 @@
 	}
 
 
-	if(isset($_GET["approved"]) && isset($_SESSION['user'])) 
+	if(isset($_GET["approved"])) 
 	{	
 
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=1");
@@ -46,7 +32,7 @@
 		die();
 	}
 
-	if(isset($_GET["pending"]) && isset($_SESSION['user'])) 
+	if(isset($_GET["pending"])) 
 	{	
 
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=0");
@@ -59,7 +45,7 @@
 		die();
 	}
 
-	if(isset($_GET["resolved"]) && isset($_SESSION['user'])) 
+	if(isset($_GET["resolved"])) 
 	{	
 
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=2");
@@ -72,7 +58,7 @@
 		die();
 	}
 
-	if(isset($_GET["rejected"]) && isset($_SESSION['user'])) 
+	if(isset($_GET["rejected"])) 
 	{	
 
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=3");
