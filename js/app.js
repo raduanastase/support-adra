@@ -82,7 +82,7 @@ $(function () {
             });
             $TABS[typeOfCases].append($cases[index]);
         });
-
+        $TABS[typeOfCases].foundation();
     }
 
     function onGetCasesError(data) {
@@ -113,5 +113,5 @@ $(function () {
 });
 
 
-$(document).foundation('reflow');
+$(document).foundation();
 
