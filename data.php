@@ -31,6 +31,7 @@
 
 		$case_count = mysqli_query($conn, "SELECT COUNT(*) AS case_count FROM adra_cases WHERE type= 1");
 		$raspuns = array();
+		$raspuns_case = array();
 
 		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 			$raspuns[] = $row;
@@ -74,7 +75,7 @@
 		$result = mysqli_query($conn, "SELECT ac.ID, ac.name, ac.description, acd.file_path FROM adra_cases ac LEFT JOIN adra_cases_doc as acd on ac.ID = acd.ID_case WHERE ac.type=3");
 		$raspuns = array();
 
-		while ($row = mysqli_fetch_array($result)) {
+		while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
 			$raspuns[] = $row;
 		}
 		echo json_encode(array('success'=>true,$raspuns));
