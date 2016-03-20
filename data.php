@@ -7,9 +7,8 @@
 	if(isset($_GET["case_id"])) 
 	{	
 
-
 		$result = mysqli_query($conn, "SELECT * FROM adra_cases WHERE ID = ".mysqli_real_escape_string($conn, $_GET['case_id']));
-		$result_image = mysqli_query($conn, "SELECT file_path, private_type, is_cover_image FROM adra_cases_doc WHERE ID_case = ".mysqli_real_escape_string($conn, $_GET['case_id']));
+		$result_image = mysqli_query($conn, "SELECT file_path, privat_type, is_cover_image FROM adra_cases_doc WHERE ID_case = ".mysqli_real_escape_string($conn, $_GET['case_id']));
 		$raspuns = array();
 		$raspuns_image = array();
 

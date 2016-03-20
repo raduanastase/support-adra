@@ -25,9 +25,9 @@ $(function () {
         ['.person-money-partial', 'person_money_partial']
     ];
     var THUMBNAIL_VALUES = [
-        ['.thumnail-img', 'xxx'],
-        ['.case-name', 'xxx'],
-        ['.case-description', 'xxx']
+        ['.thumnail-img', 'file_path'],
+        ['.case-name', 'case_name'],
+        ['.case-description', 'person_description']
     ];
     var $TABS = {};
 
@@ -64,7 +64,7 @@ $(function () {
             url: 'data.php?' + typeOfCases + '=1',
             dataType: 'json',
             success: function (data) {
-                onGetCasesSuccess(data, typeOfCases);
+                onGetCasesSuccess(data[0], typeOfCases);
             },
             error: onGetCasesError
         })
@@ -73,8 +73,12 @@ $(function () {
     function onGetCasesSuccess(data, typeOfCases) {
         data.forEach(function (element, index) {
             $cases.push($viewCaseTemplate.clone());
-            THUMBNAIL_VALUES.forEach(function (value) {
-                $cases[index].find(value[0]).text(element[value[1]]);
+            THUMBNAIL_VALUES.forEach(function (value, idx) {
+                if(idx == 0) {
+                    $cases[index].find(value[0]).attr('src', element[value[1]]);
+                } else {
+                    $cases[index].find(value[0]).text(element[value[1]]);
+                }
             });
             $TABS[typeOfCases].append($cases[index]);
         });
