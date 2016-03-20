@@ -80,16 +80,16 @@ session_start();
 
         <div class="row">
             <div class="small-6 columns">
-                <label for="reporter-surname">Numele
+                <label for="reporter-last-name">Numele
                     <small>*</small>
-                    <input type="text" id="reporter-surname" required>
+                    <input type="text" id="reporter-last-name" required>
                     <span class="form-error">Completarea campului este obligatorie</span>
                 </label>
             </div>
             <div class="small-6 columns">
-                <label for="reporter-name">Prenumele
+                <label for="reporter-first-name">Prenumele
                     <small>*</small>
-                    <input type="text" id="reporter-name" required>
+                    <input type="text" id="reporter-first-name" required>
                     <span class="form-error">Completarea campului este obligatorie</span>
                 </label>
             </div>
@@ -102,13 +102,13 @@ session_start();
                 </label>
             </div>
             <div class="small-12 medium-4 columns">
-                <label for="reporter-bi-series">B.I. Seria
-                    <input type="text" id="reporter-bi-series">
+                <label for="reporter-ci-series">B.I. Seria
+                    <input type="text" id="reporter-ci-series">
                 </label>
             </div>
             <div class="small-12 medium-4 columns">
-                <label for="reporter-bi-number">B.I. Numar
-                    <input type="text" id="reporter-bi-number">
+                <label for="reporter-ci-number">B.I. Numar
+                    <input type="text" id="reporter-ci-number">
                 </label>
             </div>
         </div>
@@ -139,16 +139,16 @@ session_start();
 
         <div class="row">
             <div class="small-6 columns">
-                <label for="person-surname">Numele <b>persoanei in cauza</b>
+                <label for="person-last-name">Numele <b>persoanei in cauza</b>
                     <small>*</small>
-                    <input type="text" id="person-surname" required>
+                    <input type="text" id="person-last-name" required>
                     <span class="form-error">Completarea campului este obligatorie</span>
                 </label>
             </div>
             <div class="small-6 columns">
-                <label for="person-name">Prenumele <b>persoanei in cauza</b>
+                <label for="person-first-name">Prenumele <b>persoanei in cauza</b>
                     <small>*</small>
-                    <input type="text" id="person-name" required>
+                    <input type="text" id="person-first-name" required>
                     <span class="form-error">Completarea campului este obligatorie</span>
                 </label>
             </div>
@@ -161,13 +161,13 @@ session_start();
                 </label>
             </div>
             <div class="small-12 medium-4 columns">
-                <label for="person-bi-series">B.I. Seria
-                    <input type="text" id="person-bi-series">
+                <label for="person-ci-series">B.I. Seria
+                    <input type="text" id="person-ci-series">
                 </label>
             </div>
             <div class="small-12 medium-4 columns">
-                <label for="person-bi-number">B.I. Numar
-                    <input type="text" id="person-bi-number">
+                <label for="person-ci-number">B.I. Numar
+                    <input type="text" id="person-ci-number">
                 </label>
             </div>
         </div>
@@ -278,11 +278,11 @@ session_start();
     <div class="row">
         <div class="small-6 columns">
             <div class="modal-label">Nume</div>
-            <div class="reporter-surname-text modal-label-value">Ion</div>
+            <div class="reporter-last-name modal-label-value">Ion</div>
         </div>
         <div class="small-6 columns">
             <div class="modal-label">Prenume</div>
-            <div class="reporter-name-text modal-label-value">Popescu</div>
+            <div class="reporter-first-name modal-label-value">Popescu</div>
         </div>
     </div>
 
@@ -293,11 +293,11 @@ session_start();
         </div>
         <div class="small-4 columns">
             <div class="modal-label">B.I. Seria</div>
-            <div class="reporter-bi-series modal-label-value">PX</div>
+            <div class="reporter-ci-series modal-label-value">PX</div>
         </div>
         <div class="small-4 columns">
             <div class="modal-label">B.I. Numar</div>
-            <div class="reporter-bi-number modal-label-value">111111</div>
+            <div class="reporter-ci-number modal-label-value">111111</div>
         </div>
     </div>
 
@@ -321,11 +321,11 @@ session_start();
     <div class="row">
         <div class="small-6 columns">
             <div class="modal-label">Numele <b>persoanei in cauza</b></div>
-            <div class="person-surname modal-label-value">Sandu</div>
+            <div class="person-last-name modal-label-value">Sandu</div>
         </div>
         <div class="small-6 columns">
             <div class="modal-label">Prenumele <b>persoanei in cauza</b></div>
-            <div class="person-name modal-label-value">Catalin</div>
+            <div class="person-first-name modal-label-value">Catalin</div>
         </div>
     </div>
 
@@ -336,11 +336,11 @@ session_start();
         </div>
         <div class="small-4 columns">
             <div class="modal-label">B.I. Seria</div>
-            <div class="person-bi-series modal-label-value">PX</div>
+            <div class="person-ci-series modal-label-value">PX</div>
         </div>
         <div class="small-4 columns">
             <div class="modal-label">B.I. Numar</div>
-            <div class="person-bi-number modal-label-value">111111</div>
+            <div class="person-ci-number modal-label-value">111111</div>
         </div>
     </div>
 
