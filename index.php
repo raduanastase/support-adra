@@ -23,9 +23,6 @@ include("includes/view-case-template.php");
 include("includes/error.php");
 ?>
 
-<script src="js/vendor/jquery.min.js"></script>
-<script src="js/vendor/what-input.min.js"></script>
-<script src="js/vendor/foundation.min.js"></script>
-<script src="js/app.js"></script>
+<script src="public/js/bundle.js"></script>
 </body>
 </html>

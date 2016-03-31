@@ -1,0 +1,50 @@
+{
+  "name": "support-adra",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+
+  "scripts": {
+    "build": "browserify sources/js/mine/index.js -o public/js/bundle.js",
+    "watch": "watchify sources/js/mine/index.js -o public/js/bundle.js --debug --verbose",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/raduanastase/SupportAdra.git"
+  },
+
+  "author": "Amicus Coding Days",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/raduanastase/SupportAdra/issues"
+  },
+  "homepage": "https://gitlab.com/raduanastase/SupportAdra#README",
+
+  "private": true,
+  "dependencies": {
+    "backbone": "^1.1.2",
+    "jquery": "^2.1.3",
+    "requirejs": "^2.1.15",
+    "requirejs-text": "^2.0.12",
+    "underscore": "^1.7.0",
+    "handlebars": "^4.0.5",
+    "foundation-sites": "~6.1.2",
+    "browserify-shim": "~3.2.0"
+  },
+
+  "browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.js",
+    "foundation": "./node_modules/foundation-sites/js/foundation.js"
+  },
+  "browserify-shim": {
+    "jquery": "$",
+    "foundation": "foundation"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  }
+}
