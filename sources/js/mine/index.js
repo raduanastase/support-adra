@@ -2,6 +2,7 @@ var $ = global.$ = global.jQuery = require('jquery');
 var Backbone = require('backbone');
 require('what-input');
 require('foundation-sites');
+require('./HandlebarsHelpers');
 Backbone.$ = $;
 
 var Router = require('./router');

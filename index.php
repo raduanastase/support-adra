@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Foundation | Welcome</title>
+    <title>Sustine ADRA</title>
     <link rel="stylesheet" href="css/vendor/foundation.css"/>
     <link rel="stylesheet" href="css/app.css"/>
 </head>
@@ -16,12 +16,12 @@ session_start();
 
 <?php
 include("includes/head.php");
-include("includes/dashboard.php");
-include("includes/add-case.php");
-include("includes/view-case.php");
-include("includes/view-case-template.php");
-include("includes/error.php");
 ?>
+
+<!-- DASHBOARD -->
+<div class="dashboard columns small-12">
+</div>
+<!-- END DASHBOARD -->
 
 <script src="public/js/bundle.js"></script>
 </body>
