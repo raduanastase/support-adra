@@ -52,15 +52,15 @@ if (isset($_GET["case_id"])) {
     $result = mysqli_query($conn, "SELECT * FROM adra_cases WHERE ID = " . mysqli_real_escape_string($conn, $_GET['case_id']));
     $result_image = mysqli_query($conn, "SELECT file_path, privat_type, is_cover_image FROM adra_cases_doc WHERE ID_case = " . mysqli_real_escape_string($conn, $_GET['case_id']));
     $response = array();
-    $raspuns_image = array();
+    $response_image = array();
 
     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
         $response[] = $row;
     }
     while ($row = mysqli_fetch_array($result_image, MYSQLI_ASSOC)) {
-        $raspuns_image[] = $row;
+        $response_image[] = $row;
     }
-    echo json_encode(array($response, $raspuns_image));
+    echo json_encode(array($response, $response_image));
     die();
 }
 
