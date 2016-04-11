@@ -1,7 +1,10 @@
 var $ = global.$ = global.jQuery = require('jquery'),
     Backbone = require('backbone'),
     template = require("../templates/ThumbnailCase.hbs");
+var _ = require('underscore');
 Backbone.$ = $;
+
+var self; //MAKE THIS BETTER
 
 module.exports = Backbone.View.extend({
     className: 'column view-case-template',
@@ -11,7 +14,7 @@ module.exports = Backbone.View.extend({
     },
 
     initialize: function () {
-
+        self = this;
     },
 
     render: function () {
@@ -29,6 +32,7 @@ module.exports = Backbone.View.extend({
             url: 'data.php?case_id=' + id,
             dataType: 'json',
             success: this.onGetCaseDetailsSuccess,
+            /*error: _.bind(this.onGetCaseDetailsError, self)*/
             error: this.onGetCaseDetailsError
         })
     },
@@ -37,7 +41,7 @@ module.exports = Backbone.View.extend({
         /*this.MODAL_VIEW_VALUES.forEach(function (value) {
          this.$viewCaseModal.find(value[0]).text(element['0'][0][value[1]]);
          });*/
-        console.log("succes", data);
+        self.trigger('case-details', data);
     },
 
     onGetCaseDetailsError: function (data) {
