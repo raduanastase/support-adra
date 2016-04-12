@@ -13,6 +13,7 @@ module.exports = Backbone.View.extend({
         var $tabsContent = $('.tabs-content');
         this.fullCaseModel = new Backbone.Model();
         this.fullCaseView = new FullCaseView({model: this.fullCaseModel});
+
         this.$el.append(this.fullCaseView.render().el);
 
         this.approvedTabView = new TabView({

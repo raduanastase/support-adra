@@ -5,6 +5,14 @@ var $ = require('jquery')(window),
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
+    className: 'full reveal',
+
+    attributes: function () {
+        return {
+            id: 'view-case-modal',
+            'data-reveal': ' '
+        };
+    },
 
     initialize: function () {
         console.log("init");
@@ -13,8 +21,6 @@ module.exports = Backbone.View.extend({
 
     render: function () {
         this.$el.html(template(this.model.attributes));
-        console.log("render");
-        /*this.$el.foundation('open');*/
         return this;
     }
 
