@@ -64,10 +64,7 @@ module.exports = Backbone.View.extend({
     onCaseDetailsReceived: function (data) {
         console.log("on details", data);
         this.fullCaseModel.set(data[0][0]);
-        this.fullCaseView.render();
-         /*console.log(this.fullCaseView.el);*/
-        this.fullCaseView.$el.foundation('open');
-        //this.fullCaseView.$el.foundation('reveal', 'open');
+        this.fullCaseView.open();
     }
 
 });

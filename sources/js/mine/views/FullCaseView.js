@@ -15,13 +15,16 @@ module.exports = Backbone.View.extend({
     },
 
     initialize: function () {
-        console.log("init");
-        /*this.listenTo(this.model, 'change', this.render);*///todo make it render on model change
+        this.listenTo(this.model, 'change', this.render);
     },
 
     render: function () {
         this.$el.html(template(this.model.attributes));
         return this;
+    },
+
+    open: function () {
+        this.$el.foundation('open');
     }
 
 });

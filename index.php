@@ -13,16 +13,7 @@ session_start();
     <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-
-<?php
-include("includes/head.php");
-?>
-
-<!-- DASHBOARD -->
-<div class="dashboard columns small-12">
-</div>
-<!-- END DASHBOARD -->
-
+<div class="main" data-login="<?php if ((isset($_SESSION['user']))) : ?>true<?php endif; ?>"></div>
 <script src="public/js/bundle.js"></script>
 </body>
 </html>

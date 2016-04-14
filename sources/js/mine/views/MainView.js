@@ -7,6 +7,7 @@ var DashboardView = require('./DashboardView');
 var AddCaseView = require('./AddCaseView');
 var EditCaseView = require('./EditCaseView');
 var ModalErrorView = require('./ModalErrorView');
+var template = require("../templates/Main.hbs");
 Backbone.$ = $;
 
 /*$(function () {
@@ -16,30 +17,34 @@ Backbone.$ = $;
 
 
 module.exports = Backbone.View.extend({
-    /*events: {
-     'click .image-upload-button': 'onImageUploadButtonClick'
-     },*/
+    events: {
+     'click .add-case-button': 'onAddCaseButtonClick'//this works if the element is inside the view !!!!
+     },
 
     initialize: function () {
-        this.TAB_NAMES = ['approved', 'resolved', 'pending', 'rejected'];//convert to collection?
+        this.$el.html(template(this.model.attributes));
 
-        this.dashboardView = new DashboardView({el: $('.dashboard')});
-
-        /*this.addCaseView = new AddCaseView();
-         this.editCaseView = new EditCaseView();
+        this.dashboardView = new DashboardView({el: this.$('.dashboard')});
+        this.addCaseModel = new Backbone.Model();
+        this.addCaseView = new AddCaseView({model: this.addCaseModel});
+        this.$el.append(this.addCaseView.render().el);
+        //console.log('ttta',this.addCaseView.el);
+         /*this.editCaseView = new EditCaseView();
          this.modalErrorView = new ModalErrorView();*/
 
 
     },
 
     render: function () {
-        //console.log(this.dashboardModel.attributes);
         this.dashboardView.render();
         //added this because tabs were not working
         $(document).foundation();//is there another way?
-    }/*,
+    },
 
-     onImageUploadButtonClick: function (event) {
+    onAddCaseButtonClick: function () {
+        this.addCaseView.open();
+    }
+     /*onImageUploadButtonClick: function (event) {
      /!* if (this.$imageUploadInput) {
      this.$imageUploadInput.click();
      }
