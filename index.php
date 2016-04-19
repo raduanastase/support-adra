@@ -13,7 +13,7 @@ session_start();
     <link rel="stylesheet" href="css/app.css"/>
 </head>
 <body>
-<div class="main" data-login="<?php if ((isset($_SESSION['user']))) : ?>true<?php endif; ?>"></div>
+<div class="main" data-raw='<?php getRawData($conn) ?>'></div>
 <script src="public/js/bundle.js"></script>
 </body>
 </html>

@@ -25,7 +25,7 @@ module.exports = Backbone.View.extend({
         this.$el.html(template(this.model.attributes));
 
         this.dashboardView = new DashboardView({el: this.$('.dashboard')});
-        this.addCaseModel = new Backbone.Model();
+        this.addCaseModel = new Backbone.Model({counties: this.model.get('counties')});
         this.addCaseView = new AddCaseView({model: this.addCaseModel});
         this.$el.append(this.addCaseView.render().el);
         //console.log('ttta',this.addCaseView.el);

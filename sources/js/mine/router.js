@@ -7,7 +7,7 @@ var MainView = require('./views/MainView');
 Backbone.$ = $;
 
 var $mainEl = $('.main');
-var mainModel = new Backbone.Model({loggedIn: $mainEl.data('login')});
+var mainModel = new Backbone.Model($mainEl.data('raw'));
 var mainView = new MainView({el: $mainEl, model: mainModel});
 
 module.exports = Backbone.Router.extend({
@@ -19,7 +19,6 @@ module.exports = Backbone.Router.extend({
     },
 
     home: function () {
-        console.log("home");
         mainView.render();
     }
 });

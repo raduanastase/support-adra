@@ -123,15 +123,9 @@
 
                 <select name="person-region" id="person-region"><!-- ADD REQUIRED -->
                     <option value="0">Alege</option>
-                    <?php
-                        $res_county = mysqli_query($conn, 'select * from ps_state order by name');
-                        while($row_county = mysqli_fetch_array($res_county))
-                        {
-                            ?>
-                    <option value="<?php echo $row_county['ID']?>"><?php echo $row_county['name']?></option>
-                    <?php
-                        }
-                        ?>
+                    {{#each counties}}
+                        <option value="{{id}}">{{name}}</option>
+                    {{/each}}
                 </select>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
