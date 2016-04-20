@@ -26,14 +26,14 @@
         <div class="small-6 columns">
             <label for="reporter-last-name">Numele
                 <small>*</small>
-                <input type="text" id="reporter-last-name" required>
+                <input type="text" name="reporter-last-name" id="reporter-last-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
         <div class="small-6 columns">
             <label for="reporter-first-name">Prenumele
                 <small>*</small>
-                <input type="text" id="reporter-first-name" required>
+                <input type="text" name="reporter-first-name" id="reporter-first-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -42,17 +42,17 @@
     <div class="row">
         <div class="small-12 medium-4 columns">
             <label for="reporter-cnp">C.N.P.
-                <input type="text" id="reporter-cnp">
+                <input type="text" name="reporter-cnp" id="reporter-cnp">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
-            <label for="reporter-ci-series">B.I. Seria
-                <input type="text" id="reporter-ci-series">
+            <label for="reporter-ci-series">C.I. Seria
+                <input type="text" name="reporter-ci-series" id="reporter-ci-series">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
-            <label for="reporter-ci-number">B.I. Numar
-                <input type="text" id="reporter-ci-number">
+            <label for="reporter-ci-number">C.I. Numar
+                <input type="text" name="reporter-ci-number" id="reporter-ci-number">
             </label>
         </div>
     </div>
@@ -61,7 +61,7 @@
         <div class="small-12 columns">
             <label for="reporter-phone">Numar de telefon
                 <small>*</small>
-                <input type="tel" id="reporter-phone" required pattern="number">
+                <input type="tel" name="reporter-phone" id="reporter-phone" required pattern="number">
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -70,7 +70,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="reporter-email">Email
-                <input type="email" id="reporter-email">
+                <input type="email" name="reporter-email" id="reporter-email">
             </label>
         </div>
     </div>
@@ -85,14 +85,14 @@
         <div class="small-6 columns">
             <label for="person-last-name">Numele <b>persoanei in cauza</b>
                 <small>*</small>
-                <input type="text" id="person-last-name" required>
+                <input type="text" name="person-last-name" id="person-last-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
         <div class="small-6 columns">
             <label for="person-first-name">Prenumele <b>persoanei in cauza</b>
                 <small>*</small>
-                <input type="text" id="person-first-name" required>
+                <input type="text" name="person-first-name" id="person-first-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -101,27 +101,27 @@
     <div class="row">
         <div class="small-12 medium-4 columns">
             <label for="person-cnp">C.N.P.
-                <input type="text" id="person-cnp">
+                <input type="text" name="person-cnp" id="person-cnp">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
-            <label for="person-ci-series">B.I. Seria
-                <input type="text" id="person-ci-series">
+            <label for="person-ci-series">C.I. Seria
+                <input type="text" name="person-ci-series" id="person-ci-series">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
-            <label for="person-ci-number">B.I. Numar
-                <input type="text" id="person-ci-number">
+            <label for="person-ci-number">C.I. Numar
+                <input type="text" name="person-ci-number" id="person-ci-number">
             </label>
         </div>
     </div>
 
     <div class="row">
         <div class="small-12 medium-6 columns">
-            <label for="person-region">Judet
+            <label for="person-county">Judet
                 <small>*</small>
 
-                <select name="person-region" id="person-region"><!-- ADD REQUIRED -->
+                <select name="person-county" id="person-county"><!-- ADD REQUIRED -->
                     <option value="0">Alege</option>
                     {{#each counties}}
                         <option value="{{id}}">{{name}}</option>
@@ -133,7 +133,7 @@
         <div class="small-12 medium-6 columns">
             <label for="person-city">Localitate
                 <small>*</small>
-                <input type="text" id="person-city" required>
+                <input type="text" name="person-city" id="person-city" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -143,7 +143,7 @@
         <div class="small-12 columns">
             <label for="person-address">Alte detalii adresa (strada,numar,etc.)
                 <small>*</small>
-                <input type="text" id="person-address" required>
+                <input type="text" name="person-address" id="person-address" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -153,7 +153,7 @@
         <div class="small-12 columns">
             <label for="person-description">Descriere
                 <small>*</small>
-                <textarea type="text" id="person-description" maxlength="1000" required></textarea>
+                <textarea type="text" name="person-description" id="person-description" maxlength="1000" required></textarea>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -168,7 +168,7 @@
                             <span class="small-12 columns">Suma necesara</span>
                         </span>
                         <span class="row">
-                            <span class="small-10 columns"><input type="text" id="person-money-total"></span>
+                            <span class="small-10 columns"><input type="text" name="person-money-total" id="person-money-total"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
             </label>
@@ -179,7 +179,7 @@
                             <span class="small-12 columns">Suma stransa</span>
                         </span>
                         <span class="row">
-                            <span class="small-10 columns"><input type="text" id="person-money-partial"></span>
+                            <span class="small-10 columns"><input type="text" name="person-money-partial" id="person-money-partial"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
             </label>

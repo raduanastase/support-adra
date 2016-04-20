@@ -7,7 +7,7 @@
 
    
    if (isset($_SESSION['user'])){
-    refresh("index.php");
+    redirect("index.php");
     }
     else{
          if($_SERVER["REQUEST_METHOD"] == "POST") 
@@ -33,7 +33,7 @@
             
            // echo $_SESSION['ID'];
            // echo $_SESSION['type'];
-             refresh("index.php");
+             redirect("index.php");
              //header("location: welcome.php");
           }else {
              $error = "Your Login Name or Password is invalid";
