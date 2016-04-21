@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "browserify -t hbsfy sources/js/mine/index.js -o public/js/bundle.js",
-    "watch": "watchify -t hbsfy sources/js/mine/index.js -o public/js/bundle.js --debug --verbose",
+    "watch": "watchify -t hbsfy sources/js/mine/index.js -o public/js/bundle.js --debug --verbose --poll=true",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

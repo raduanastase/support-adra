@@ -81,7 +81,14 @@
 <div class="row">
     <div class="small-6 columns">
         <div class="modal-label">Judet</div>
-        <div class="person-county modal-label-value">{{person_county_id}}</div>
+        <div class="person-county modal-label-value">
+            <select name="person-county" id="person-county" disabled="disabled">
+                <option value="0">Alege</option>
+                {{#each counties}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
     </div>
     <div class="small-6 columns">
         <div class="modal-label">Localitate</div>

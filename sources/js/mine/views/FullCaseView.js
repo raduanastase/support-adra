@@ -20,6 +20,7 @@ module.exports = Backbone.View.extend({
 
     render: function () {
         this.$el.html(template(this.model.attributes));
+        this.$('#person-county').val(this.model.get('person_county_id'));
         return this;
     },
 

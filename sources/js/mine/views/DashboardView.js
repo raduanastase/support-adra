@@ -11,7 +11,7 @@ module.exports = Backbone.View.extend({
         this.$el.html(template(/*this.model.attributes*/));//TODO find out if putting this here is ok
 
         var $tabsContent = $('.tabs-content');
-        this.fullCaseModel = new Backbone.Model();
+        this.fullCaseModel = new Backbone.Model({counties: this.model.get('counties')});
         this.fullCaseView = new FullCaseView({model: this.fullCaseModel});
 
         this.$el.append(this.fullCaseView.render().el);
