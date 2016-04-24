@@ -24,7 +24,7 @@ module.exports = Backbone.View.extend({
     initialize: function () {
         this.$el.html(template(this.model.attributes));
 
-        this.dashboardModel = new Backbone.Model({counties: this.model.get('counties')});
+        this.dashboardModel = new Backbone.Model({counties: this.model.get('counties'), loggedIn: this.model.get('loggedIn')});
         this.dashboardView = new DashboardView({model: this.dashboardModel, el: this.$('.dashboard')});
         this.addCaseModel = new Backbone.Model({counties: this.model.get('counties')});
         this.addCaseView = new AddCaseView({model: this.addCaseModel});

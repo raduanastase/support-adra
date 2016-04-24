@@ -25,10 +25,9 @@ module.exports = Backbone.View.extend({
         var view = new ThumbnailCaseView({
             model: item
         });
+        
         this.listenTo(view, 'case-details', this.onCaseDetails);
         this.$el.find('#panel' + this.model.get('id') + ' .cases-wrapper').append(view.render().el);
-
-        /*el: $()*/
     },
 
     addAll: function () {
