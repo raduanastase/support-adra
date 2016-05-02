@@ -1,6 +1,6 @@
 'use strict';
 
-var $ = global.$ = global.jQuery = require('jquery');
+//var $ = global.$ = global.jQuery = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
 var ThumbnailCaseModel = require('../models/ThumbnailCaseModel');

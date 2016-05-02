@@ -14,6 +14,10 @@ session_start();
 </head>
 <body>
 <div class="main" data-raw='<?php getRawData($conn) ?>'></div>
+
+<script src="sources/js/vendor/jquery.js"></script>
+<script src="sources/js/vendor/what-input.js"></script>
+<script src="sources/js/vendor/foundation.js"></script>
 <script src="public/js/bundle.js"></script>
 </body>
 </html>

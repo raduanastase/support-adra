@@ -1,4 +1,4 @@
-var $ = global.$ = global.jQuery = require('jquery'),
+var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone'),
     template = require("../templates/Dashboard.hbs"),
     TabView = require("./TabView");

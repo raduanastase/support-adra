@@ -1,6 +1,6 @@
 'use strict';
 
-var $ = global.$ = global.jQuery = require('jquery');
+//var $ = global.$ = global.jQuery = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
 var DashboardView = require('./DashboardView');
@@ -39,7 +39,7 @@ module.exports = Backbone.View.extend({
     render: function () {
         this.dashboardView.render();
         //added this because tabs were not working
-        $(document).foundation();//is there another way?
+        //$(document).foundation();//is there another way?
     },
 
     onAddCaseButtonClick: function () {

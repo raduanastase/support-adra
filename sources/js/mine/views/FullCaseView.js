@@ -1,4 +1,4 @@
-var $ = require('jquery')(window),
+var /*$ = require('jquery')(window),*/
     Backbone = require('backbone'),
     template = require("../templates/FullCase.hbs");
 var GalleryModel = require("../models/GalleryModel");
@@ -16,6 +16,12 @@ module.exports = Backbone.View.extend({
         };
     },
 
+    events: function () {
+        return {
+            'click .close-button': 'close'
+        };
+    },
+
     initialize: function () {
         this.$el.html(template(this.model.attributes));
 
@@ -29,13 +35,21 @@ module.exports = Backbone.View.extend({
         this.$el.html(template(this.model.attributes));
 
         this.$('#person-county').val(this.model.get('person_county_id'));
+        
         this.galleryModel.set('pictures', this.model.get('pictures'));
         this.$('.gallery-wrapper').html(this.galleryView.render().el);
+        
         return this;
     },
 
     open: function () {
+        //console.log(this.$el);
         this.$el.foundation('open');
-    }
+    },
 
+    close: function () {
+        this.$el.foundation('close');
+        this.galleryView.reset();
+        this.$('.gallery-wrapper').html('');
+    }
 });

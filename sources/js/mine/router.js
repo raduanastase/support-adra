@@ -1,6 +1,6 @@
 "use strict";
 
-var $ = global.$ = global.jQuery = require('jquery'),
+var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone');
 var MainView = require('./views/MainView');
 

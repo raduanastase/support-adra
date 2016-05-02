@@ -1,7 +1,5 @@
-var $ = global.$ = global.jQuery = require('jquery');
+//var $ = require('jquery');
 var Backbone = require('backbone');
-require('what-input');
-require('foundation-sites');
 require('./HandlebarsHelpers');
 Backbone.$ = $;
 
@@ -14,5 +12,4 @@ $("body").on("click", ".back-button", function (event) {
 });
 
 Backbone.history.start();
-
 $(document).foundation();
