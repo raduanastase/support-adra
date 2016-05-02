@@ -35,7 +35,6 @@ module.exports = Backbone.View.extend({
     },
 
     onCaseDetails: function (data) {
-        console.log("DATA", data);
         this.trigger('case-details', data);
     }
 });

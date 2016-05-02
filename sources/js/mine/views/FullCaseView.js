@@ -50,6 +50,6 @@ module.exports = Backbone.View.extend({
     close: function () {
         this.$el.foundation('close');
         this.galleryView.reset();
-        this.$('.gallery-wrapper').html('');
+        this.$el.html('');
     }
 });

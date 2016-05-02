@@ -1,5 +1,6 @@
 var Backbone = require('backbone'),
     template = require("../templates/Gallery.hbs");
+var _ = require('underscore');
 
 Backbone.$ = $;
 
@@ -19,9 +20,10 @@ module.exports = Backbone.View.extend({
 
     render: function () {
         this.$el.html(template(this.model.attributes));
-        console.log(this.$el);
-        this.$el.foundation();
-        //this.$el.foundation('orbit', 'reflow');
+
+        //hack for orbit gallery reflow
+        _.defer(function () { this.$el.foundation(); }.bind(this));
+
         return this;
     },
 

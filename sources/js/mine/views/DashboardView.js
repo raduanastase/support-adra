@@ -1,5 +1,6 @@
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone'),
+    _ = require('underscore'),
     template = require("../templates/Dashboard.hbs"),
     TabView = require("./TabView");
 var FullCaseView = require('./FullCaseView');
@@ -14,7 +15,7 @@ module.exports = Backbone.View.extend({
         this.fullCaseModel = new Backbone.Model({counties: this.model.get('counties'), loggedIn: this.model.get('loggedIn')});
         this.fullCaseView = new FullCaseView({model: this.fullCaseModel});
 
-        this.$el.append(this.fullCaseView.render().el);
+        this.$el.append(this.fullCaseView.el);
 
         this.approvedTabView = new TabView({
             model: new Backbone.Model({
@@ -62,9 +63,7 @@ module.exports = Backbone.View.extend({
     },
 
     onCaseDetailsReceived: function (data) {
-        console.log("on details", data);
-        this.fullCaseModel.set(data[0][0]);
-        this.fullCaseModel.set('pictures', data[1]);
+        this.fullCaseModel.set(_.extend({}, data[0][0], {pictures: data[1]}));
         this.fullCaseView.open();
     }
 
