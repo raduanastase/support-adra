@@ -19,7 +19,7 @@ if ($_GET['add-case'] == 1) {
 									person_ci_number = "' . $_POST['person-ci-number'] . '",		
 									person_county_id = "' . $_POST['person-county'] . '",
 									person_city = "' . $_POST['person-city'] . '",
-									person_adress = "' . $_POST['person-address'] . '",									
+									person_address = "' . $_POST['person-address'] . '",									
 									person_description = "' . $_POST['person-description'] . '"
 																		
 						';

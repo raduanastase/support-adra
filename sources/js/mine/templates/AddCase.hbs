@@ -11,8 +11,23 @@
 
     <div class="row">
         <div class="small-12 columns upload-images">
-            <input type="file" id="image-upload-input" multiple accept="image/*">
-            <a class="button" id="image-upload-button">Adauga poze</a>
+            <label for="image-upload-input">
+                <input type="file" id="image-upload-input" required multiple accept="image/*">
+                <span class="button" id="image-upload-button">Adauga poze</span>
+            </label>
+            <ul class="files-list">
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="small-12 columns section-title">
+            <label for="case-name">Numele cazului
+                <small>*</small>
+                <input type="text" name="case-name" id="case-name" required>
+                <span class="form-error">Completarea campului este obligatorie</span>
+            </label>
         </div>
     </div>
 

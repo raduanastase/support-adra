@@ -8,7 +8,7 @@
 	{	
 
 
-		$result = mysqli_query($conn, "SELECT ID, IDcounty, city, adress, name, description, IDrequester, type FROM adra_cases WHERE ID = ".mysqli_real_escape_string($conn, $_GET['case_id']));
+		$result = mysqli_query($conn, "SELECT ID, IDcounty, city, address, name, description, IDrequester, type FROM adra_cases WHERE ID = ".mysqli_real_escape_string($conn, $_GET['case_id']));
 		$raspuns = array();
 
 		while ($row = mysqli_fetch_array($result)) {

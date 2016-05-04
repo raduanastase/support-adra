@@ -41,7 +41,7 @@ h6 {
     font-style: italic;
 }
 
-.image-upload-input {
+#image-upload-input {
     display: none;
 }
 

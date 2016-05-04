@@ -7,6 +7,12 @@ Backbone.$ = $;
 module.exports = Backbone.View.extend({
     className: 'full reveal',
 
+    events: function () {
+      return {
+          'change #image-upload-input': 'onChangeImageUpload'
+      }
+    },
+
     attributes: function () {
         return {
             id: 'add-case-modal',
@@ -25,6 +31,16 @@ module.exports = Backbone.View.extend({
 
     open: function () {
         this.$el.foundation('open');
-    }
+    },
 
+    onChangeImageUpload: function (event) {
+        var files = event.currentTarget.files;
+        var $fileList = this.$('.files-list');
+
+        $fileList.html('');
+
+        for (var i = 0; i < files.length; ++i) {
+            $fileList.append('<li>' + files.item(i).name +'</li>');
+        }
+    }
 });
