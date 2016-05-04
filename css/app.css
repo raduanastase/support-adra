@@ -54,11 +54,18 @@ h6 {
     font-size: 14px;
 }
 
-.view-case-template {
-}
-
 .modal-title {
     font-size: 20px;
     font-weight: bold;
     color: red;
+}
+
+.edit-button {
+    position: absolute;
+    top: 45px;
+    right: 31px;
+}
+
+.delete-button {
+    margin-top: 20px;
 }

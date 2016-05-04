@@ -3,6 +3,12 @@
     <span aria-hidden="true">&times;</span>
 </button>
 
+{{#if loggedIn}}
+    <button class="button tiny hollow edit-button" type="button">
+        Editeaza cazul
+    </button>
+{{/if}}
+
 <div class="row">
     <div class="small-12 columns gallery-wrapper">
 
@@ -126,3 +132,13 @@
         <div class="person-money-partial modal-label-value">{{person_money_partial}}</div>
     </div>
 </div>
+
+{{#if loggedIn}}
+    <div class="row">
+        <div class="small-12 columns text-center">
+            <button class="button alert delete-button" type="button">
+                Sterge cazul
+            </button>
+        </div>
+    </div>
+{{/if}}

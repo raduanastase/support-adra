@@ -173,9 +173,8 @@
             </label>
         </div>
     </div>
-    <?php
-        if ((isset($_SESSION['user']))) : ?>
 
+    {{#if loggedIn}}
     <div class="row">
         <div class="small-12 medium-6 columns">
             <label for="person-money-total">
@@ -200,8 +199,7 @@
             </label>
         </div>
     </div>
-    <?php endif;
-        ?>
+    {{/if}}
 
     <div class="row">
         <div class="small-6 columns">
