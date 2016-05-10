@@ -10,16 +10,16 @@
 
 <div class="row">
     <div class="medium-6 medium-centered large-4 large-centered columns">
-        <form id="log-in-form" method="POST" action="{{ url('/login') }}">
+        <form class="register-login-form" method="POST" action="{{ url('/login') }}">
             {!! csrf_field() !!}
 
             <div class="row">
-                <label>Nume utilizator {{ $errors->has('email') ? ' has-error' : '' }}</label>
-                <input type="text" placeholder="nume-utilizator" name="username" value="{{ old('username') }}">
+                <label>E-mail {{ $errors->has('email') ? ' has-error' : '' }}</label>
+                <input type="email" placeholder="email@exemplu.ro" name="email" value="{{ old('email') }}">
 
-                @if ($errors->has('username'))
+                @if ($errors->has('email'))
                     <span class="help-block">
-                        <strong>{{ $errors->first('username') }}</strong>
+                        <strong>{{ $errors->first('email') }}</strong>
                     </span>
                 @endif
             </div>

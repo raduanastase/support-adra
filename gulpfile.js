@@ -19,7 +19,6 @@ var paths = {
 
 elixir(function(mix) {
     mix.sass('app.scss');
-    mix.sass('login.scss');
     
     mix.scripts([
         paths.NODE + 'jquery/dist/jquery.min.js',

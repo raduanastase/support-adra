@@ -3,3 +3,82 @@
 @import 'vendor/foundation/foundation';
 
 @include foundation-everything(false);
+
+body {
+  background: #f1f1f1;
+  padding: 20px;
+}
+
+@import "login";
+
+.logo {
+  width: 200px;
+}
+
+.add-case-button {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+}
+
+.log-out-button {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+}
+
+.thumbnail {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.thumbnail-img {
+  margin-bottom: 10px;
+}
+
+h5 {
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+.tabs-panel.is-active a {
+  color: black;
+}
+
+.section-title {
+  margin-top: 30px;
+  font-size: 18px;
+  font-style: italic;
+}
+
+#image-upload-input {
+  display: none;
+}
+
+.modal-label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.modal-label-value {
+  font-size: 14px;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: red;
+}
+
+.edit-button {
+  position: absolute;
+  top: 45px;
+  right: 31px;
+}
+
+.delete-button {
+  margin-top: 20px;
+}
