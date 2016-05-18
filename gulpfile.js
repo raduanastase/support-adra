@@ -17,6 +17,11 @@ var paths = {
     'NODE': './node_modules/'
 };
 
+elixir.config.js.browserify.transformers.push({
+    name: 'hbsfy',
+    options: {}
+});
+
 elixir(function(mix) {
     mix.sass('app.scss');
     
@@ -25,4 +30,6 @@ elixir(function(mix) {
         'vendor/foundation/foundation.core.js',
         'vendor/foundation/*.js'
     ]);
+
+    mix.browserify('mine/index.js');
 });

@@ -18,3 +18,12 @@ Route::get('/', function () {
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('posts', 'PostsController@index');
+Route::get('posts/{post}', 'PostsController@show');
+Route::get('posts/create', 'PostsController@create');
+Route::post('posts', 'PostsController@store');
+
+Route::post('posts/{}/edit', 'PostsController@edit');
+Route::put('posts/{}', 'PostsController@update');
+Route::delete('posts/{}', 'PostsController@destroy');

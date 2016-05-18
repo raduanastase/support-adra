@@ -1,0 +1,144 @@
+<h1>{{case_name}}</h1>
+<button class="close-button" aria-label="Close modal" type="button">
+    <span aria-hidden="true">&times;</span>
+</button>
+
+{{#if loggedIn}}
+    <button class="button tiny hollow edit-button" type="button">
+        Editeaza cazul
+    </button>
+{{/if}}
+
+<div class="row">
+    <div class="small-12 columns gallery-wrapper">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 columns section-title">
+        Date de contact ale pesoanei care raporteaza
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-6 columns">
+        <div class="modal-label">Nume</div>
+        <div class="reporter-last-name modal-label-value">{{reporter_last_name}}</div>
+    </div>
+    <div class="small-6 columns">
+        <div class="modal-label">Prenume</div>
+        <div class="reporter-first-name modal-label-value">{{reporter_first_name}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-4 columns">
+        <div class="modal-label">C.N.P.</div>
+        <div class="reporter-cnp modal-label-value">{{reporter_cnp}}</div>
+    </div>
+    <div class="small-4 columns">
+        <div class="modal-label">B.I. Seria</div>
+        <div class="reporter-ci-series modal-label-value">{{reporter_ci_series}}</div>
+    </div>
+    <div class="small-4 columns">
+        <div class="modal-label">B.I. Numar</div>
+        <div class="reporter-ci-number modal-label-value">{{reporter_ci_number}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-6 columns">
+        <div class="modal-label">Numar de telefon</div>
+        <div class="reporter-phone modal-label-value">{{reporter_phone}}</div>
+    </div>
+    <div class="small-6 columns">
+        <div class="modal-label">Email</div>
+        <div class="reporter-email modal-label-value">{{reporter_email}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 columns section-title">
+        Date despre persoana in cauza
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-6 columns">
+        <div class="modal-label">Numele <b>persoanei in cauza</b></div>
+        <div class="person-last-name modal-label-value">{{person_last_name}}</div>
+    </div>
+    <div class="small-6 columns">
+        <div class="modal-label">Prenumele <b>persoanei in cauza</b></div>
+        <div class="person-first-name modal-label-value">{{person_first_name}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-4 columns">
+        <div class="modal-label">C.N.P.</div>
+        <div class="person-cnp modal-label-value">{{person_cnp}}</div>
+    </div>
+    <div class="small-4 columns">
+        <div class="modal-label">B.I. Seria</div>
+        <div class="person-ci-series modal-label-value">{{person_ci_series}}</div>
+    </div>
+    <div class="small-4 columns">
+        <div class="modal-label">B.I. Numar</div>
+        <div class="person-ci-number modal-label-value">{{person_ci_number}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-6 columns">
+        <div class="modal-label">Judet</div>
+        <div class="person-county modal-label-value">
+            <select name="person-county" id="person-county" disabled="disabled">
+                <option value="0">Alege</option>
+                {{#each counties}}
+                    <option value="{{id}}">{{name}}</option>
+                {{/each}}
+            </select>
+        </div>
+    </div>
+    <div class="small-6 columns">
+        <div class="modal-label">Localitate</div>
+        <div class="person-city modal-label-value">{{person_city}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 columns">
+        <div class="modal-label">Alte detalii adresa (strada,numar,etc.)</div>
+        <div class="person-address modal-label-value">{{person_address}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 columns">
+        <div class="modal-label">Descriere</div>
+        <div class="person-description modal-label-value">{{person_description}}</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-6 columns">
+        <div class="modal-label">Suma necesara</div>
+        <div class="person-money-total modal-label-value">{{person_money_total}}</div>
+    </div>
+    <div class="small-6 columns">
+        <div class="modal-label">Suma stransa</div>
+        <div class="person-money-partial modal-label-value">{{person_money_partial}}</div>
+    </div>
+</div>
+
+{{#if loggedIn}}
+    <div class="row">
+        <div class="small-12 columns text-center">
+            <button class="button alert delete-button" type="button">
+                Sterge cazul
+            </button>
+        </div>
+    </div>
+{{/if}}

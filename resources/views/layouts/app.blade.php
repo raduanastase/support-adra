@@ -54,6 +54,7 @@
 
 <!-- JavaScripts -->
 <script src="js/all.js"></script>
+<script src="js/index.js"></script>
 <script>
     $(document).foundation();
 </script>
