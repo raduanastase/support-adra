@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     protected $fillable = array(
-        'post_id', 'path'
+        'post_id', 'path', 'is_private', 'is_cover_image'
     );
 
     /**
@@ -18,7 +18,9 @@ class Attachment extends Model
      */
     public static $rules = array(
         'post_id'   => 'required|numeric',
-        'path'   => 'required'
+        'path'   => 'required',
+        'is_private' => 'required',
+        'is_cover_image' => 'required'
     );
 
     /**

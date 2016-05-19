@@ -12,9 +12,12 @@ class CreateAttachmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('attachment', function (Blueprint $table) {
+        Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('post_id');
             $table->string('path');
+            $table->boolean('is_private');
+            $table->boolean('is_cover_image');
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateAttachmentsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('attachment');
+        Schema::drop('attachments');
     }
 }
