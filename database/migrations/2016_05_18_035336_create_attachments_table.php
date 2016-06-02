@@ -14,7 +14,7 @@ class CreateAttachmentsTable extends Migration
     {
         Schema::create('attachments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('post_id');
+            $table->integer('post_id')->unsigned()->index();
             $table->string('path');
             $table->boolean('is_private');
             $table->boolean('is_cover_image');

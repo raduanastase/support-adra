@@ -3,10 +3,10 @@
 //var $ = global.$ = global.jQuery = require('jquery');
 var Backbone = require('backbone');
 var _ = require('underscore');
-var DashboardView = require('./DashboardView');
-var AddCaseView = require('./AddCaseView');
-var EditCaseView = require('./EditCaseView');
-var ModalErrorView = require('./ModalErrorView');
+var DashboardView = require('./MainView/DashboardView');
+var AddCaseView = require('./MainView/AddCaseView');
+var EditCaseView = require('./MainView/EditCaseView');
+var ModalErrorView = require('./MainView/ModalErrorView');
 var template = require("../templates/Main.hbs");
 Backbone.$ = $;
 
@@ -45,36 +45,4 @@ module.exports = Backbone.View.extend({
     onAddCaseButtonClick: function () {
         this.addCaseView.open();
     }
-     /*onImageUploadButtonClick: function (event) {
-     /!* if (this.$imageUploadInput) {
-     this.$imageUploadInput.click();
-     }
-     event.preventDefault(); // prevent navigation to "#"*!/
-     },
-
-     onGetCasesSuccess: function (data, typeOfCases) {
-     var self = this;
-     //console.log(typeOfCases, data);
-     data.forEach(function (element, index) {
-     console.log(typeOfCases);
-     self.$cases.push(self.$viewCaseTemplate.clone());//todo find out why this doesn't work
-     self.THUMBNAIL_VALUES.forEach(function (value, idx) {
-     console.log(typeOfCases, element[value[1]]);
-     if (idx == 0) {
-     self.$cases[index].find(value[0]).attr('src', element[value[1]]);
-     } else {
-     self.$cases[index].find(value[0]).text(element[value[1]]);
-     }
-     });
-     self.$cases[index].removeClass('view-case-template');
-     self.$TABS[typeOfCases].append(self.$cases[index]);
-     });
-     //self.$TABS[typeOfCases].foundation();
-     },
-
-     onGetCasesError: function (data) {
-     this.$errorModal.foundation('open');
-     },
-
-     */
 });

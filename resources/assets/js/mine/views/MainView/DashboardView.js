@@ -1,7 +1,7 @@
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone'),
     _ = require('underscore'),
-    template = require("../templates/Dashboard.hbs"),
+    template = require("../../templates/Dashboard.hbs"),
     TabView = require("./TabView");
 var FullCaseView = require('./FullCaseView');
 

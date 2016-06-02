@@ -2,13 +2,16 @@
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone');
-var MainView = require('./views/MainView');
+/*var MainView = require('./views/MainView');*/
+var PostsView = require('./views/PostsView');
 
 Backbone.$ = $;
 
-var $mainEl = $('.main');
+/*var $mainEl = $('.main');
 var mainModel = new Backbone.Model($mainEl.data('raw'));
-var mainView = new MainView({el: $mainEl, model: mainModel});
+var mainView = new MainView({el: $mainEl, model: mainModel});*/
+
+var postsView = new PostsView({el: $('.posts-view-wrapper')});
 
 module.exports = Backbone.Router.extend({
 
@@ -19,6 +22,7 @@ module.exports = Backbone.Router.extend({
     },
 
     home: function () {
-        mainView.render();
+        //mainView.render();
+        postsView.render();
     }
 });

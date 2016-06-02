@@ -1,8 +1,8 @@
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone'),
-    template = require("../templates/TabView.hbs");
+    template = require("../../templates/TabView.hbs");
 var ThumbnailCaseView = require('./ThumbnailCaseView');
-var CasesCollection = require('../collections/CasesCollection');
+var CasesCollection = require('../../collections/CasesCollection');
 
 Backbone.$ = $;
 

@@ -1,5 +1,5 @@
 var Backbone = require('backbone'),
-    template = require("../templates/Gallery.hbs");
+    template = require("../../templates/Gallery.hbs");
 var _ = require('underscore');
 
 Backbone.$ = $;

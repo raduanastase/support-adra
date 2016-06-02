@@ -35,6 +35,24 @@ class AttachmentsTableSeeder extends Seeder
                 'path' => 'path2_1',
                 'is_private' => false,
                 'is_cover_image' => true
+            ),
+            array(
+                'post_id' => '3',
+                'path' => 'path3_1',
+                'is_private' => false,
+                'is_cover_image' => true
+            ),
+            array(
+                'post_id' => '4',
+                'path' => 'path4_1',
+                'is_private' => false,
+                'is_cover_image' => true
+            ),
+            array(
+                'post_id' => '4',
+                'path' => 'path4_2',
+                'is_private' => false,
+                'is_cover_image' => false
             )
         );
 

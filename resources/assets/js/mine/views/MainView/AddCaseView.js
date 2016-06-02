@@ -1,6 +1,6 @@
 var /*$ = require('jquery')(window),*/
     Backbone = require('backbone'),
-    template = require("../templates/AddCase.hbs");
+    template = require("../../templates/AddCase.hbs");
 
 Backbone.$ = $;
 

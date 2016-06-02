@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attachment extends Model
 {
     protected $fillable = array(
-        'post_id', 'path', 'is_private', 'is_cover_image'
+        'path', 'is_private', 'is_cover_image'
     );
 
     /**
@@ -29,6 +29,6 @@ class Attachment extends Model
      */
     public function post()
     {
-        return $this->belongsTo('Post');
+        return $this->belongsTo(Post::class);
     }
 }

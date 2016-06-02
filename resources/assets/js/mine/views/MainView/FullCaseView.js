@@ -1,7 +1,7 @@
 var /*$ = require('jquery')(window),*/
     Backbone = require('backbone'),
-    template = require("../templates/FullCase.hbs");
-var GalleryModel = require("../models/GalleryModel");
+    template = require("../../templates/FullCase.hbs");
+var GalleryModel = require("../../models/GalleryModel");
 var GalleryView = require("./GalleryView");
 
 Backbone.$ = $;

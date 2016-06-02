@@ -13,5 +13,7 @@
             </div>
         </div>
     </div>
+    
+    <div class="row posts-view-wrapper"></div>
 </div>
 @endsection

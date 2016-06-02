@@ -31,5 +31,6 @@ elixir(function(mix) {
         'vendor/foundation/*.js'
     ]);
 
+    //mix.babelify('mine/*.js');
     mix.browserify('mine/index.js');
 });
