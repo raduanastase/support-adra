@@ -13,7 +13,8 @@ module.exports = Backbone.View.extend({
         this.postsCollection = new PostsCollection();
 
         this.postsCollection.fetch({
-            success: this.onFetchSuccess.bind(this)
+            success: this.onFetchSuccess.bind(this),
+            error: this.onFetchError
         });
     },
 
@@ -24,7 +25,7 @@ module.exports = Backbone.View.extend({
     onFetchSuccess: function (collection, response) {
         var that = this;
 
-        response.posts.forEach(function(postModel) {
+        response.posts.data.forEach(function(postModel) {
             const thumbnailPostView = new ThumbnailPostView({model: new Backbone.Model(postModel)});
 
             thumbnailPostView.render();
@@ -32,5 +33,9 @@ module.exports = Backbone.View.extend({
 
             that.thumbnailPostViews.push(thumbnailPostView);
         });
+    },
+
+    onFetchError: function () {
+        console.log("PostsCollection fetch error", arguments);
     }
 });

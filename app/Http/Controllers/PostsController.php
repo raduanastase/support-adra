@@ -10,7 +10,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('attachments')->paginate(10);
         return compact('posts');
     }
 
