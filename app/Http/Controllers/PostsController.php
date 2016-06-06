@@ -14,6 +14,12 @@ class PostsController extends Controller
         return compact('posts');
     }
 
+    public function postsOfType($typeOfPost)
+    {
+        $posts = Post::where('type', $typeOfPost)->with('attachments')->paginate(10);
+        return compact('posts');
+    }
+
     public function create()
     {
         $post = new Post;
