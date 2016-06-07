@@ -10,7 +10,7 @@ module.exports = Backbone.View.extend({
         this.$el.html(template(this.model.attributes));
 
         this.thumbnailPostViews = [];
-        this.postsCollection = new PostsCollection();
+        this.postsCollection = new PostsCollection(this.model.get('type'));
 
         this.postsCollection.fetch({
             success: this.onFetchSuccess.bind(this),

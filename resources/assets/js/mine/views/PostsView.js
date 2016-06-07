@@ -3,6 +3,12 @@ var _ = require('underscore');
 
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
+const Config = [
+    'accepted',
+    'resolved',
+    'pending',
+    'rejected'
+]
 
 module.exports = Backbone.View.extend({
     initialize: function () {
@@ -12,10 +18,12 @@ module.exports = Backbone.View.extend({
     render: function () {
         this.$el.html(template());
 
-        const tabView = new TabView({model: new Backbone.Model({active: true, id: 1})});
+        Config.forEach(function (type, index) {
+            const tab = new TabView({model: new Backbone.Model({active: index === 0, id: index+1, type: type})});
 
-        this.tabs.push(tabView);
-        tabView.render();
-        this.$('.tabs-wrapper').append(tabView.$el);
+            tab.render();
+            this.tabs.push(tab);
+            this.$('.tabs-wrapper').append(tab.$el);
+        }.bind(this));
     }
 });

@@ -6,10 +6,10 @@ Backbone.$ = $;
 
 module.exports = Backbone.Collection.extend({
     url: function () {
-        return 'posts/';
+        return 'posts/'+this.type;
     },
     
-    initialize: function () {
-
+    initialize: function (type) {
+        this.type = type;
     }
 });

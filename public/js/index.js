@@ -14520,6 +14520,7 @@ var _ = require('underscore');
 
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
+var Config = ['accepted', 'resolved', 'pending', 'rejected'];
 
 module.exports = Backbone.View.extend({
     initialize: function initialize() {
@@ -14529,11 +14530,13 @@ module.exports = Backbone.View.extend({
     render: function render() {
         this.$el.html(template());
 
-        var tabView = new TabView({ model: new Backbone.Model({ active: true, id: 1 }) });
+        Config.forEach(function (type, index) {
+            var tab = new TabView({ model: new Backbone.Model({ active: index === 0, id: index + 1, type: type }) });
 
-        this.tabs.push(tabView);
-        tabView.render();
-        this.$('.tabs-wrapper').append(tabView.$el);
+            tab.render();
+            this.tabs.push(tab);
+            this.$('.tabs-wrapper').append(tab.$el);
+        }.bind(this));
     }
 });
 
@@ -14547,10 +14550,12 @@ Backbone.$ = $;
 
 module.exports = Backbone.Collection.extend({
     url: function url() {
-        return 'posts/';
+        return 'posts/' + this.type;
     },
 
-    initialize: function initialize() {}
+    initialize: function initialize(type) {
+        this.type = type;
+    }
 });
 
 },{"backbone":1}],32:[function(require,module,exports){
@@ -14568,7 +14573,7 @@ module.exports = Backbone.View.extend({
         this.$el.html(template(this.model.attributes));
 
         this.thumbnailPostViews = [];
-        this.postsCollection = new PostsCollection();
+        this.postsCollection = new PostsCollection(this.model.get('type'));
 
         this.postsCollection.fetch({
             success: this.onFetchSuccess.bind(this),
