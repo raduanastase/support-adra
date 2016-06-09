@@ -14481,7 +14481,7 @@ module.exports = Backbone.Router.extend({
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<div class=\"columns small-12 tabs-wrapper\">\r\n</div>";
+    return "<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\r\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel3\">În așteptare</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel4\">Refuzate</a></li>\r\n</ul>\r\n\r\n<div class=\"columns small-12 tabs-content\" data-tabs-content=\"posts-tabs\">\r\n</div>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],28:[function(require,module,exports){
@@ -14520,7 +14520,7 @@ var _ = require('underscore');
 
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
-var Config = ['accepted', 'resolved', 'pending', 'rejected'];
+var Config = ['approved', 'resolved', 'pending', 'rejected'];
 
 module.exports = Backbone.View.extend({
     initialize: function initialize() {
@@ -14535,8 +14535,10 @@ module.exports = Backbone.View.extend({
 
             tab.render();
             this.tabs.push(tab);
-            this.$('.tabs-wrapper').append(tab.$el);
+            this.$('.tabs-content').append(tab.$el);
         }.bind(this));
+
+        return this;
     }
 });
 
@@ -14570,7 +14572,9 @@ Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
     initialize: function initialize() {
-        this.$el.html(template(this.model.attributes));
+        /*const newElement = template(this.model.attributes);
+        this.setElement(newElement);
+        this.$el.replaceWith(newElement);*/
 
         this.thumbnailPostViews = [];
         this.postsCollection = new PostsCollection(this.model.get('type'));
@@ -14582,20 +14586,23 @@ module.exports = Backbone.View.extend({
     },
 
     render: function render() {
-        this.$el.html(template(this.model.attributes));
+        var newElement = template(this.model.attributes);
+        this.setElement(newElement);
+        this.$el.replaceWith(newElement);
+
+        console.log("render");
+        return this;
     },
 
     onFetchSuccess: function onFetchSuccess(collection, response) {
-        var that = this;
-
         response.posts.data.forEach(function (postModel) {
             var thumbnailPostView = new ThumbnailPostView({ model: new Backbone.Model(postModel) });
 
+            console.log(postModel);
             thumbnailPostView.render();
-            that.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
-
-            that.thumbnailPostViews.push(thumbnailPostView);
-        });
+            this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
+            this.thumbnailPostViews.push(thumbnailPostView);
+        }.bind(this));
     },
 
     onFetchError: function onFetchError() {
@@ -14627,6 +14634,7 @@ module.exports = Backbone.View.extend({
 
     render: function render() {
         this.$el.html(template(this.model.attributes));
+
         return this;
     },
 

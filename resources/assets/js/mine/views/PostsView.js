@@ -4,7 +4,7 @@ var _ = require('underscore');
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
 const Config = [
-    'accepted',
+    'approved',
     'resolved',
     'pending',
     'rejected'
@@ -23,7 +23,9 @@ module.exports = Backbone.View.extend({
 
             tab.render();
             this.tabs.push(tab);
-            this.$('.tabs-wrapper').append(tab.$el);
+            this.$('.tabs-content').append(tab.$el);
         }.bind(this));
+
+        return this;
     }
 });

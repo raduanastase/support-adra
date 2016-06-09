@@ -7,7 +7,9 @@ Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
     initialize: function () {
-        this.$el.html(template(this.model.attributes));
+        /*const newElement = template(this.model.attributes);
+        this.setElement(newElement);
+        this.$el.replaceWith(newElement);*/
 
         this.thumbnailPostViews = [];
         this.postsCollection = new PostsCollection(this.model.get('type'));
@@ -19,20 +21,21 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html(template(this.model.attributes));
+        const newElement = template(this.model.attributes);
+        this.setElement(newElement);
+        this.$el.replaceWith(newElement);
+
+        return this;
     },
 
     onFetchSuccess: function (collection, response) {
-        var that = this;
-
-        response.posts.data.forEach(function(postModel) {
+        response.posts.data.forEach(function (postModel) {
             const thumbnailPostView = new ThumbnailPostView({model: new Backbone.Model(postModel)});
 
             thumbnailPostView.render();
-            that.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
-
-            that.thumbnailPostViews.push(thumbnailPostView);
-        });
+            this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
+            this.thumbnailPostViews.push(thumbnailPostView);
+        }.bind(this));
     },
 
     onFetchError: function () {
