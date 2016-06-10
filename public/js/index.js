@@ -14504,7 +14504,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
   return "<a data-open=\"view-case-modal\">\r\n    <div class=\"thumbnail\">\r\n        <img class=\"thumbnail-img\" src=\""
-    + alias4(((helper = (helper = helpers.file_path || (depth0 != null ? depth0.file_path : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"file_path","hash":{},"data":data}) : helper)))
+    + alias4(((helper = (helper = helpers.cover_image_path || (depth0 != null ? depth0.cover_image_path : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"cover_image_path","hash":{},"data":data}) : helper)))
     + "\">\r\n        <h5 class=\"case-name\">"
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
     + "</h5>\r\n        <h6 class=\"case-description\">"
@@ -14590,7 +14590,6 @@ module.exports = Backbone.View.extend({
         this.setElement(newElement);
         this.$el.replaceWith(newElement);
 
-        console.log("render");
         return this;
     },
 
@@ -14598,7 +14597,6 @@ module.exports = Backbone.View.extend({
         response.posts.data.forEach(function (postModel) {
             var thumbnailPostView = new ThumbnailPostView({ model: new Backbone.Model(postModel) });
 
-            console.log(postModel);
             thumbnailPostView.render();
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
@@ -14615,7 +14613,7 @@ module.exports = Backbone.View.extend({
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
 Backbone = require('backbone'),
-    template = require("../../templates/ThumbnailCase.hbs");
+    template = require("../../templates/ThumbnailPost.hbs");
 var _ = require('underscore');
 Backbone.$ = $;
 
@@ -14630,12 +14628,34 @@ module.exports = Backbone.View.extend({
 
     initialize: function initialize() {
         self = this;
+
+        this.findCoverImage();
     },
 
     render: function render() {
         this.$el.html(template(this.model.attributes));
 
         return this;
+    },
+
+    findCoverImage: function findCoverImage() {
+        var coverImagePath;
+
+        this.model.get('attachments').forEach(function (attachment) {
+            if (attachment.is_cover_image) {
+                if (!coverImagePath) {
+                    coverImagePath = attachment.path;
+                } else {
+                    console.warn("The case with the id " + this.model.get('id') + ' has more than one cover image!');
+                }
+            }
+        }.bind(this));
+
+        if (!coverImagePath) {
+            coverImagePath = 'img/attachments/mock.png';
+        }
+
+        this.model.set('cover_image_path', coverImagePath);
     },
 
     onThumbClick: function onThumbClick() {
@@ -14667,6 +14687,6 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"../../templates/ThumbnailCase.hbs":29,"backbone":1,"underscore":23}]},{},[25]);
+},{"../../templates/ThumbnailPost.hbs":29,"backbone":1,"underscore":23}]},{},[25]);
 
 //# sourceMappingURL=index.js.map
