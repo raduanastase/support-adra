@@ -14447,7 +14447,46 @@ $("body").on("click", ".back-button", function (event) {
 Backbone.history.start();
 $(document).foundation();
 
-},{"./HandlebarsHelpers":24,"./router":26,"backbone":1}],26:[function(require,module,exports){
+},{"./HandlebarsHelpers":24,"./router":27,"backbone":1}],26:[function(require,module,exports){
+'use strict';
+
+var Backbone = require('backbone');
+
+module.exports = Backbone.Model.extend({ //MAYBE THIS MODEL ISN'T USEFUL
+    defaults: function defaults() {
+        return {
+            pictures: [],
+            loggedIn: false
+        };
+    },
+
+    initialize: function initialize() {
+        this.on('change:pictures', this.onPicturesChanged);
+    },
+
+    onPicturesChanged: function onPicturesChanged() {
+        var pictures = this.get('pictures');
+
+        if (pictures) {
+            pictures.forEach(function (picture, index) {
+                picture.filePath = picture.file_path;
+                picture.isCoverImage = picture.is_cover_image == 1;
+                picture.isPublic = picture.privat_type == 1 || this.get('loggedIn');
+                picture.id = index;
+
+                delete picture.file_path;
+                delete picture.is_cover_image;
+                delete picture.privat_type;
+            }.bind(this));
+
+            this.set('pictures', pictures);
+
+            return this;
+        }
+    }
+});
+
+},{"backbone":1}],27:[function(require,module,exports){
 "use strict";
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -14477,14 +14516,115 @@ module.exports = Backbone.Router.extend({
     }
 });
 
-},{"./views/PostsView":30,"backbone":1}],27:[function(require,module,exports){
+},{"./views/PostsView":33,"backbone":1}],28:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    return "    <button class=\"button tiny hollow edit-button\" type=\"button\">\r\n        Editeaza cazul\r\n    </button>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "                    <option value=\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</option>\r\n";
+},"5":function(container,depth0,helpers,partials,data) {
+    return "    <div class=\"row\">\r\n        <div class=\"small-12 columns text-center\">\r\n            <button class=\"button alert delete-button\" type=\"button\">\r\n                Sterge cazul\r\n            </button>\r\n        </div>\r\n    </div>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<h1>"
+    + alias4(((helper = (helper = helpers.case_name || (depth0 != null ? depth0.case_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"case_name","hash":{},"data":data}) : helper)))
+    + "</h1>\r\n<button class=\"close-button\" aria-label=\"Close modal\" type=\"button\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n</button>\r\n\r\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns title\">\r\n        "
+    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
+    + "\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns gallery-wrapper\">\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns section-title\">\r\n        Date de contact ale pesoanei care raporteaza\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Nume</div>\r\n        <div class=\"reporter-last-name modal-label-value\">"
+    + alias4(((helper = (helper = helpers.reporter_last_name || (depth0 != null ? depth0.reporter_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_last_name","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Prenume</div>\r\n        <div class=\"reporter-first-name modal-label-value\">"
+    + alias4(((helper = (helper = helpers.reporter_first_name || (depth0 != null ? depth0.reporter_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_first_name","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">C.N.P.</div>\r\n        <div class=\"reporter-cnp modal-label-value\">"
+    + alias4(((helper = (helper = helpers.reporter_cnp || (depth0 != null ? depth0.reporter_cnp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_cnp","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Seria</div>\r\n        <div class=\"reporter-ci-series modal-label-value\">"
+    + alias4(((helper = (helper = helpers.reporter_ci_series || (depth0 != null ? depth0.reporter_ci_series : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_series","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Numar</div>\r\n        <div class=\"reporter-ci-number modal-label-value\">"
+    + alias4(((helper = (helper = helpers.reporter_ci_number || (depth0 != null ? depth0.reporter_ci_number : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_number","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Numar de telefon</div>\r\n        <div class=\"reporter-phone modal-label-value\">"
+    + alias4(((helper = (helper = helpers.reporter_phone || (depth0 != null ? depth0.reporter_phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_phone","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Email</div>\r\n        <div class=\"reporter-email modal-label-value\">"
+    + alias4(((helper = (helper = helpers.reporter_email || (depth0 != null ? depth0.reporter_email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_email","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns section-title\">\r\n        Date despre persoana in cauza\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Numele <b>persoanei in cauza</b></div>\r\n        <div class=\"person-last-name modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_last_name || (depth0 != null ? depth0.person_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_last_name","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Prenumele <b>persoanei in cauza</b></div>\r\n        <div class=\"person-first-name modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_first_name || (depth0 != null ? depth0.person_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_first_name","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">C.N.P.</div>\r\n        <div class=\"person-cnp modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_cnp || (depth0 != null ? depth0.person_cnp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_cnp","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Seria</div>\r\n        <div class=\"person-ci-series modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_ci_series || (depth0 != null ? depth0.person_ci_series : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_ci_series","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Numar</div>\r\n        <div class=\"person-ci-number modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_ci_number || (depth0 != null ? depth0.person_ci_number : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_ci_number","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Judet</div>\r\n        <div class=\"person-county modal-label-value\">\r\n            <select name=\"person-county\" id=\"person-county\" disabled=\"disabled\">\r\n                <option value=\"0\">Alege</option>\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.counties : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "            </select>\r\n        </div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Localitate</div>\r\n        <div class=\"person-city modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_city || (depth0 != null ? depth0.person_city : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_city","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns\">\r\n        <div class=\"modal-label\">Alte detalii adresa (strada,numar,etc.)</div>\r\n        <div class=\"person-address modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_address || (depth0 != null ? depth0.person_address : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_address","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns\">\r\n        <div class=\"modal-label\">Descriere</div>\r\n        <div class=\"person-description modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_description || (depth0 != null ? depth0.person_description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_description","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Suma necesara</div>\r\n        <div class=\"person-money-total modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_money_total || (depth0 != null ? depth0.person_money_total : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_total","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Suma stransa</div>\r\n        <div class=\"person-money-partial modal-label-value\">"
+    + alias4(((helper = (helper = helpers.person_money_partial || (depth0 != null ? depth0.person_money_partial : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_partial","hash":{},"data":data}) : helper)))
+    + "</div>\r\n    </div>\r\n</div>\r\n\r\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"useData":true});
+
+},{"hbsfy/runtime":21}],29:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.is_private : depth0),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"2":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+
+  return "            <li class=\""
+    + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
+    + " orbit-slide\">\r\n                <img class=\"orbit-image\" src=\""
+    + alias3(((helper = (helper = helpers.path || (depth0 != null ? depth0.path : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"path","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </li>\r\n";
+},"4":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.is_private : depth0),{"name":"unless","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"5":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+
+  return "            <button class=\""
+    + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
+    + "\" data-slide=\""
+    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\"></button> \r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return "<ul class=\"orbit-container\">\r\n    <button class=\"orbit-previous\"><span class=\"show-for-sr\">Previous Slide</span>&#9664;&#xFE0E;</button>\r\n    <button class=\"orbit-next\"><span class=\"show-for-sr\">Next Slide</span>&#9654;&#xFE0E;</button>\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul>\r\n<nav class=\"orbit-bullets\">\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</nav>";
+},"useData":true});
+
+},{"hbsfy/runtime":21}],30:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     return "<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\r\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel3\">În așteptare</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel4\">Refuzate</a></li>\r\n</ul>\r\n\r\n<div class=\"columns small-12 tabs-content\" data-tabs-content=\"posts-tabs\">\r\n</div>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],28:[function(require,module,exports){
+},{"hbsfy/runtime":21}],31:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -14497,7 +14637,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "\">\r\n    <div class=\"row small-up-2 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\r\n\r\n    </div>\r\n</div>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],29:[function(require,module,exports){
+},{"hbsfy/runtime":21}],32:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -14512,7 +14652,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "</h6>\r\n    </div>\r\n</a>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],30:[function(require,module,exports){
+},{"hbsfy/runtime":21}],33:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone');
@@ -14520,29 +14660,140 @@ var _ = require('underscore');
 
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
+var FullPostView = require('./PostsView/FullPostView');
 var Config = ['approved', 'resolved', 'pending', 'rejected'];
 
 module.exports = Backbone.View.extend({
     initialize: function initialize() {
         this.tabs = [];
+
+        Config.forEach(function (type, index) {
+            var tab = new TabView({ model: new Backbone.Model({ active: index === 0, id: index + 1, type: type }) });
+
+            this.listenTo(tab, 'full-post-details', this.onFullPostDetails);
+            this.tabs.push(tab);
+        }.bind(this));
+
+        this.fullPostModel = new Backbone.Model({ counties: [] /*this.model.get('counties')*/, loggedIn: false /*this.model.get('loggedIn')*/ });
+        this.fullPostView = new FullPostView({ model: this.fullPostModel });
     },
 
     render: function render() {
         this.$el.html(template());
 
-        Config.forEach(function (type, index) {
-            var tab = new TabView({ model: new Backbone.Model({ active: index === 0, id: index + 1, type: type }) });
+        this.$el.append(this.fullPostView.el);
 
+        this.tabs.forEach(function (tab) {
             tab.render();
-            this.tabs.push(tab);
             this.$('.tabs-content').append(tab.$el);
         }.bind(this));
 
         return this;
+    },
+
+    onFullPostDetails: function onFullPostDetails(model) {
+        this.fullPostModel.set(model.attributes);
+        this.fullPostView.open();
     }
 });
 
-},{"../templates/PostsView.hbs":27,"./PostsView/TabView":32,"backbone":1,"underscore":23}],31:[function(require,module,exports){
+},{"../templates/PostsView.hbs":30,"./PostsView/FullPostView":34,"./PostsView/TabView":37,"backbone":1,"underscore":23}],34:[function(require,module,exports){
+"use strict";
+
+var Backbone = require('backbone'),
+    template = require("../../templates/FullCase.hbs");
+var GalleryModel = require("../../models/GalleryModel");
+var GalleryView = require("./GalleryView");
+
+module.exports = Backbone.View.extend({
+    className: 'full reveal',
+
+    attributes: function attributes() {
+        return {
+            id: 'view-case-modal',
+            'data-reveal': ' '
+        };
+    },
+
+    events: function events() {
+        return {
+            'click .close-button': 'close'
+        };
+    },
+
+    initialize: function initialize() {
+        this.$el.html(template(this.model.attributes));
+        //this.$el.html(template());
+
+        this.listenTo(this.model, 'change', this.render);
+
+        this.galleryModel = new GalleryModel({ loggedIn: this.model.get('loggedIn') });
+        this.galleryView = new GalleryView({ model: this.galleryModel });
+    },
+
+    render: function render() {
+        this.$el.html(template(this.model.attributes));
+
+        this.$('#person-county').val(this.model.get('person_county_id'));
+
+        this.galleryModel.set('images', this.model.get('attachments'));
+        this.galleryView.render();
+        this.$('.gallery-wrapper').html(this.galleryView.el);
+
+        return this;
+    },
+
+    open: function open() {
+        //console.log(this.$el[0]);
+        this.$el.foundation('open');
+    },
+
+    close: function close() {
+        this.$el.foundation('close');
+        this.galleryView.reset();
+        this.$el.html('');
+    }
+});
+
+},{"../../models/GalleryModel":26,"../../templates/FullCase.hbs":28,"./GalleryView":35,"backbone":1}],35:[function(require,module,exports){
+'use strict';
+
+var Backbone = require('backbone'),
+    template = require("../../templates/Gallery.hbs");
+var _ = require('underscore');
+
+Backbone.$ = $;
+
+module.exports = Backbone.View.extend({
+    className: 'orbit',
+
+    attributes: function attributes() {
+        return {
+            'aria-label': 'Galerie fotografii',
+            'role': 'region',
+            'data-orbit': ' '
+        };
+    },
+
+    initialize: function initialize() {},
+
+    render: function render() {
+        this.$el.html(template(this.model.attributes));
+
+        //hack for orbit gallery reflow
+        _.defer(function () {
+            this.$el.foundation();
+        }.bind(this));
+
+        return this;
+    },
+
+    reset: function reset() {
+        this.$el.html('');
+    }
+});
+
+},{"../../templates/Gallery.hbs":29,"backbone":1,"underscore":23}],36:[function(require,module,exports){
 'use strict';
 
 //var $ = global.$ = global.jQuery = require('jquery');
@@ -14560,7 +14811,7 @@ module.exports = Backbone.Collection.extend({
     }
 });
 
-},{"backbone":1}],32:[function(require,module,exports){
+},{"backbone":1}],37:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -14597,6 +14848,7 @@ module.exports = Backbone.View.extend({
         response.posts.data.forEach(function (postModel) {
             var thumbnailPostView = new ThumbnailPostView({ model: new Backbone.Model(postModel) });
 
+            this.listenTo(thumbnailPostView, 'full-post-details', this.onFullPostDetails);
             thumbnailPostView.render();
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
@@ -14605,10 +14857,14 @@ module.exports = Backbone.View.extend({
 
     onFetchError: function onFetchError() {
         console.log("PostsCollection fetch error", arguments);
+    },
+
+    onFullPostDetails: function onFullPostDetails(model) {
+        this.trigger('full-post-details', model);
     }
 });
 
-},{"../../templates/TabView.hbs":28,"./PostsCollection":31,"./ThumbnailPostView":33,"backbone":1}],33:[function(require,module,exports){
+},{"../../templates/TabView.hbs":31,"./PostsCollection":36,"./ThumbnailPostView":38,"backbone":1}],38:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -14659,34 +14915,10 @@ module.exports = Backbone.View.extend({
     },
 
     onThumbClick: function onThumbClick() {
-        this.getCaseDetails(this.model.get('ID'));
-    },
-
-    getCaseDetails: function getCaseDetails(id) {
-        $.ajax({
-            type: 'GET',
-            url: 'data.php?case_id=' + id,
-            dataType: 'json',
-            success: this.onGetCaseDetailsSuccess,
-            /*error: _.bind(this.onGetCaseDetailsError, self)*/
-            error: this.onGetCaseDetailsError
-        });
-    },
-
-    onGetCaseDetailsSuccess: function onGetCaseDetailsSuccess(data) {
-        /*this.MODAL_VIEW_VALUES.forEach(function (value) {
-         this.$viewCaseModal.find(value[0]).text(element['0'][0][value[1]]);
-         });*/
-        self.trigger('case-details', data);
-    },
-
-    onGetCaseDetailsError: function onGetCaseDetailsError(data) {
-        /*this.$errorModal.foundation('open');*/
-        console.log("error", data);
+        self.trigger('full-post-details', this.model);
     }
-
 });
 
-},{"../../templates/ThumbnailPost.hbs":29,"backbone":1,"underscore":23}]},{},[25]);
+},{"../../templates/ThumbnailPost.hbs":32,"backbone":1,"underscore":23}]},{},[25]);
 
 //# sourceMappingURL=index.js.map

@@ -1,10 +1,7 @@
-var /*$ = require('jquery')(window),*/
-    Backbone = require('backbone'),
+var Backbone = require('backbone'),
     template = require("../../templates/FullCase.hbs");
 var GalleryModel = require("../../models/GalleryModel");
 var GalleryView = require("./GalleryView");
-
-Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
     className: 'full reveal',
@@ -24,6 +21,7 @@ module.exports = Backbone.View.extend({
 
     initialize: function () {
         this.$el.html(template(this.model.attributes));
+        //this.$el.html(template());
 
         this.listenTo(this.model, 'change', this.render);
 
@@ -35,15 +33,16 @@ module.exports = Backbone.View.extend({
         this.$el.html(template(this.model.attributes));
 
         this.$('#person-county').val(this.model.get('person_county_id'));
-        
-        this.galleryModel.set('pictures', this.model.get('pictures'));
-        this.$('.gallery-wrapper').html(this.galleryView.render().el);
-        
+
+        this.galleryModel.set('images', this.model.get('attachments'));
+        this.galleryView.render();
+        this.$('.gallery-wrapper').html(this.galleryView.el);
+
         return this;
     },
 
     open: function () {
-        //console.log(this.$el);
+        //console.log(this.$el[0]);
         this.$el.foundation('open');
     },
 
