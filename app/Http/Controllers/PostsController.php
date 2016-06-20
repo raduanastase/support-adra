@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use DB;
 
 class PostsController extends Controller
 {
@@ -12,6 +13,16 @@ class PostsController extends Controller
     {
         $posts = Post::with('attachments')->paginate(10);
         return compact('posts');
+    }
+
+    public static function counties()
+    {
+        $counties = DB::table('counties')->pluck('name', 'id');
+        ob_clean();
+        $counties = json_encode($counties);
+        //$counties = preg_replace('/"([a-zA-Z_]+[a-zA-Z0-9_]*)":/','$1:',$counties);
+
+        return $counties;
     }
 
     public function postsOfType($typeOfPost)

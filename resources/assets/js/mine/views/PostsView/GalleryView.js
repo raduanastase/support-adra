@@ -11,7 +11,9 @@ module.exports = Backbone.View.extend({
         return {
             'aria-label': 'Galerie fotografii',
             'role': 'region',
-            'data-orbit': ' '
+            'data-orbit': ' ',
+            'data-use-m-u-i': "false"
+            //todo investigate what this is all about. more info here http://foundation.zurb.com/forum/posts/715-orbit-slider-not-working-correctly or here https://github.com/zurb/foundation-sites/issues/7286#event-479615131
         };
     },
 
@@ -23,6 +25,7 @@ module.exports = Backbone.View.extend({
 
         //hack for orbit gallery reflow
         _.defer(function () { this.$el.foundation(); }.bind(this));
+        //_.delay(function () { this.$el.foundation(); }.bind(this), 500);
 
         return this;
     },

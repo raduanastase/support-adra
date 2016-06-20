@@ -26,6 +26,7 @@ module.exports = Backbone.View.extend({
 
     render: function () {
         this.$el.html(template(this.model.attributes));
+
         return this;
     },
 

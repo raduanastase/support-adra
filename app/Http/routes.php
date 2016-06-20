@@ -11,8 +11,20 @@
 |
 */
 
+use \App\Http\Controllers\PostsController;
+
 Route::get('/', function () {
-    return view('welcome');
+    $user = null;
+    if(Auth::check()) {
+        $user = Auth::user();
+    }
+
+    $data = [
+        'userId' => $user ? $user->id : null,
+        'counties' => PostsController::counties()
+    ];
+
+    return view('welcome', $data);
 });
 
 Route::auth();

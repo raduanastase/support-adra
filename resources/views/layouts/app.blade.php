@@ -9,6 +9,15 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="css/app.css">
+    <script>
+        console.log("pageData");
+
+        window.pageData = {
+            userId: {{ $userId or 'undefined' }},
+            counties: []/*{{ $counties }}*/
+        };
+        //console.log(JSON.parse({{ $counties }}));
+    </script>
 </head>
 <body id="app-layout">
 <div class="top-bar">
@@ -37,6 +46,7 @@
                 </li>
                 <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Iesire din cont</a></li>
                 @endif
+                <li><button class="button add-case-button">Adaugă caz</button></li>
             </ul>
         </div>
         <div class="top-bar-right">

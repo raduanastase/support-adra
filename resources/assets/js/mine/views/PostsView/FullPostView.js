@@ -23,8 +23,6 @@ module.exports = Backbone.View.extend({
         this.$el.html(template(this.model.attributes));
         //this.$el.html(template());
 
-        this.listenTo(this.model, 'change', this.render);
-
         this.galleryModel = new GalleryModel({loggedIn: this.model.get('loggedIn')});
         this.galleryView = new GalleryView({model: this.galleryModel});
     },

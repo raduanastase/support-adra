@@ -44,6 +44,7 @@ module.exports = Backbone.View.extend({
     },
 
     onFullPostDetails: function (model) {
+        //console.log("onFullPostDetails");
         this.trigger('full-post-details', model);
     }
 });

@@ -4,6 +4,7 @@ var _ = require('underscore');
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
 var FullPostView = require('./PostsView/FullPostView');
+var AddCaseView = require('./PostsView/AddCaseView');
 const Config = [
     'approved',
     'resolved',
@@ -24,12 +25,18 @@ module.exports = Backbone.View.extend({
 
         this.fullPostModel = new Backbone.Model({counties: []/*this.model.get('counties')*/, loggedIn: false/*this.model.get('loggedIn')*/});
         this.fullPostView = new FullPostView({model: this.fullPostModel});
+
+        this.addCaseModel = new Backbone.Model({counties: []/*this.model.get('counties')*/, loggedIn: false/*this.model.get('loggedIn')*/});
+        this.addCaseView = new AddCaseView({model: this.addCaseModel});
+
+        $('.add-case-button').on('click', this.onAddCaseButtonClick.bind(this));
     },
 
     render: function () {
         this.$el.html(template());
 
         this.$el.append(this.fullPostView.el);
+        this.$el.append(this.addCaseView.render().el);
 
         this.tabs.forEach(function (tab) {
             tab.render();
@@ -41,6 +48,11 @@ module.exports = Backbone.View.extend({
 
     onFullPostDetails: function(model) {
         this.fullPostModel.set(model.attributes);
+        this.fullPostView.render();
         this.fullPostView.open();
+    },
+
+    onAddCaseButtonClick: function () {
+        this.addCaseView.open();
     }
 });

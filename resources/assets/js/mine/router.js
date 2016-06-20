@@ -10,8 +10,8 @@ Backbone.$ = $;
 /*var $mainEl = $('.main');
 var mainModel = new Backbone.Model($mainEl.data('raw'));
 var mainView = new MainView({el: $mainEl, model: mainModel});*/
-
-var postsView = new PostsView({el: $('.posts-view-wrapper')});
+console.log("postsView creation");
+var postsView = new PostsView({el: $('.posts-view-wrapper'), model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})});
 
 module.exports = Backbone.Router.extend({
 
