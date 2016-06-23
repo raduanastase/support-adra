@@ -3,6 +3,7 @@ var _ = require('underscore');
 
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
+var FullPostModel = require('./PostsView/FullPostModel');
 var FullPostView = require('./PostsView/FullPostView');
 var AddCaseView = require('./PostsView/AddCaseView');
 const Config = [
@@ -10,7 +11,7 @@ const Config = [
     'resolved',
     'pending',
     'rejected'
-]
+];
 
 module.exports = Backbone.View.extend({
     initialize: function () {
@@ -19,11 +20,11 @@ module.exports = Backbone.View.extend({
         Config.forEach(function (type, index) {
             const tab = new TabView({model: new Backbone.Model({active: index === 0, id: index+1, type: type})});
 
-            this.listenTo(tab, 'full-post-details', this.onFullPostDetails);
+            this.listenTo(tab, 'show_post', this.showPost);//is this ok or should it go up one level and then down to showPost?
             this.tabs.push(tab);
         }.bind(this));
 
-        this.fullPostModel = new Backbone.Model({counties: []/*this.model.get('counties')*/, loggedIn: false/*this.model.get('loggedIn')*/});
+        this.fullPostModel = new FullPostModel();
         this.fullPostView = new FullPostView({model: this.fullPostModel});
 
         this.addCaseModel = new Backbone.Model({counties: []/*this.model.get('counties')*/, loggedIn: false/*this.model.get('loggedIn')*/});
@@ -46,13 +47,25 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
-    onFullPostDetails: function(model) {
-        this.fullPostModel.set(model.attributes);
+    onAddCaseButtonClick: function () {
+        this.addCaseView.open();
+    },
+
+    showPost: function(postId) {
+        this.fullPostModel.set('id', postId);
+        this.fullPostModel.fetch({
+            success: this.onFullPostFetchSuccess.bind(this),
+            error: this.onFullPostFetchError
+        });
+    },
+
+    onFullPostFetchSuccess: function (response) {
+        this.fullPostModel.set(response);
         this.fullPostView.render();
         this.fullPostView.open();
     },
 
-    onAddCaseButtonClick: function () {
-        this.addCaseView.open();
+    onFullPostFetchError: function () {
+        console.log("FullPost fetch error", arguments);
     }
 });

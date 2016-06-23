@@ -10,19 +10,26 @@ Backbone.$ = $;
 /*var $mainEl = $('.main');
 var mainModel = new Backbone.Model($mainEl.data('raw'));
 var mainView = new MainView({el: $mainEl, model: mainModel});*/
-console.log("postsView creation");
-var postsView = new PostsView({el: $('.posts-view-wrapper'), model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})});
 
 module.exports = Backbone.Router.extend({
 
     routes: {
         "": "home",
-        "employees/:id": "employeeDetails",
+        "posts/:id": "show",
         "employees/:id/reports": "reports"
+    },
+
+    initialize: function() {
+        console.log("postsView creation");
+        this.postsView = new PostsView({el: $('.posts-view-wrapper'), model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})});
     },
 
     home: function () {
         //mainView.render();
-        postsView.render();
+        this.postsView.render();
+    },
+
+    show: function(id) {
+        this.postsView.showPost(id);
     }
 });

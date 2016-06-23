@@ -32,7 +32,7 @@ module.exports = Backbone.View.extend({
         response.posts.data.forEach(function (postModel) {
             const thumbnailPostView = new ThumbnailPostView({model: new Backbone.Model(postModel)});
 
-            this.listenTo(thumbnailPostView, 'full-post-details', this.onFullPostDetails);
+            this.listenTo(thumbnailPostView, 'show_post', this.onShowPost);
             thumbnailPostView.render();
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
@@ -43,8 +43,8 @@ module.exports = Backbone.View.extend({
         console.log("PostsCollection fetch error", arguments);
     },
 
-    onFullPostDetails: function (model) {
+    onShowPost: function (id) {
         //console.log("onFullPostDetails");
-        this.trigger('full-post-details', model);
+        this.trigger('show_post', id);
     }
 });

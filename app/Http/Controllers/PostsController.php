@@ -27,7 +27,7 @@ class PostsController extends Controller
 
     public function postsOfType($typeOfPost)
     {
-        $posts = Post::where('type', $typeOfPost)->with('attachments')->paginate(10);
+        $posts = Post::where('type', $typeOfPost)->select(array('id', 'title', 'person_description'))->with('attachments')->paginate(10);
         return compact('posts');
     }
 
@@ -47,7 +47,7 @@ class PostsController extends Controller
 
     public function show($id)
     {
-        return Post::find($id);
+        return Post::with('attachments')->get()->find($id);
     }
 
     public function edit($id)

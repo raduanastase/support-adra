@@ -14499,20 +14499,27 @@ Backbone.$ = $;
 /*var $mainEl = $('.main');
 var mainModel = new Backbone.Model($mainEl.data('raw'));
 var mainView = new MainView({el: $mainEl, model: mainModel});*/
-console.log("postsView creation");
-var postsView = new PostsView({ el: $('.posts-view-wrapper'), model: new Backbone.Model({ loggedIn: /*window.pageData.userId > -1*/false }) });
 
 module.exports = Backbone.Router.extend({
 
     routes: {
         "": "home",
-        "employees/:id": "employeeDetails",
+        "posts/:id": "show",
         "employees/:id/reports": "reports"
+    },
+
+    initialize: function initialize() {
+        console.log("postsView creation");
+        this.postsView = new PostsView({ el: $('.posts-view-wrapper'), model: new Backbone.Model({ loggedIn: /*window.pageData.userId > -1*/false }) });
     },
 
     home: function home() {
         //mainView.render();
-        postsView.render();
+        this.postsView.render();
+    },
+
+    show: function show(id) {
+        this.postsView.showPost(id);
     }
 });
 
@@ -14683,6 +14690,7 @@ var _ = require('underscore');
 
 var template = require("../templates/PostsView.hbs");
 var TabView = require('./PostsView/TabView');
+var FullPostModel = require('./PostsView/FullPostModel');
 var FullPostView = require('./PostsView/FullPostView');
 var AddCaseView = require('./PostsView/AddCaseView');
 var Config = ['approved', 'resolved', 'pending', 'rejected'];
@@ -14694,11 +14702,11 @@ module.exports = Backbone.View.extend({
         Config.forEach(function (type, index) {
             var tab = new TabView({ model: new Backbone.Model({ active: index === 0, id: index + 1, type: type }) });
 
-            this.listenTo(tab, 'full-post-details', this.onFullPostDetails);
+            this.listenTo(tab, 'show_post', this.showPost); //is this ok or should it go up one level and then down to showPost?
             this.tabs.push(tab);
         }.bind(this));
 
-        this.fullPostModel = new Backbone.Model({ counties: [] /*this.model.get('counties')*/, loggedIn: false /*this.model.get('loggedIn')*/ });
+        this.fullPostModel = new FullPostModel();
         this.fullPostView = new FullPostView({ model: this.fullPostModel });
 
         this.addCaseModel = new Backbone.Model({ counties: [] /*this.model.get('counties')*/, loggedIn: false /*this.model.get('loggedIn')*/ });
@@ -14719,20 +14727,37 @@ module.exports = Backbone.View.extend({
         }.bind(this));
 
         return this;
+    }, /*
+       onShowPost: function(id, type) {
+         this.fullPostModel.set(this.postsCollections[type][id]);
+         this.fullPostView.render();
+         this.fullPostView.open();
+       },*/
+
+    onAddCaseButtonClick: function onAddCaseButtonClick() {
+        this.addCaseView.open();
     },
 
-    onFullPostDetails: function onFullPostDetails(model) {
-        this.fullPostModel.set(model.attributes);
+    showPost: function showPost(postId) {
+        this.fullPostModel.set('id', postId);
+        this.fullPostModel.fetch({
+            success: this.onFullPostFetchSuccess.bind(this),
+            error: this.onFullPostFetchError
+        });
+    },
+
+    onFullPostFetchSuccess: function onFullPostFetchSuccess(response) {
+        this.fullPostModel.set(response);
         this.fullPostView.render();
         this.fullPostView.open();
     },
 
-    onAddCaseButtonClick: function onAddCaseButtonClick() {
-        this.addCaseView.open();
+    onFullPostFetchError: function onFullPostFetchError() {
+        console.log("FullPost fetch error", arguments);
     }
 });
 
-},{"../templates/PostsView.hbs":31,"./PostsView/AddCaseView":35,"./PostsView/FullPostView":36,"./PostsView/TabView":39,"backbone":1,"underscore":23}],35:[function(require,module,exports){
+},{"../templates/PostsView.hbs":31,"./PostsView/AddCaseView":35,"./PostsView/FullPostModel":36,"./PostsView/FullPostView":37,"./PostsView/TabView":40,"backbone":1,"underscore":23}],35:[function(require,module,exports){
 'use strict';
 
 var /*$ = require('jquery')(window),*/
@@ -14746,7 +14771,8 @@ module.exports = Backbone.View.extend({
 
     events: function events() {
         return {
-            'change #image-upload-input': 'onChangeImageUpload'
+            'change #image-upload-input': 'onChangeImageUpload',
+            'click .close-button': 'close'
         };
     },
 
@@ -14771,6 +14797,11 @@ module.exports = Backbone.View.extend({
         this.$el.foundation('open');
     },
 
+    close: function close() {
+        this.$el.foundation('close');
+        this.$el.html('');
+    },
+
     onChangeImageUpload: function onChangeImageUpload(event) {
         var files = event.currentTarget.files;
         var $fileList = this.$('.files-list');
@@ -14786,6 +14817,28 @@ module.exports = Backbone.View.extend({
 },{"../../templates/AddCase.hbs":28,"backbone":1}],36:[function(require,module,exports){
 "use strict";
 
+var Backbone = require('backbone');
+
+module.exports = Backbone.Model.extend({
+    defaults: function defaults() {
+        return {
+            counties: [],
+            loggedIn: false
+        };
+    },
+
+    urlRoot: function urlRoot() {
+        return "/posts";
+    },
+
+    initialize: function initialize() {
+        //console.log("MODEL", this.attributes);
+    }
+});
+
+},{"backbone":1}],37:[function(require,module,exports){
+"use strict";
+
 var Backbone = require('backbone'),
     template = require("../../templates/FullCase.hbs");
 var GalleryModel = require("../../models/GalleryModel");
@@ -14793,6 +14846,8 @@ var GalleryView = require("./GalleryView");
 
 module.exports = Backbone.View.extend({
     className: 'full reveal',
+
+    view: 'posts.show', //the location of the template ???
 
     attributes: function attributes() {
         return {
@@ -14839,7 +14894,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"../../models/GalleryModel":26,"../../templates/FullCase.hbs":29,"./GalleryView":37,"backbone":1}],37:[function(require,module,exports){
+},{"../../models/GalleryModel":26,"../../templates/FullCase.hbs":29,"./GalleryView":38,"backbone":1}],38:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone'),
@@ -14856,7 +14911,8 @@ module.exports = Backbone.View.extend({
             'aria-label': 'Galerie fotografii',
             'role': 'region',
             'data-orbit': ' ',
-            'data-use-m-u-i': "false" //todo investigate what this is all about. more info here http://foundation.zurb.com/forum/posts/715-orbit-slider-not-working-correctly or here https://github.com/zurb/foundation-sites/issues/7286#event-479615131
+            'data-use-m-u-i': "false"
+            //todo investigate what this is all about. more info here http://foundation.zurb.com/forum/posts/715-orbit-slider-not-working-correctly or here https://github.com/zurb/foundation-sites/issues/7286#event-479615131
         };
     },
 
@@ -14879,7 +14935,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"../../templates/Gallery.hbs":30,"backbone":1,"underscore":23}],38:[function(require,module,exports){
+},{"../../templates/Gallery.hbs":30,"backbone":1,"underscore":23}],39:[function(require,module,exports){
 'use strict';
 
 //var $ = global.$ = global.jQuery = require('jquery');
@@ -14889,7 +14945,7 @@ Backbone.$ = $;
 
 module.exports = Backbone.Collection.extend({
     url: function url() {
-        return 'posts/' + this.type;
+        return 'posts/type/' + this.type;
     },
 
     initialize: function initialize(type) {
@@ -14897,7 +14953,7 @@ module.exports = Backbone.Collection.extend({
     }
 });
 
-},{"backbone":1}],39:[function(require,module,exports){
+},{"backbone":1}],40:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -14934,7 +14990,7 @@ module.exports = Backbone.View.extend({
         response.posts.data.forEach(function (postModel) {
             var thumbnailPostView = new ThumbnailPostView({ model: new Backbone.Model(postModel) });
 
-            this.listenTo(thumbnailPostView, 'full-post-details', this.onFullPostDetails);
+            this.listenTo(thumbnailPostView, 'show_post', this.onShowPost);
             thumbnailPostView.render();
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
@@ -14945,13 +15001,13 @@ module.exports = Backbone.View.extend({
         console.log("PostsCollection fetch error", arguments);
     },
 
-    onFullPostDetails: function onFullPostDetails(model) {
+    onShowPost: function onShowPost(id) {
         //console.log("onFullPostDetails");
-        this.trigger('full-post-details', model);
+        this.trigger('show_post', id);
     }
 });
 
-},{"../../templates/TabView.hbs":32,"./PostsCollection":38,"./ThumbnailPostView":40,"backbone":1}],40:[function(require,module,exports){
+},{"../../templates/TabView.hbs":32,"./PostsCollection":39,"./ThumbnailPostView":41,"backbone":1}],41:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -15002,7 +15058,7 @@ module.exports = Backbone.View.extend({
     },
 
     onThumbClick: function onThumbClick() {
-        self.trigger('full-post-details', this.model);
+        self.trigger('show_post', this.model.get('id'));
     }
 });
 

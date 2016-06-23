@@ -9,7 +9,8 @@ module.exports = Backbone.View.extend({
 
     events: function () {
       return {
-          'change #image-upload-input': 'onChangeImageUpload'
+          'change #image-upload-input': 'onChangeImageUpload',
+          'click .close-button': 'close'
       }
     },
 
@@ -32,6 +33,11 @@ module.exports = Backbone.View.extend({
 
     open: function () {
         this.$el.foundation('open');
+    },
+
+    close: function () {
+        this.$el.foundation('close');
+        this.$el.html('');
     },
 
     onChangeImageUpload: function (event) {

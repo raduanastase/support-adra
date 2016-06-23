@@ -46,6 +46,6 @@ module.exports = Backbone.View.extend({
     },
 
     onThumbClick: function () {
-        self.trigger('full-post-details', this.model);
+        self.trigger('show_post', this.model.get('id'));
     }
 });

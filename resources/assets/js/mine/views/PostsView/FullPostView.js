@@ -6,6 +6,8 @@ var GalleryView = require("./GalleryView");
 module.exports = Backbone.View.extend({
     className: 'full reveal',
 
+    view: 'posts.show',//the location of the template ???
+
     attributes: function () {
         return {
             id: 'view-case-modal',
