@@ -3,7 +3,7 @@
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone');
 /*var MainView = require('./views/MainView');*/
-var PostsView = require('./views/PostsView');
+var AppView = require('./views/AppView');
 
 Backbone.$ = $;
 
@@ -21,7 +21,7 @@ module.exports = Backbone.Router.extend({
 
     initialize: function() {
         console.log("postsView creation");
-        this.postsView = new PostsView({el: $('.posts-view-wrapper'), model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})});
+        this.postsView = new AppView({el: $('.posts-view-wrapper'), model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})});
     },
 
     home: function () {

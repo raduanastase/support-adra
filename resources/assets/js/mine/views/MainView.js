@@ -26,9 +26,9 @@ module.exports = Backbone.View.extend({
 
         this.dashboardModel = new Backbone.Model({counties: this.model.get('counties'), loggedIn: this.model.get('loggedIn')});
         this.dashboardView = new DashboardView({model: this.dashboardModel, el: this.$('.dashboard')});
-        this.addCaseModel = new Backbone.Model({counties: this.model.get('counties'), loggedIn: this.model.get('loggedIn')});
-        this.addCaseView = new AddCaseView({model: this.addCaseModel});
-        this.$el.append(this.addCaseView.render().el);
+        this.addPostModel = new Backbone.Model({counties: this.model.get('counties'), loggedIn: this.model.get('loggedIn')});
+        this.addPostView = new AddCaseView({model: this.addPostModel});
+        this.$el.append(this.addPostView.render().el);
         //console.log('ttta',this.addCaseView.el);
          /*this.editCaseView = new EditCaseView();
          this.modalErrorView = new ModalErrorView();*/
@@ -43,6 +43,6 @@ module.exports = Backbone.View.extend({
     },
 
     onAddCaseButtonClick: function () {
-        this.addCaseView.open();
+        this.addPostView.open();
     }
 });

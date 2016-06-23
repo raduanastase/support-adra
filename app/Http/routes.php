@@ -32,6 +32,7 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('posts', 'PostsController@index');
+Route::post('posts', 'PostsController@create');
 Route::get('posts/type/{type}', 'PostsController@postsOfType');
 Route::get('posts/{id}', 'PostsController@show');
 /*Route::get('posts/create', 'PostsController@create');

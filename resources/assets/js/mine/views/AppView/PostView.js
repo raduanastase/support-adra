@@ -1,5 +1,5 @@
 var Backbone = require('backbone'),
-    template = require("../../templates/FullCase.hbs");
+    template = require("../../templates/PostView.hbs");
 var GalleryModel = require("../../models/GalleryModel");
 var GalleryView = require("./GalleryView");
 
@@ -17,7 +17,8 @@ module.exports = Backbone.View.extend({
 
     events: function () {
         return {
-            'click .close-button': 'close'
+            'click .close-button': 'close',
+            'click .edit-post': 'edit'
         };
     },
 
@@ -41,6 +42,10 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
+    edit: function () {
+
+    },
+
     open: function () {
         //console.log(this.$el[0]);
         this.$el.foundation('open');
@@ -50,5 +55,6 @@ module.exports = Backbone.View.extend({
         this.$el.foundation('close');
         this.galleryView.reset();
         this.$el.html('');
+        Backbone.history.navigate('');
     }
 });

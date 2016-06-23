@@ -31,6 +31,11 @@ class PostsController extends Controller
         return compact('posts');
     }
 
+    public function show($id)
+    {
+        return Post::with('attachments')->get()->find($id);
+    }
+
     public function create()
     {
         $post = new Post;
@@ -43,11 +48,6 @@ class PostsController extends Controller
         $post->fill(/*$request->only($post->getFillable())*/);
         $post->save();
         return redirect()->route('post.index')->with('success_message', 'The post has been successfully saved.');
-    }
-
-    public function show($id)
-    {
-        return Post::with('attachments')->get()->find($id);
     }
 
     public function edit($id)
