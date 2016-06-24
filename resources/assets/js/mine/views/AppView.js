@@ -5,6 +5,7 @@ var template = require("../templates/AppView.hbs");
 var TabView = require('./AppView/TabView');
 var PostModel = require('./AppView/PostModel');
 var PostView = require('./AppView/PostView');
+var AddPostModel = require('./AppView/AddPostModel');
 var AddPostView = require('./AppView/AddPostView');
 const Config = [
     'approved',
@@ -30,7 +31,7 @@ module.exports = Backbone.View.extend({
         });
         this.postView = new PostView({model: this.postModel});
 
-        this.addPostModel = new Backbone.Model({
+        this.addPostModel = new AddPostModel({
             counties: []/*this.model.get('counties')*/,
             loggedIn: true/*this.model.get('loggedIn')*/
         });
@@ -54,6 +55,7 @@ module.exports = Backbone.View.extend({
     },
 
     onAddPostButtonClick: function () {
+        this.addPostView.render();
         this.addPostView.open();
     },
 

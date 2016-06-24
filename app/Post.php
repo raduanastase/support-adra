@@ -13,7 +13,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = array(
-        'title', 'reporter_first_name', 'reporter_last_name'
+        'title', 'type', 'reporter_first_name', 'reporter_last_name', 'reporter_cnp', 'reporter_ci_series', 'reporter_ci_number', 'reporter_phone', 'reporter_email', 'person_first_name', 'created_at', 'updated_at'
     );
 
     /**
@@ -23,7 +23,7 @@ class Post extends Model
      * @var array
      */
     public static $rules = array(
-        'title'    => 'required',
+        'title' => 'required',
         'reporter_first_name' => 'required',
         'reporter_last_name' => 'required'
     );

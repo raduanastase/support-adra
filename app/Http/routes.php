@@ -32,10 +32,10 @@ Route::auth();
 Route::get('/home', 'HomeController@index');
 
 Route::get('posts', 'PostsController@index');
-Route::post('posts', 'PostsController@create');
+Route::post('posts', 'PostsController@store');
 Route::get('posts/type/{type}', 'PostsController@postsOfType');
 Route::get('posts/{id}', 'PostsController@show');
-/*Route::get('posts/create', 'PostsController@create');
+/*Route::get('posts/create', 'PostsController@create');//to use if I were to show a form to create through laravel blades
 Route::post('posts', 'PostsController@store');
 
 Route::post('posts/{}/edit', 'PostsController@edit');

@@ -3,7 +3,8 @@
     <span aria-hidden="true">&times;</span>
 </button>
 
-<form id="add-case-form" method="post" action="upload_data.php?add-case=1" data-abide novalidate enctype="multipart/form-data">
+<!--<form id="add-case-form" method="post" data-abide novalidate enctype="multipart/form-data">-->
+<form id="add-case-form" method="post">
     <div data-abide-error class="alert callout" style="display: none;">
         <p><i class="fi-alert"></i> Unele campuri obligatorii sunt necompletate.</p>
     </div>
@@ -24,7 +25,7 @@
         <div class="small-12 columns section-title">
             <label for="case-name">Numele cazului
                 <small>*</small>
-                <input type="text" name="case-name" id="case-name" required>
+                <input type="text" name="title" id="title" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -132,10 +133,10 @@
 
     <div class="row">
         <div class="small-12 medium-6 columns">
-            <label for="person-county">Judet
+            <label for="person-county-id">Judet
                 <small>*</small>
 
-                <select name="person-county" id="person-county"><!-- ADD REQUIRED -->
+                <select name="person-county-id" id="person-county-id"><!-- ADD REQUIRED -->
                     <option value="0">Alege</option>
                     {{#each counties}}
                         <option value="{{id}}">{{name}}</option>
@@ -167,42 +168,45 @@
         <div class="small-12 columns">
             <label for="person-description">Descriere
                 <small>*</small>
-                <textarea type="text" name="person-description" id="person-description" maxlength="1000" required></textarea>
+                <textarea type="text" name="person-description" id="person-description" maxlength="1000"
+                          required></textarea>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
     </div>
 
     {{#if loggedIn}}
-    <div class="row">
-        <div class="small-12 medium-6 columns">
-            <label for="person-money-total">
+        <div class="row">
+            <div class="small-12 medium-6 columns">
+                <label for="person-money-total">
                         <span class="row">
                             <span class="small-12 columns">Suma necesara</span>
                         </span>
                         <span class="row">
-                            <span class="small-10 columns"><input type="text" name="person-money-total" id="person-money-total"></span>
+                            <span class="small-10 columns"><input type="text" name="person-money-total"
+                                                                  id="person-money-total"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
-            </label>
-        </div>
-        <div class="small-12 medium-6 columns">
-            <label for="person-money-partial">
+                </label>
+            </div>
+            <div class="small-12 medium-6 columns">
+                <label for="person-money-partial">
                         <span class="row">
                             <span class="small-12 columns">Suma stransa</span>
                         </span>
                         <span class="row">
-                            <span class="small-10 columns"><input type="text" name="person-money-partial" id="person-money-partial"></span>
+                            <span class="small-10 columns"><input type="text" name="person-money-partial"
+                                                                  id="person-money-partial"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
-            </label>
+                </label>
+            </div>
         </div>
-    </div>
     {{/if}}
 
     <div class="row">
         <div class="small-6 columns">
-            <button class="button float-right" type="submit" value="Submit">Submit</button>
+            <button id="submit-button" class="button float-right" type="submit" value="Submit">Submit</button>
         </div>
         <div class="small-6 columns">
             <button class="button" type="reset" value="Reset">Reset</button>

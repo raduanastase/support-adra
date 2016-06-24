@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
+/*use Illuminate\Http\Request;*/
+use Carbon\Carbon;
+use Request;
 use App\Http\Requests;
 use DB;
+
 
 class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('attachments')->paginate(10);
+        $posts = Post::with('attachments')->paginate(10);//get the latest?
         return compact('posts');
     }
 
@@ -36,18 +39,31 @@ class PostsController extends Controller
         return Post::with('attachments')->get()->find($id);
     }
 
-    public function create()
-    {
-        $post = new Post;
-        return view('posts.edit', compact('post'));
-    }
+//    public function create(Request $request)
+//    {
+//        $post = new Post;
+//        var_dump($request);
+//        $post->fill($request);
+//        $post->save();
+//        return redirect()->route('post.index')->with('success_message', 'The post has been successfully saved.');
+//    }
 
     public function store()
     {
-        $post = new Post;
-        $post->fill(/*$request->only($post->getFillable())*/);
-        $post->save();
-        return redirect()->route('post.index')->with('success_message', 'The post has been successfully saved.');
+        /*$post = new Post;
+        $post->fill($request->only($post->getFillable()));
+        $post->save();*/
+
+        $input = Request::all();
+        $input['created_at'] = Carbon::now();
+
+        Post::create($input);
+
+        return response()->json(['success' => true]);
+
+        //return redirect('/');//doesn't work if it has hash
+        //return redirect()->route('/');
+
     }
 
     public function edit($id)
