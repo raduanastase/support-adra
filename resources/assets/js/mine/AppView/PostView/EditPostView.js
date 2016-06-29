@@ -1,6 +1,6 @@
 var /*$ = require('jquery')(window),*/
     Backbone = require('backbone'),
-    template = require("../../templates/EditPostView.hbs");
+    template = require("./EditPostView.hbs");
 
 Backbone.$ = $;
 

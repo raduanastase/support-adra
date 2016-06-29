@@ -1,7 +1,7 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
 
-var template = require("../templates/AppView.hbs");
+var template = require("./AppView.hbs");
 var TabView = require('./AppView/TabView');
 var PostModel = require('./AppView/PostModel');
 var PostView = require('./AppView/PostView');

@@ -1,7 +1,7 @@
 var Backbone = require('backbone'),
-    template = require("../../templates/PostView.hbs");
-var GalleryModel = require("../../models/GalleryModel");
-var GalleryView = require("./GalleryView");
+    template = require("./PostView.hbs");
+var GalleryModel = require("./PostView/GalleryModel");
+var GalleryView = require("./PostView/GalleryView");
 
 module.exports = Backbone.View.extend({
     className: 'full reveal',

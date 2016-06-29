@@ -3,7 +3,7 @@
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone');
 /*var MainView = require('./views/MainView');*/
-var AppView = require('./views/AppView');
+var AppView = require('./AppView');
 
 Backbone.$ = $;
 

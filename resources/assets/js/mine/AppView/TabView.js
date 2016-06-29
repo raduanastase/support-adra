@@ -1,10 +1,10 @@
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
     _ = require('underscore'),
     Backbone = require('backbone'),
-    template = require("../../templates/TabView.hbs");
-var ThumbnailPostView = require('./ThumbnailPostView');
-var PaginationView = require('./PaginationView');
-var PostsCollection = require('./PostsCollection');
+    template = require("./TabView.hbs");
+var ThumbnailPostView = require('./TabView/ThumbnailPostView');
+var PaginationView = require('./TabView/PaginationView');
+var PostsCollection = require('./TabView/PostsCollection');
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
