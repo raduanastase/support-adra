@@ -14606,27 +14606,29 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
+    var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
-  return ((stack1 = helpers.unless.call(alias1,(helpers.eq || (depth0 && depth0.eq) || alias2).call(alias1,(depth0 != null ? depth0.current_page : depth0),(depth0 != null ? depth0.last_page : depth0),{"name":"eq","hash":{},"data":data}),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+  return ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.prev_page_url : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        <li class=\"current\"><span class=\"show-for-sr\">Ești pe pagina</span> "
-    + container.escapeExpression(((helper = (helper = helpers.current_page || (depth0 != null ? depth0.current_page : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"current_page","hash":{},"data":data}) : helper)))
+    + container.escapeExpression(((helper = (helper = helpers.current_page || (depth0 != null ? depth0.current_page : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"current_page","hash":{},"data":data}) : helper)))
     + "</li>\r\n"
-    + ((stack1 = helpers.unless.call(alias1,(helpers.eq || (depth0 && depth0.eq) || alias2).call(alias1,(depth0 != null ? depth0.current_page : depth0),(depth0 != null ? depth0.last_page : depth0),{"name":"eq","hash":{},"data":data}),{"name":"unless","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.next_page_url : depth0),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"2":function(container,depth0,helpers,partials,data) {
     return "            <li class=\"pagination-previous "
     + container.escapeExpression((helpers.sif || (depth0 && depth0.sif) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.prev_page_url : depth0),"","disabled",{"name":"sif","hash":{},"data":data}))
-    + "\">Înapoi</li>\r\n";
+    + "\">\r\n                <a href=\"#\" aria-label=\"Pagina precedenta\">Înapoi</a>\r\n            </li>\r\n";
 },"4":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "            <li class=\"ellipsis\"></li>\r\n            <li><a href=\"#\" aria-label=\"Pagina "
+  return "            <!--<li class=\"ellipsis\"></li>\r\n            <li>\r\n                <a href=\"#\" class=\"page-number\" aria-label=\"Pagina "
     + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
     + "\">"
     + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
-    + "</a></li>\r\n            <li class=\"pagination-next "
+    + "</a>\r\n            </li>-->\r\n            <li class=\"pagination-next "
     + alias4((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.next_page_url : depth0),"","disabled",{"name":"sif","hash":{},"data":data}))
-    + "\"><a href=\"#\" aria-label=\"Următoarea pagină\">Înainte</a>\r\n            </li>\r\n";
+    + "\">\r\n                <a href=\"#\" aria-label=\"Următoarea pagină\">Înainte</a>\r\n            </li>\r\n            <li class=\"disabled\">("
+    + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
+    + " pagini)</li>\r\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
@@ -14970,7 +14972,7 @@ module.exports = Backbone.View.extend({
 });
 
 },{"../../templates/Gallery.hbs":30,"backbone":1,"underscore":23}],39:[function(require,module,exports){
-"use strict";
+'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
 Backbone = require('backbone'),
@@ -14978,10 +14980,31 @@ Backbone = require('backbone'),
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
+    events: function events() {
+        return {
+            'click .pagination-next a': 'onNextClick',
+            'click .pagination-previous a': 'onPreviousClick',
+            'click .page-number': 'onPageNumberClick'
+        };
+    },
+
     render: function render() {
         this.$el.html(template(this.model.attributes));
 
         return this;
+    },
+
+    onNextClick: function onNextClick() {
+        this.trigger('new_page', this.model.get('next_page_url'));
+    },
+
+    onPreviousClick: function onPreviousClick() {
+        this.trigger('new_page', this.model.get('prev_page_url'));
+    },
+
+    onPageNumberClick: function onPageNumberClick() {
+        //todo make it in the future
+        console.log("page number click");
     }
 });
 
@@ -15113,6 +15136,7 @@ module.exports = Backbone.View.extend({
          this.$el.replaceWith(newElement);*/
 
         this.paginationView = new PaginationView({ model: new Backbone.Model() });
+        this.listenTo(this.paginationView, 'new_page', this.onNewPage);
 
         this.thumbnailPostViews = [];
         this.postsCollection = new PostsCollection(this.model.get('type'));
@@ -15144,7 +15168,6 @@ module.exports = Backbone.View.extend({
             this.thumbnailPostViews.push(thumbnailPostView);
         }.bind(this));
 
-        console.log(response.posts);
         this.paginationView.model.set(_.omit(response.posts, 'data'));
         this.paginationView.render();
     },
@@ -15156,6 +15179,18 @@ module.exports = Backbone.View.extend({
     onShowPost: function onShowPost(id) {
         //console.log("onFullPostDetails");
         this.trigger('show_post', id);
+    },
+
+    onNewPage: function onNewPage(url) {
+        this.thumbnailPostViews.forEach(function (thumbnailPostView) {
+            thumbnailPostView.destroy();
+        });
+
+        this.postsCollection.url = url;
+        this.postsCollection.fetch({
+            success: this.onFetchSuccess.bind(this),
+            error: this.onFetchError
+        });
     }
 });
 
@@ -15211,6 +15246,18 @@ module.exports = Backbone.View.extend({
 
     onThumbClick: function onThumbClick() {
         self.trigger('show_post', this.model.get('id'));
+    },
+
+    //maybe make a base view with destroy and other reusable methods
+    destroy: function destroy() {
+        // COMPLETELY UNBIND THE VIEW
+        this.undelegateEvents();
+
+        this.$el.removeData().unbind();
+
+        // Remove view from DOM
+        this.remove();
+        Backbone.View.prototype.remove.call(this);
     }
 });
 

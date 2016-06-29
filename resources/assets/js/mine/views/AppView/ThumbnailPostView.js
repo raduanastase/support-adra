@@ -47,5 +47,18 @@ module.exports = Backbone.View.extend({
 
     onThumbClick: function () {
         self.trigger('show_post', this.model.get('id'));
+    },
+
+    //maybe make a base view with destroy and other reusable methods
+    destroy: function() {
+        // COMPLETELY UNBIND THE VIEW
+        this.undelegateEvents();
+
+        this.$el.removeData().unbind();
+
+        // Remove view from DOM
+        this.remove();
+        Backbone.View.prototype.remove.call(this);
+
     }
 });

@@ -14,6 +14,7 @@ module.exports = Backbone.View.extend({
          this.$el.replaceWith(newElement);*/
 
         this.paginationView = new PaginationView({model: new Backbone.Model()});
+        this.listenTo(this.paginationView, 'new_page', this.onNewPage);
 
         this.thumbnailPostViews = [];
         this.postsCollection = new PostsCollection(this.model.get('type'));
@@ -45,7 +46,6 @@ module.exports = Backbone.View.extend({
             this.thumbnailPostViews.push(thumbnailPostView);
         }.bind(this));
 
-        console.log(response.posts);
         this.paginationView.model.set(_.omit(response.posts, 'data'));
         this.paginationView.render();
     },
@@ -57,5 +57,17 @@ module.exports = Backbone.View.extend({
     onShowPost: function (id) {
         //console.log("onFullPostDetails");
         this.trigger('show_post', id);
+    },
+
+    onNewPage: function (url) {
+        this.thumbnailPostViews.forEach(function (thumbnailPostView) {
+            thumbnailPostView.destroy();
+        });
+
+        this.postsCollection.url = url;
+        this.postsCollection.fetch({
+            success: this.onFetchSuccess.bind(this),
+            error: this.onFetchError
+        });
     }
 });
