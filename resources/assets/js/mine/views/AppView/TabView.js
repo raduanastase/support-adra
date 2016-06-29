@@ -1,15 +1,19 @@
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
+    _ = require('underscore'),
     Backbone = require('backbone'),
     template = require("../../templates/TabView.hbs");
 var ThumbnailPostView = require('./ThumbnailPostView');
+var PaginationView = require('./PaginationView');
 var PostsCollection = require('./PostsCollection');
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
     initialize: function () {
         /*const newElement = template(this.model.attributes);
-        this.setElement(newElement);
-        this.$el.replaceWith(newElement);*/
+         this.setElement(newElement);
+         this.$el.replaceWith(newElement);*/
+
+        this.paginationView = new PaginationView({model: new Backbone.Model()});
 
         this.thumbnailPostViews = [];
         this.postsCollection = new PostsCollection(this.model.get('type'));
@@ -25,6 +29,9 @@ module.exports = Backbone.View.extend({
         this.setElement(newElement);
         this.$el.replaceWith(newElement);
 
+        this.paginationView.render();
+        this.$('.pagination-view-wrapper').append(this.paginationView.el);
+
         return this;
     },
 
@@ -37,6 +44,10 @@ module.exports = Backbone.View.extend({
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
         }.bind(this));
+
+        console.log(response.posts);
+        this.paginationView.model.set(_.omit(response.posts, 'data'));
+        this.paginationView.render();
     },
 
     onFetchError: function () {

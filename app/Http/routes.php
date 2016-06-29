@@ -35,9 +35,6 @@ Route::get('posts', 'PostsController@index');
 Route::post('posts', 'PostsController@store');
 Route::get('posts/type/{type}', 'PostsController@postsOfType');
 Route::get('posts/{id}', 'PostsController@show');
-/*Route::get('posts/create', 'PostsController@create');//to use if I were to show a form to create through laravel blades
-Route::post('posts', 'PostsController@store');
-
-Route::post('posts/{}/edit', 'PostsController@edit');
-Route::put('posts/{}', 'PostsController@update');
-Route::delete('posts/{}', 'PostsController@destroy');*/
+Route::delete('posts/{id}', 'PostsController@destroy');
+/*Route::post('posts/{}/edit', 'PostsController@edit');
+Route::put('posts/{}', 'PostsController@update');*/

@@ -14424,8 +14424,13 @@ return jQuery;
 
 var Handlebars = require('hbsfy/runtime');
 
-Handlebars.registerHelper('sif', function (boolean, trueString, falseString) {
-    return boolean ? trueString : falseString;
+Handlebars.registerHelper({
+    sif: function sif(boolean, trueString, falseString) {
+        return boolean ? trueString : falseString;
+    },
+    eq: function eq(val1, val2) {
+        return val1 == val2;
+    }
 });
 
 },{"hbsfy/runtime":21}],25:[function(require,module,exports){
@@ -14530,7 +14535,7 @@ module.exports = Backbone.Router.extend({
     }
 });
 
-},{"./views/AppView":34,"backbone":1}],28:[function(require,module,exports){
+},{"./views/AppView":35,"backbone":1}],28:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -14601,6 +14606,39 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing;
+
+  return ((stack1 = helpers.unless.call(alias1,(helpers.eq || (depth0 && depth0.eq) || alias2).call(alias1,(depth0 != null ? depth0.current_page : depth0),(depth0 != null ? depth0.last_page : depth0),{"name":"eq","hash":{},"data":data}),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "        <li class=\"current\"><span class=\"show-for-sr\">Ești pe pagina</span> "
+    + container.escapeExpression(((helper = (helper = helpers.current_page || (depth0 != null ? depth0.current_page : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"current_page","hash":{},"data":data}) : helper)))
+    + "</li>\r\n"
+    + ((stack1 = helpers.unless.call(alias1,(helpers.eq || (depth0 && depth0.eq) || alias2).call(alias1,(depth0 != null ? depth0.current_page : depth0),(depth0 != null ? depth0.last_page : depth0),{"name":"eq","hash":{},"data":data}),{"name":"unless","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"2":function(container,depth0,helpers,partials,data) {
+    return "            <li class=\"pagination-previous "
+    + container.escapeExpression((helpers.sif || (depth0 && depth0.sif) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.prev_page_url : depth0),"","disabled",{"name":"sif","hash":{},"data":data}))
+    + "\">Înapoi</li>\r\n";
+},"4":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "            <li class=\"ellipsis\"></li>\r\n            <li><a href=\"#\" aria-label=\"Pagina "
+    + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
+    + "</a></li>\r\n            <li class=\"pagination-next "
+    + alias4((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.next_page_url : depth0),"","disabled",{"name":"sif","hash":{},"data":data}))
+    + "\"><a href=\"#\" aria-label=\"Următoarea pagină\">Înainte</a>\r\n            </li>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return "<ul class=\"pagination text-center\" role=\"navigation\" aria-label=\"Pagination\">\r\n"
+    + ((stack1 = helpers.unless.call(alias1,(helpers.eq || (depth0 && depth0.eq) || helpers.helperMissing).call(alias1,(depth0 != null ? depth0.last_page : depth0),0,{"name":"eq","hash":{},"data":data}),{"name":"unless","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul>";
+},"useData":true});
+
+},{"hbsfy/runtime":21}],32:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     return "    <div class=\"row\">\r\n        <button class=\"button tiny hollow edit-button\" type=\"button\">\r\n            Editeaza cazul\r\n        </button>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
@@ -14661,7 +14699,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 
-},{"hbsfy/runtime":21}],32:[function(require,module,exports){
+},{"hbsfy/runtime":21}],33:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -14671,10 +14709,10 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.active : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
     + "\" id=\"panel"
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\">\r\n    <div class=\"row small-up-2 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\r\n\r\n    </div>\r\n</div>";
+    + "\">\r\n    <div class=\"row small-up-2 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\r\n\r\n    </div>\r\n    <div class=\"pagination-view-wrapper\">\r\n\r\n    </div>\r\n</div>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],33:[function(require,module,exports){
+},{"hbsfy/runtime":21}],34:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -14689,7 +14727,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "</h6>\r\n    </div>\r\n</a>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],34:[function(require,module,exports){
+},{"hbsfy/runtime":21}],35:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone');
@@ -14771,7 +14809,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"../templates/AppView.hbs":29,"./AppView/AddPostModel":35,"./AppView/AddPostView":36,"./AppView/PostModel":38,"./AppView/PostView":39,"./AppView/TabView":41,"backbone":1,"underscore":23}],35:[function(require,module,exports){
+},{"../templates/AppView.hbs":29,"./AppView/AddPostModel":36,"./AppView/AddPostView":37,"./AppView/PostModel":40,"./AppView/PostView":41,"./AppView/TabView":43,"backbone":1,"underscore":23}],36:[function(require,module,exports){
 "use strict";
 
 var Backbone = require('backbone');
@@ -14793,7 +14831,7 @@ module.exports = Backbone.Model.extend({
     }
 });
 
-},{"backbone":1}],36:[function(require,module,exports){
+},{"backbone":1}],37:[function(require,module,exports){
 'use strict';
 
 var /*$ = require('jquery')(window),*/
@@ -14855,7 +14893,7 @@ module.exports = Backbone.View.extend({
     onSubmitClick: function onSubmitClick() {
         this.model.set({
             title: this.$('#title').val(),
-            type: this.model.get('loggedIn') ? 'accepted' : 'pending',
+            type: this.model.get('loggedIn') ? 'approved' : 'pending',
             reporter_first_name: this.$('#reporter-first-name').val(),
             reporter_last_name: this.$('#reporter-last-name').val(),
             reporter_cnp: this.$('#reporter-cnp').val(),
@@ -14881,14 +14919,16 @@ module.exports = Backbone.View.extend({
 
         this.model.save(null, {
             success: function () {
-                console.log("close");
                 this.close();
+                //I'm using this because laravel redirect would not work with same path without hashes
+                location.reload();
+                // I'm not using this to populate the collection because, according to pagination, the current collection may not be affected, thus a modification to the collection would be unnecessary
             }.bind(this)
         });
     }
 });
 
-},{"../../templates/AddPostView.hbs":28,"backbone":1}],37:[function(require,module,exports){
+},{"../../templates/AddPostView.hbs":28,"backbone":1}],38:[function(require,module,exports){
 'use strict';
 
 var Backbone = require('backbone'),
@@ -14929,7 +14969,23 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"../../templates/Gallery.hbs":30,"backbone":1,"underscore":23}],38:[function(require,module,exports){
+},{"../../templates/Gallery.hbs":30,"backbone":1,"underscore":23}],39:[function(require,module,exports){
+"use strict";
+
+var /*$ = global.$ = global.jQuery = require('jquery'),*/
+Backbone = require('backbone'),
+    template = require("../../templates/PaginationView.hbs");
+Backbone.$ = $;
+
+module.exports = Backbone.View.extend({
+    render: function render() {
+        this.$el.html(template(this.model.attributes));
+
+        return this;
+    }
+});
+
+},{"../../templates/PaginationView.hbs":31,"backbone":1}],40:[function(require,module,exports){
 "use strict";
 
 var Backbone = require('backbone');
@@ -14951,7 +15007,7 @@ module.exports = Backbone.Model.extend({
     }
 });
 
-},{"backbone":1}],39:[function(require,module,exports){
+},{"backbone":1}],41:[function(require,module,exports){
 "use strict";
 
 var Backbone = require('backbone'),
@@ -14974,7 +15030,8 @@ module.exports = Backbone.View.extend({
     events: function events() {
         return {
             'click .close-button': 'close',
-            'click .edit-post': 'edit'
+            'click .edit-post': 'edit',
+            'click .delete-button': 'delete'
         };
     },
 
@@ -15000,10 +15057,15 @@ module.exports = Backbone.View.extend({
 
     edit: function edit() {},
 
+    delete: function _delete() {
+        this.model.destroy();
+        this.close();
+        location.reload();
+    },
+
     open: function open() {
         //console.log(this.$el[0]);
         this.$el.foundation('open');
-        //Backbone.history.navigate('add-case');
     },
 
     close: function close() {
@@ -15014,7 +15076,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"../../models/GalleryModel":26,"../../templates/PostView.hbs":31,"./GalleryView":37,"backbone":1}],40:[function(require,module,exports){
+},{"../../models/GalleryModel":26,"../../templates/PostView.hbs":32,"./GalleryView":38,"backbone":1}],42:[function(require,module,exports){
 'use strict';
 
 //var $ = global.$ = global.jQuery = require('jquery');
@@ -15032,21 +15094,25 @@ module.exports = Backbone.Collection.extend({
     }
 });
 
-},{"backbone":1}],41:[function(require,module,exports){
+},{"backbone":1}],43:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
-Backbone = require('backbone'),
+_ = require('underscore'),
+    Backbone = require('backbone'),
     template = require("../../templates/TabView.hbs");
 var ThumbnailPostView = require('./ThumbnailPostView');
+var PaginationView = require('./PaginationView');
 var PostsCollection = require('./PostsCollection');
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
     initialize: function initialize() {
         /*const newElement = template(this.model.attributes);
-        this.setElement(newElement);
-        this.$el.replaceWith(newElement);*/
+         this.setElement(newElement);
+         this.$el.replaceWith(newElement);*/
+
+        this.paginationView = new PaginationView({ model: new Backbone.Model() });
 
         this.thumbnailPostViews = [];
         this.postsCollection = new PostsCollection(this.model.get('type'));
@@ -15062,6 +15128,9 @@ module.exports = Backbone.View.extend({
         this.setElement(newElement);
         this.$el.replaceWith(newElement);
 
+        this.paginationView.render();
+        this.$('.pagination-view-wrapper').append(this.paginationView.el);
+
         return this;
     },
 
@@ -15074,6 +15143,10 @@ module.exports = Backbone.View.extend({
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
         }.bind(this));
+
+        console.log(response.posts);
+        this.paginationView.model.set(_.omit(response.posts, 'data'));
+        this.paginationView.render();
     },
 
     onFetchError: function onFetchError() {
@@ -15086,7 +15159,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"../../templates/TabView.hbs":32,"./PostsCollection":40,"./ThumbnailPostView":42,"backbone":1}],42:[function(require,module,exports){
+},{"../../templates/TabView.hbs":33,"./PaginationView":39,"./PostsCollection":42,"./ThumbnailPostView":44,"backbone":1,"underscore":23}],44:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -15141,6 +15214,6 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"../../templates/ThumbnailPost.hbs":33,"backbone":1,"underscore":23}]},{},[25]);
+},{"../../templates/ThumbnailPost.hbs":34,"backbone":1,"underscore":23}]},{},[25]);
 
 //# sourceMappingURL=index.js.map

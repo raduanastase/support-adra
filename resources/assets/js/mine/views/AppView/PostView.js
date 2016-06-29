@@ -18,7 +18,8 @@ module.exports = Backbone.View.extend({
     events: function () {
         return {
             'click .close-button': 'close',
-            'click .edit-post': 'edit'
+            'click .edit-post': 'edit',
+            'click .delete-button': 'delete'
         };
     },
 
@@ -44,6 +45,12 @@ module.exports = Backbone.View.extend({
 
     edit: function () {
 
+    },
+
+    delete: function () {
+        this.model.destroy();
+        this.close();
+        location.reload();
     },
 
     open: function () {

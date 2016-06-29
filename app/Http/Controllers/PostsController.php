@@ -39,21 +39,8 @@ class PostsController extends Controller
         return Post::with('attachments')->get()->find($id);
     }
 
-//    public function create(Request $request)
-//    {
-//        $post = new Post;
-//        var_dump($request);
-//        $post->fill($request);
-//        $post->save();
-//        return redirect()->route('post.index')->with('success_message', 'The post has been successfully saved.');
-//    }
-
     public function store()
     {
-        /*$post = new Post;
-        $post->fill($request->only($post->getFillable()));
-        $post->save();*/
-
         $input = Request::all();
         $input['created_at'] = Carbon::now();
 
@@ -62,7 +49,6 @@ class PostsController extends Controller
         return response()->json(['success' => true]);
 
         //return redirect('/');//doesn't work if it has hash
-        //return redirect()->route('/');
 
     }
 
@@ -83,6 +69,6 @@ class PostsController extends Controller
     public function destroy($id)
     {
         Post::find($id)->delete();
-        return redirect()->route('post.index')->with('success_message', 'The post has been successfully deleted.');
+        return response()->json(['success' => true]);
     }
 }
