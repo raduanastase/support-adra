@@ -5,39 +5,21 @@ var /*$ = require('jquery')(window),*/
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
-    className: 'full reveal',
-
     events: function () {
       return {
-          'change #image-upload-input': 'onChangeImageUpload',
-          'click .close-button': 'close'
+          'change #image-upload-input': 'onChangeImageUpload'
       }
     },
 
-    attributes: function () {
-        return {
-            id: 'add-case-modal',
-            'data-reveal': ' '
-        };
-    },
-
     initialize: function () {
-        this.listenTo(this.model, 'change', this.render);
+        //should I make this to every view??
+        /*this.listenTo(this.model, 'change', this.render);*/
     },
 
     render: function () {
         this.$el.html(template(this.model.attributes));
 
         return this;
-    },
-
-    open: function () {
-        this.$el.foundation('open');
-    },
-
-    close: function () {
-        this.$el.foundation('close');
-        this.$el.html('');
     },
 
     onChangeImageUpload: function (event) {

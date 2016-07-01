@@ -14461,6 +14461,7 @@ module.exports = Backbone.View.extend({
             counties: [] /*this.model.get('counties')*/
             , loggedIn: true /*this.model.get('loggedIn')*/
         });
+        console.log("add post model", this.addPostModel.attributes);
         this.addPostView = new AddPostView({ model: this.addPostModel });
 
         $('.add-case-button').on('click', this.onAddPostButtonClick.bind(this));
@@ -14497,8 +14498,7 @@ module.exports = Backbone.View.extend({
         });
     },
 
-    onPostFetchSuccess: function onPostFetchSuccess(response) {
-        this.postModel.set(response);
+    onPostFetchSuccess: function onPostFetchSuccess() {
         this.postView.render();
         this.postView.open();
     },
@@ -14508,7 +14508,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"./AppView.hbs":24,"./AppView/AddPostModel":26,"./AppView/AddPostView":28,"./AppView/PostModel":29,"./AppView/PostView":31,"./AppView/TabView":36,"backbone":1,"underscore":23}],26:[function(require,module,exports){
+},{"./AppView.hbs":24,"./AppView/AddPostModel":26,"./AppView/AddPostView":28,"./AppView/PostModel":29,"./AppView/PostView":31,"./AppView/TabView":40,"backbone":1,"underscore":23}],26:[function(require,module,exports){
 "use strict";
 
 var Backbone = require('backbone');
@@ -14675,6 +14675,297 @@ module.exports = Backbone.Model.extend({
 },{"backbone":1}],30:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<button class=\"close-button\" aria-label=\"Close modal\" type=\"button\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n</button>\r\n<div class=\"read-post-wrapper\"></div>\r\n<div class=\"edit-post-wrapper\"></div>";
+},"useData":true});
+
+},{"hbsfy/runtime":21}],31:[function(require,module,exports){
+"use strict";
+
+var Backbone = require('backbone'),
+    template = require("./PostView.hbs");
+var ReadPostView = require("./PostView/ReadPostView");
+var EditPostView = require("./PostView/EditPostView");
+
+module.exports = Backbone.View.extend({
+    className: 'full reveal',
+
+    attributes: function attributes() {
+        return {
+            id: 'view-case-modal',
+            'data-reveal': ' '
+        };
+    },
+
+    events: function events() {
+        return {
+            'click .close-button': 'close'
+        };
+    },
+
+    initialize: function initialize() {
+        this.$el.html(template(this.model.attributes));
+
+        //this.readMode = true;
+        this.readPostView = new ReadPostView({ model: this.model });
+        this.listenTo(this.readPostView, 'edit_mode', this.onEditMode);
+        this.editPostView = new EditPostView({ model: this.model });
+        this.listenTo(this.editPostView, 'read_mode', this.onReadMode);
+    },
+
+    render: function render() {
+        this.$el.html(template(this.model.attributes));
+
+        this.readPostView.render();
+        this.$('.read-post-wrapper').append(this.readPostView.el);
+        this.editPostView.render();
+        this.$('.edit-post-wrapper').append(this.editPostView.el);
+
+        this.readPostView.$el.show();
+        this.editPostView.$el.hide();
+
+        /*if(this.readMode) {
+            this.readPostView.$el.show();
+            this.editPostView.$el.hide();
+        } else {
+            this.editPostView.$el.show();
+            this.readPostView.$el.hide();
+        }*/
+
+        return this;
+    },
+
+    delete: function _delete() {
+        this.model.destroy();
+        this.close();
+        location.reload();
+    },
+
+    open: function open() {
+        //console.log(this.$el[0]);
+        this.$el.foundation('open');
+    },
+
+    close: function close() {
+        this.$el.foundation('close');
+        this.$el.html('');
+        Backbone.history.navigate('');
+    },
+
+    onEditMode: function onEditMode() {
+        console.log("edit mode");
+        this.editPostView.$el.show();
+        this.readPostView.$el.hide();
+    },
+
+    onReadMode: function onReadMode() {
+        this.readPostView.$el.show();
+        this.editPostView.$el.hide();
+    }
+});
+
+},{"./PostView.hbs":30,"./PostView/EditPostView":33,"./PostView/ReadPostView":38,"backbone":1}],32:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "                        <option value=\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\">"
+    + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
+    + "</option>\r\n";
+},"3":function(container,depth0,helpers,partials,data) {
+    return "    <div class=\"row\">\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-money-total\">\r\n                        <span class=\"row\">\r\n                            <span class=\"small-12 columns\">Suma necesara</span>\r\n                        </span>\r\n                        <span class=\"row\">\r\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-total\" id=\"person-money-total\"></span>\r\n                            <span class=\"small-2 columns\">RON</span>\r\n                        </span>\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-money-partial\">\r\n                        <span class=\"row\">\r\n                            <span class=\"small-12 columns\">Suma stransa</span>\r\n                        </span>\r\n                        <span class=\"row\">\r\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-partial\" id=\"person-money-partial\"></span>\r\n                            <span class=\"small-2 columns\">RON</span>\r\n                        </span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<h1>Editare caz</h1>\r\n<button class=\"close-button\" data-close aria-label=\"Close modal\" type=\"button\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n</button>\r\n\r\n<form id=\"edit-post-form\">\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns current-images\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns upload-images\">\r\n            <label for=\"image-upload-input\">\r\n                <input type=\"file\" id=\"image-upload-input\" required multiple accept=\"image/*\">\r\n                <span class=\"button\" id=\"image-upload-button\">Adauga poze</span>\r\n            </label>\r\n            <ul class=\"files-list\">\r\n\r\n            </ul>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            <label for=\"case-name\">Numele cazului\r\n                <input type=\"text\" name=\"case-name\" id=\"case-name\" value=\""
+    + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
+    + "\" required>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            Date de contact ale pesoanei care raporteaza\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"reporter-last-name\">Numele\r\n                <input type=\"text\" name=\"reporter-last-name\" id=\"reporter-last-name\" required value=\""
+    + alias4(((helper = (helper = helpers.reporter_last_name || (depth0 != null ? depth0.reporter_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_last_name","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"reporter-first-name\">Prenumele\r\n                <input type=\"text\" name=\"reporter-first-name\" id=\"reporter-first-name\" required value=\""
+    + alias4(((helper = (helper = helpers.reporter_first_name || (depth0 != null ? depth0.reporter_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_first_name","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-cnp\">C.N.P.\r\n                <input type=\"text\" name=\"reporter-cnp\" id=\"reporter-cnp\" value=\""
+    + alias4(((helper = (helper = helpers.reporter_cnp || (depth0 != null ? depth0.reporter_cnp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_cnp","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-ci-series\">C.I. Seria\r\n                <input type=\"text\" name=\"reporter-ci-series\" id=\"reporter-ci-series\" value=\""
+    + alias4(((helper = (helper = helpers.reporter_ci_series || (depth0 != null ? depth0.reporter_ci_series : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_series","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-ci-number\">C.I. Numar\r\n                <input type=\"text\" name=\"reporter-ci-number\" id=\"reporter-ci-number\" value=\""
+    + alias4(((helper = (helper = helpers.reporter_ci_number || (depth0 != null ? depth0.reporter_ci_number : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_number","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"reporter-phone\">Numar de telefon\r\n                <input type=\"tel\" name=\"reporter-phone\" id=\"reporter-phone\" required pattern=\"number\" value=\""
+    + alias4(((helper = (helper = helpers.reporter_phone || (depth0 != null ? depth0.reporter_phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_phone","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"reporter-email\">Email\r\n                <input type=\"email\" name=\"reporter-email\" id=\"reporter-email\" value=\""
+    + alias4(((helper = (helper = helpers.reporter_email || (depth0 != null ? depth0.reporter_email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_email","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            Date despre persoana in cauza\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"person-last-name\">Numele <b>persoanei in cauza</b>\r\n                <input type=\"text\" name=\"person-last-name\" id=\"person-last-name\" required value=\""
+    + alias4(((helper = (helper = helpers.person_last_name || (depth0 != null ? depth0.person_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_last_name","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"person-first-name\">Prenumele <b>persoanei in cauza</b>\r\n                <input type=\"text\" name=\"person-first-name\" id=\"person-first-name\" required value=\""
+    + alias4(((helper = (helper = helpers.person_first_name || (depth0 != null ? depth0.person_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_first_name","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-cnp\">C.N.P.\r\n                <input type=\"text\" name=\"person-cnp\" id=\"person-cnp\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-ci-series\">C.I. Seria\r\n                <input type=\"text\" name=\"person-ci-series\" id=\"person-ci-series\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-ci-number\">C.I. Numar\r\n                <input type=\"text\" name=\"person-ci-number\" id=\"person-ci-number\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-county\">Judet\r\n                <small>*</small>\r\n\r\n                <select name=\"person-county\" id=\"person-county\"><!-- ADD REQUIRED -->\r\n                    <option value=\"0\">Alege</option>\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.counties : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "                </select>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-city\">Localitate\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"person-city\" id=\"person-city\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"person-address\">Alte detalii adresa (strada,numar,etc.)\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"person-address\" id=\"person-address\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"person-description\">Descriere\r\n                <small>*</small>\r\n                <textarea type=\"text\" name=\"person-description\" id=\"person-description\" maxlength=\"1000\" required></textarea>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n"
+    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <button class=\"button float-right\" value=\"Salveaza\">Salveaza</button>\r\n        </div>\r\n    </div>\r\n</form>";
+},"useData":true});
+
+},{"hbsfy/runtime":21}],33:[function(require,module,exports){
+'use strict';
+
+var /*$ = require('jquery')(window),*/
+Backbone = require('backbone'),
+    template = require("./EditPostView.hbs");
+
+Backbone.$ = $;
+
+module.exports = Backbone.View.extend({
+    events: function events() {
+        return {
+            'change #image-upload-input': 'onChangeImageUpload'
+        };
+    },
+
+    initialize: function initialize() {
+        //should I make this to every view??
+        /*this.listenTo(this.model, 'change', this.render);*/
+    },
+
+    render: function render() {
+        this.$el.html(template(this.model.attributes));
+
+        return this;
+    },
+
+    onChangeImageUpload: function onChangeImageUpload(event) {
+        var files = event.currentTarget.files;
+        var $fileList = this.$('.files-list');
+
+        $fileList.html('');
+
+        for (var i = 0; i < files.length; ++i) {
+            $fileList.append('<li>' + files.item(i).name + '</li>');
+        }
+    }
+});
+
+},{"./EditPostView.hbs":32,"backbone":1}],34:[function(require,module,exports){
+'use strict';
+
+var Backbone = require('backbone');
+
+module.exports = Backbone.Model.extend({ //MAYBE THIS MODEL ISN'T USEFUL
+    defaults: function defaults() {
+        return {
+            pictures: [],
+            loggedIn: false
+        };
+    },
+
+    initialize: function initialize() {
+        this.on('change:pictures', this.onPicturesChanged);
+    },
+
+    onPicturesChanged: function onPicturesChanged() {
+        var pictures = this.get('pictures');
+
+        if (pictures) {
+            pictures.forEach(function (picture, index) {
+                picture.filePath = picture.file_path;
+                picture.isCoverImage = picture.is_cover_image == 1;
+                picture.isPublic = picture.privat_type == 1 || this.get('loggedIn');
+                picture.id = index;
+
+                delete picture.file_path;
+                delete picture.is_cover_image;
+                delete picture.privat_type;
+            }.bind(this));
+
+            this.set('pictures', pictures);
+
+            return this;
+        }
+    }
+});
+
+},{"backbone":1}],35:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.is_private : depth0),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"2":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+
+  return "            <li class=\""
+    + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
+    + " orbit-slide\">\r\n                <img class=\"orbit-image\" src=\""
+    + alias3(((helper = (helper = helpers.path || (depth0 != null ? depth0.path : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"path","hash":{},"data":data}) : helper)))
+    + "\">\r\n            </li>\r\n";
+},"4":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.is_private : depth0),{"name":"unless","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
+},"5":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
+
+  return "            <button class=\""
+    + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
+    + "\" data-slide=\""
+    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
+    + "\"></button>\r\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return "<ul class=\"orbit-container\">\r\n    <button class=\"orbit-previous\"><span class=\"show-for-sr\">Previous Slide</span>&#9664;&#xFE0E;</button>\r\n    <button class=\"orbit-next\"><span class=\"show-for-sr\">Next Slide</span>&#9654;&#xFE0E;</button>\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul>\r\n<nav class=\"orbit-bullets\">\r\n"
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</nav>";
+},"useData":true});
+
+},{"hbsfy/runtime":21}],36:[function(require,module,exports){
+'use strict';
+
+var Backbone = require('backbone'),
+    template = require("./GalleryView.hbs");
+var _ = require('underscore');
+
+Backbone.$ = $;
+
+module.exports = Backbone.View.extend({
+    className: 'orbit',
+
+    attributes: function attributes() {
+        return {
+            'aria-label': 'Galerie fotografii',
+            'role': 'region',
+            'data-orbit': ' ',
+            'data-use-m-u-i': "false"
+            //todo investigate what this is all about. more info here http://foundation.zurb.com/forum/posts/715-orbit-slider-not-working-correctly or here https://github.com/zurb/foundation-sites/issues/7286#event-479615131
+        };
+    },
+
+    initialize: function initialize() {},
+
+    render: function render() {
+        this.$el.html(template(this.model.attributes));
+
+        //hack for orbit gallery reflow
+        _.defer(function () {
+            this.$el.foundation();
+        }.bind(this));
+        //_.delay(function () { this.$el.foundation(); }.bind(this), 500);
+
+        return this;
+    },
+
+    reset: function reset() {
+        this.$el.html('');
+    }
+});
+
+},{"./GalleryView.hbs":35,"backbone":1,"underscore":23}],37:[function(require,module,exports){
+// hbsfy compiled Handlebars template
+var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
     return "    <div class=\"row\">\r\n        <button class=\"button tiny hollow edit-button\" type=\"button\">\r\n            Editeaza cazul\r\n        </button>\r\n    </div>\r\n";
 },"3":function(container,depth0,helpers,partials,data) {
@@ -14736,30 +15027,18 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 
-},{"hbsfy/runtime":21}],31:[function(require,module,exports){
+},{"hbsfy/runtime":21}],38:[function(require,module,exports){
 "use strict";
 
 var Backbone = require('backbone'),
-    template = require("./PostView.hbs");
-var GalleryModel = require("./PostView/GalleryModel");
-var GalleryView = require("./PostView/GalleryView");
+    template = require("./ReadPostView.hbs");
+var GalleryModel = require("./GalleryModel");
+var GalleryView = require("./GalleryView");
 
 module.exports = Backbone.View.extend({
-    className: 'full reveal',
-
-    view: 'posts.show', //the location of the template ???
-
-    attributes: function attributes() {
-        return {
-            id: 'view-case-modal',
-            'data-reveal': ' '
-        };
-    },
-
     events: function events() {
         return {
-            'click .close-button': 'close',
-            'click .edit-post': 'edit',
+            'click .edit-button': 'edit',
             'click .delete-button': 'delete'
         };
     },
@@ -14774,6 +15053,7 @@ module.exports = Backbone.View.extend({
 
     render: function render() {
         this.$el.html(template(this.model.attributes));
+        console.log("read mode", this.model.attributes);
 
         this.$('#person-county').val(this.model.get('person_county_id'));
 
@@ -14784,145 +15064,13 @@ module.exports = Backbone.View.extend({
         return this;
     },
 
-    edit: function edit() {},
-
-    delete: function _delete() {
-        this.model.destroy();
-        this.close();
-        location.reload();
-    },
-
-    open: function open() {
-        //console.log(this.$el[0]);
-        this.$el.foundation('open');
-    },
-
-    close: function close() {
-        this.$el.foundation('close');
+    edit: function edit() {
         this.galleryView.reset();
-        this.$el.html('');
-        Backbone.history.navigate('');
+        this.trigger('edit_mode');
     }
 });
 
-},{"./PostView.hbs":30,"./PostView/GalleryModel":32,"./PostView/GalleryView":34,"backbone":1}],32:[function(require,module,exports){
-'use strict';
-
-var Backbone = require('backbone');
-
-module.exports = Backbone.Model.extend({ //MAYBE THIS MODEL ISN'T USEFUL
-    defaults: function defaults() {
-        return {
-            pictures: [],
-            loggedIn: false
-        };
-    },
-
-    initialize: function initialize() {
-        this.on('change:pictures', this.onPicturesChanged);
-    },
-
-    onPicturesChanged: function onPicturesChanged() {
-        var pictures = this.get('pictures');
-
-        if (pictures) {
-            pictures.forEach(function (picture, index) {
-                picture.filePath = picture.file_path;
-                picture.isCoverImage = picture.is_cover_image == 1;
-                picture.isPublic = picture.privat_type == 1 || this.get('loggedIn');
-                picture.id = index;
-
-                delete picture.file_path;
-                delete picture.is_cover_image;
-                delete picture.privat_type;
-            }.bind(this));
-
-            this.set('pictures', pictures);
-
-            return this;
-        }
-    }
-});
-
-},{"backbone":1}],33:[function(require,module,exports){
-// hbsfy compiled Handlebars template
-var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.is_private : depth0),{"name":"unless","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"2":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
-
-  return "            <li class=\""
-    + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
-    + " orbit-slide\">\r\n                <img class=\"orbit-image\" src=\""
-    + alias3(((helper = (helper = helpers.path || (depth0 != null ? depth0.path : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"path","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </li>\r\n";
-},"4":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers.unless.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.is_private : depth0),{"name":"unless","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"5":function(container,depth0,helpers,partials,data) {
-    var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3=container.escapeExpression;
-
-  return "            <button class=\""
-    + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
-    + "\" data-slide=\""
-    + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\"></button>\r\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {};
-
-  return "<ul class=\"orbit-container\">\r\n    <button class=\"orbit-previous\"><span class=\"show-for-sr\">Previous Slide</span>&#9664;&#xFE0E;</button>\r\n    <button class=\"orbit-next\"><span class=\"show-for-sr\">Next Slide</span>&#9654;&#xFE0E;</button>\r\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</ul>\r\n<nav class=\"orbit-bullets\">\r\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</nav>";
-},"useData":true});
-
-},{"hbsfy/runtime":21}],34:[function(require,module,exports){
-'use strict';
-
-var Backbone = require('backbone'),
-    template = require("./GalleryView.hbs");
-var _ = require('underscore');
-
-Backbone.$ = $;
-
-module.exports = Backbone.View.extend({
-    className: 'orbit',
-
-    attributes: function attributes() {
-        return {
-            'aria-label': 'Galerie fotografii',
-            'role': 'region',
-            'data-orbit': ' ',
-            'data-use-m-u-i': "false"
-            //todo investigate what this is all about. more info here http://foundation.zurb.com/forum/posts/715-orbit-slider-not-working-correctly or here https://github.com/zurb/foundation-sites/issues/7286#event-479615131
-        };
-    },
-
-    initialize: function initialize() {},
-
-    render: function render() {
-        this.$el.html(template(this.model.attributes));
-
-        //hack for orbit gallery reflow
-        _.defer(function () {
-            this.$el.foundation();
-        }.bind(this));
-        //_.delay(function () { this.$el.foundation(); }.bind(this), 500);
-
-        return this;
-    },
-
-    reset: function reset() {
-        this.$el.html('');
-    }
-});
-
-},{"./GalleryView.hbs":33,"backbone":1,"underscore":23}],35:[function(require,module,exports){
+},{"./GalleryModel":34,"./GalleryView":36,"./ReadPostView.hbs":37,"backbone":1}],39:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -14935,7 +15083,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "\">\r\n    <div class=\"row small-up-2 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\r\n\r\n    </div>\r\n    <div class=\"pagination-view-wrapper\">\r\n\r\n    </div>\r\n</div>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],36:[function(require,module,exports){
+},{"hbsfy/runtime":21}],40:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -15012,7 +15160,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"./TabView.hbs":35,"./TabView/PaginationView":38,"./TabView/PostsCollection":39,"./TabView/ThumbnailPostView":41,"backbone":1,"underscore":23}],37:[function(require,module,exports){
+},{"./TabView.hbs":39,"./TabView/PaginationView":42,"./TabView/PostsCollection":43,"./TabView/ThumbnailPostView":45,"backbone":1,"underscore":23}],41:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -15047,7 +15195,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + "</ul>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],38:[function(require,module,exports){
+},{"hbsfy/runtime":21}],42:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -15084,7 +15232,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"./PaginationView.hbs":37,"backbone":1}],39:[function(require,module,exports){
+},{"./PaginationView.hbs":41,"backbone":1}],43:[function(require,module,exports){
 'use strict';
 
 //var $ = global.$ = global.jQuery = require('jquery');
@@ -15102,7 +15250,7 @@ module.exports = Backbone.Collection.extend({
     }
 });
 
-},{"backbone":1}],40:[function(require,module,exports){
+},{"backbone":1}],44:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
@@ -15117,7 +15265,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + "</h6>\r\n    </div>\r\n</a>";
 },"useData":true});
 
-},{"hbsfy/runtime":21}],41:[function(require,module,exports){
+},{"hbsfy/runtime":21}],45:[function(require,module,exports){
 'use strict';
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -15184,7 +15332,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"./ThumbnailPostView.hbs":40,"backbone":1,"underscore":23}],42:[function(require,module,exports){
+},{"./ThumbnailPostView.hbs":44,"backbone":1,"underscore":23}],46:[function(require,module,exports){
 'use strict';
 
 var Handlebars = require('hbsfy/runtime');
@@ -15198,7 +15346,7 @@ Handlebars.registerHelper({
     }
 });
 
-},{"hbsfy/runtime":21}],43:[function(require,module,exports){
+},{"hbsfy/runtime":21}],47:[function(require,module,exports){
 'use strict';
 
 //var $ = require('jquery');
@@ -15224,7 +15372,7 @@ $("body").on("click", ".back-button", function (event) {
 Backbone.history.start();
 $(document).foundation();
 
-},{"./HandlebarsHelpers":42,"./router":44,"backbone":1}],44:[function(require,module,exports){
+},{"./HandlebarsHelpers":46,"./router":48,"backbone":1}],48:[function(require,module,exports){
 "use strict";
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
@@ -15261,6 +15409,6 @@ module.exports = Backbone.Router.extend({
     }
 });
 
-},{"./AppView":25,"backbone":1}]},{},[43]);
+},{"./AppView":25,"backbone":1}]},{},[47]);
 
 //# sourceMappingURL=index.js.map

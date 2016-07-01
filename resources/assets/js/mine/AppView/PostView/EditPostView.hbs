@@ -1,11 +1,12 @@
-<h1>Adaugare caz</h1>
+<h1>Editare caz</h1>
 <button class="close-button" data-close aria-label="Close modal" type="button">
     <span aria-hidden="true">&times;</span>
 </button>
 
-<form id="add-case-form" method="post" action="upload_data.php?add-case=1" data-abide novalidate enctype="multipart/form-data">
-    <div data-abide-error class="alert callout" style="display: none;">
-        <p><i class="fi-alert"></i> Unele campuri obligatorii sunt necompletate.</p>
+<form id="edit-post-form">
+    <div class="row">
+        <div class="small-12 columns current-images">
+        </div>
     </div>
 
     <div class="row">
@@ -23,9 +24,7 @@
     <div class="row">
         <div class="small-12 columns section-title">
             <label for="case-name">Numele cazului
-                <small>*</small>
-                <input type="text" name="case-name" id="case-name" required>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="text" name="case-name" id="case-name" value="{{title}}" required>
             </label>
         </div>
     </div>
@@ -39,16 +38,12 @@
     <div class="row">
         <div class="small-6 columns">
             <label for="reporter-last-name">Numele
-                <small>*</small>
-                <input type="text" name="reporter-last-name" id="reporter-last-name" required>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="text" name="reporter-last-name" id="reporter-last-name" required value="{{reporter_last_name}}">
             </label>
         </div>
         <div class="small-6 columns">
             <label for="reporter-first-name">Prenumele
-                <small>*</small>
-                <input type="text" name="reporter-first-name" id="reporter-first-name" required>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="text" name="reporter-first-name" id="reporter-first-name" required value="{{reporter_first_name}}">
             </label>
         </div>
     </div>
@@ -56,17 +51,17 @@
     <div class="row">
         <div class="small-12 medium-4 columns">
             <label for="reporter-cnp">C.N.P.
-                <input type="text" name="reporter-cnp" id="reporter-cnp">
+                <input type="text" name="reporter-cnp" id="reporter-cnp" value="{{reporter_cnp}}">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="reporter-ci-series">C.I. Seria
-                <input type="text" name="reporter-ci-series" id="reporter-ci-series">
+                <input type="text" name="reporter-ci-series" id="reporter-ci-series" value="{{reporter_ci_series}}">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="reporter-ci-number">C.I. Numar
-                <input type="text" name="reporter-ci-number" id="reporter-ci-number">
+                <input type="text" name="reporter-ci-number" id="reporter-ci-number" value="{{reporter_ci_number}}">
             </label>
         </div>
     </div>
@@ -74,9 +69,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="reporter-phone">Numar de telefon
-                <small>*</small>
-                <input type="tel" name="reporter-phone" id="reporter-phone" required pattern="number">
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="tel" name="reporter-phone" id="reporter-phone" required pattern="number" value="{{reporter_phone}}">
             </label>
         </div>
     </div>
@@ -84,7 +77,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="reporter-email">Email
-                <input type="email" name="reporter-email" id="reporter-email">
+                <input type="email" name="reporter-email" id="reporter-email" value="{{reporter_email}}">
             </label>
         </div>
     </div>
@@ -98,16 +91,12 @@
     <div class="row">
         <div class="small-6 columns">
             <label for="person-last-name">Numele <b>persoanei in cauza</b>
-                <small>*</small>
-                <input type="text" name="person-last-name" id="person-last-name" required>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="text" name="person-last-name" id="person-last-name" required value="{{person_last_name}}">
             </label>
         </div>
         <div class="small-6 columns">
             <label for="person-first-name">Prenumele <b>persoanei in cauza</b>
-                <small>*</small>
-                <input type="text" name="person-first-name" id="person-first-name" required>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="text" name="person-first-name" id="person-first-name" required value="{{person_first_name}}">
             </label>
         </div>
     </div>
@@ -115,17 +104,17 @@
     <div class="row">
         <div class="small-12 medium-4 columns">
             <label for="person-cnp">C.N.P.
-                <input type="text" name="person-cnp" id="person-cnp">
+                <input type="text" name="person-cnp" id="person-cnp" value="{{person_cnp}}">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="person-ci-series">C.I. Seria
-                <input type="text" name="person-ci-series" id="person-ci-series">
+                <input type="text" name="person-ci-series" id="person-ci-series" value="{{person_ci_series}}">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="person-ci-number">C.I. Numar
-                <input type="text" name="person-ci-number" id="person-ci-number">
+                <input type="text" name="person-ci-number" id="person-ci-number" value="{{person_ci_number}}">
             </label>
         </div>
     </div>
@@ -133,22 +122,17 @@
     <div class="row">
         <div class="small-12 medium-6 columns">
             <label for="person-county">Judet
-                <small>*</small>
-
                 <select name="person-county" id="person-county"><!-- ADD REQUIRED -->
                     <option value="0">Alege</option>
                     {{#each counties}}
                         <option value="{{id}}">{{name}}</option>
                     {{/each}}
                 </select>
-                <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
         <div class="small-12 medium-6 columns">
             <label for="person-city">Localitate
-                <small>*</small>
-                <input type="text" name="person-city" id="person-city" required>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="text" name="person-city" id="person-city" required value="{{person_city}}">
             </label>
         </div>
     </div>
@@ -156,9 +140,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="person-address">Alte detalii adresa (strada,numar,etc.)
-                <small>*</small>
-                <input type="text" name="person-address" id="person-address" required>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="text" name="person-address" id="person-address" required value="{{person_address}}">
             </label>
         </div>
     </div>
@@ -166,9 +148,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="person-description">Descriere
-                <small>*</small>
-                <textarea type="text" name="person-description" id="person-description" maxlength="1000" required></textarea>
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <textarea type="text" name="person-description" id="person-description" maxlength="1000" required value="{{person_description}}"></textarea>
             </label>
         </div>
     </div>
@@ -181,7 +161,7 @@
                             <span class="small-12 columns">Suma necesara</span>
                         </span>
                         <span class="row">
-                            <span class="small-10 columns"><input type="text" name="person-money-total" id="person-money-total"></span>
+                            <span class="small-10 columns"><input type="text" name="person-money-total" id="person-money-total" value="{{person_money_total}}"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
             </label>
@@ -192,7 +172,7 @@
                             <span class="small-12 columns">Suma stransa</span>
                         </span>
                         <span class="row">
-                            <span class="small-10 columns"><input type="text" name="person-money-partial" id="person-money-partial"></span>
+                            <span class="small-10 columns"><input type="text" name="person-money-partial" id="person-money-partial" value="{{person_money_partial}}"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
             </label>
@@ -202,10 +182,7 @@
 
     <div class="row">
         <div class="small-6 columns">
-            <button class="button float-right" type="submit" value="Submit">Submit</button>
-        </div>
-        <div class="small-6 columns">
-            <button class="button" type="reset" value="Reset">Reset</button>
+            <button class="button float-right" value="Salveaza">Salveaza</button>
         </div>
     </div>
 </form>

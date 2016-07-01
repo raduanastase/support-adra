@@ -1,12 +1,10 @@
 var Backbone = require('backbone'),
     template = require("./PostView.hbs");
-var GalleryModel = require("./PostView/GalleryModel");
-var GalleryView = require("./PostView/GalleryView");
+var ReadPostView = require("./PostView/ReadPostView");
+var EditPostView = require("./PostView/EditPostView");
 
 module.exports = Backbone.View.extend({
     className: 'full reveal',
-
-    view: 'posts.show',//the location of the template ???
 
     attributes: function () {
         return {
@@ -17,34 +15,40 @@ module.exports = Backbone.View.extend({
 
     events: function () {
         return {
-            'click .close-button': 'close',
-            'click .edit-post': 'edit',
-            'click .delete-button': 'delete'
+            'click .close-button': 'close'
         };
     },
 
     initialize: function () {
         this.$el.html(template(this.model.attributes));
-        //this.$el.html(template());
 
-        this.galleryModel = new GalleryModel({loggedIn: this.model.get('loggedIn')});
-        this.galleryView = new GalleryView({model: this.galleryModel});
+        //this.readMode = true;
+        this.readPostView = new ReadPostView({model: this.model});
+        this.listenTo(this.readPostView, 'edit_mode', this.onEditMode);
+        this.editPostView = new EditPostView({model: this.model});
+        this.listenTo(this.editPostView, 'read_mode', this.onReadMode);
     },
 
     render: function () {
         this.$el.html(template(this.model.attributes));
 
-        this.$('#person-county').val(this.model.get('person_county_id'));
+        this.readPostView.render();
+        this.$('.read-post-wrapper').append(this.readPostView.el);
+        this.editPostView.render();
+        this.$('.edit-post-wrapper').append(this.editPostView.el);
 
-        this.galleryModel.set('images', this.model.get('attachments'));
-        this.galleryView.render();
-        this.$('.gallery-wrapper').html(this.galleryView.el);
+        this.readPostView.$el.show();
+        this.editPostView.$el.hide();
+
+        /*if(this.readMode) {
+            this.readPostView.$el.show();
+            this.editPostView.$el.hide();
+        } else {
+            this.editPostView.$el.show();
+            this.readPostView.$el.hide();
+        }*/
 
         return this;
-    },
-
-    edit: function () {
-
     },
 
     delete: function () {
@@ -60,8 +64,18 @@ module.exports = Backbone.View.extend({
 
     close: function () {
         this.$el.foundation('close');
-        this.galleryView.reset();
         this.$el.html('');
         Backbone.history.navigate('');
+    },
+
+    onEditMode: function () {
+        console.log("edit mode");
+        this.editPostView.$el.show();
+        this.readPostView.$el.hide();
+    },
+
+    onReadMode: function () {
+        this.readPostView.$el.show();
+        this.editPostView.$el.hide();
     }
 });

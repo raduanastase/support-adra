@@ -35,6 +35,7 @@ module.exports = Backbone.View.extend({
             counties: []/*this.model.get('counties')*/,
             loggedIn: true/*this.model.get('loggedIn')*/
         });
+        console.log("add post model", this.addPostModel.attributes);
         this.addPostView = new AddPostView({model: this.addPostModel});
 
         $('.add-case-button').on('click', this.onAddPostButtonClick.bind(this));
@@ -71,8 +72,7 @@ module.exports = Backbone.View.extend({
         });
     },
 
-    onPostFetchSuccess: function (response) {
-        this.postModel.set(response);
+    onPostFetchSuccess: function () {
         this.postView.render();
         this.postView.open();
     },
