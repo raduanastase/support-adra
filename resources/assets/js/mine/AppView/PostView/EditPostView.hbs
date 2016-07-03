@@ -3,7 +3,7 @@
     <span aria-hidden="true">&times;</span>
 </button>
 
-<form id="edit-post-form">
+<div id="edit-post">
     <div class="row">
         <div class="small-12 columns current-images">
         </div>
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="small-12 columns upload-images">
             <label for="image-upload-input">
-                <input type="file" id="image-upload-input" required multiple accept="image/*">
+                <input type="file" id="image-upload-input" multiple accept="image/*">
                 <span class="button" id="image-upload-button">Adauga poze</span>
             </label>
             <ul class="files-list">
@@ -24,7 +24,7 @@
     <div class="row">
         <div class="small-12 columns section-title">
             <label for="case-name">Numele cazului
-                <input type="text" name="case-name" id="case-name" value="{{title}}" required>
+                <input type="text" name="title" id="title" value="{{title}}">
             </label>
         </div>
     </div>
@@ -38,12 +38,12 @@
     <div class="row">
         <div class="small-6 columns">
             <label for="reporter-last-name">Numele
-                <input type="text" name="reporter-last-name" id="reporter-last-name" required value="{{reporter_last_name}}">
+                <input type="text" name="reporter-last-name" id="reporter-last-name" value="{{reporter_last_name}}">
             </label>
         </div>
         <div class="small-6 columns">
             <label for="reporter-first-name">Prenumele
-                <input type="text" name="reporter-first-name" id="reporter-first-name" required value="{{reporter_first_name}}">
+                <input type="text" name="reporter-first-name" id="reporter-first-name" value="{{reporter_first_name}}">
             </label>
         </div>
     </div>
@@ -69,7 +69,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="reporter-phone">Numar de telefon
-                <input type="tel" name="reporter-phone" id="reporter-phone" required pattern="number" value="{{reporter_phone}}">
+                <input type="tel" name="reporter-phone" id="reporter-phone" pattern="number" value="{{reporter_phone}}">
             </label>
         </div>
     </div>
@@ -91,12 +91,12 @@
     <div class="row">
         <div class="small-6 columns">
             <label for="person-last-name">Numele <b>persoanei in cauza</b>
-                <input type="text" name="person-last-name" id="person-last-name" required value="{{person_last_name}}">
+                <input type="text" name="person-last-name" id="person-last-name" value="{{person_last_name}}">
             </label>
         </div>
         <div class="small-6 columns">
             <label for="person-first-name">Prenumele <b>persoanei in cauza</b>
-                <input type="text" name="person-first-name" id="person-first-name" required value="{{person_first_name}}">
+                <input type="text" name="person-first-name" id="person-first-name" value="{{person_first_name}}">
             </label>
         </div>
     </div>
@@ -132,7 +132,7 @@
         </div>
         <div class="small-12 medium-6 columns">
             <label for="person-city">Localitate
-                <input type="text" name="person-city" id="person-city" required value="{{person_city}}">
+                <input type="text" name="person-city" id="person-city" value="{{person_city}}">
             </label>
         </div>
     </div>
@@ -140,7 +140,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="person-address">Alte detalii adresa (strada,numar,etc.)
-                <input type="text" name="person-address" id="person-address" required value="{{person_address}}">
+                <input type="text" name="person-address" id="person-address" value="{{person_address}}">
             </label>
         </div>
     </div>
@@ -148,12 +148,11 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="person-description">Descriere
-                <textarea type="text" name="person-description" id="person-description" maxlength="1000" required value="{{person_description}}"></textarea>
+                <textarea type="text" name="person-description" id="person-description" maxlength="1000" value="{{person_description}}"></textarea>
             </label>
         </div>
     </div>
 
-    {{#if loggedIn}}
     <div class="row">
         <div class="small-12 medium-6 columns">
             <label for="person-money-total">
@@ -178,11 +177,10 @@
             </label>
         </div>
     </div>
-    {{/if}}
 
     <div class="row">
-        <div class="small-6 columns">
-            <button class="button float-right" value="Salveaza">Salveaza</button>
+        <div class="small-12 columns text-center">
+            <button class="button save-button" value="Salveaza">Salveaza</button>
         </div>
     </div>
-</form>
+</div>

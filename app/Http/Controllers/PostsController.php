@@ -52,18 +52,12 @@ class PostsController extends Controller
 
     }
 
-    public function edit($id)
-    {
-        $post = Post::find($id);
-        return view('posts.edit', compact('post'));
-    }
-
     public function update($id)
     {
         $post = Post::find($id);
-        $post->fill(/*$request->only($post->getFillable())*/);
-        $post->save();
-        return redirect()->route('post.index')->with('success_message', 'The post has been successfully saved.');
+        $post->update(Request::all());
+
+        return response()->json(['success' => true]);
     }
 
     public function destroy($id)

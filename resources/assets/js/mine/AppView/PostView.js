@@ -75,7 +75,8 @@ module.exports = Backbone.View.extend({
     },
 
     onReadMode: function () {
-        this.readPostView.$el.show();
-        this.editPostView.$el.hide();
+        this.render();
+        //this.readPostView.$el.show();
+        //this.editPostView.$el.hide();
     }
 });

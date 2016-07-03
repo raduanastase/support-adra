@@ -36,5 +36,4 @@ Route::post('posts', 'PostsController@store');
 Route::get('posts/type/{type}', 'PostsController@postsOfType');
 Route::get('posts/{id}', 'PostsController@show');
 Route::delete('posts/{id}', 'PostsController@destroy');
-/*Route::post('posts/{}/edit', 'PostsController@edit');
-Route::put('posts/{}', 'PostsController@update');*/
+Route::put('posts/{id}', 'PostsController@update');
