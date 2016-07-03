@@ -14724,6 +14724,9 @@ module.exports = Backbone.View.extend({
         this.readPostView.$el.show();
         this.editPostView.$el.hide();
 
+        this.readPostView.delegateEvents();
+        this.editPostView.delegateEvents();
+
         /*if(this.readMode) {
             this.readPostView.$el.show();
             this.editPostView.$el.hide();

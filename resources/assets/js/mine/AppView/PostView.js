@@ -40,6 +40,9 @@ module.exports = Backbone.View.extend({
         this.readPostView.$el.show();
         this.editPostView.$el.hide();
 
+        this.readPostView.delegateEvents();
+        this.editPostView.delegateEvents();
+
         /*if(this.readMode) {
             this.readPostView.$el.show();
             this.editPostView.$el.hide();
@@ -69,14 +72,11 @@ module.exports = Backbone.View.extend({
     },
 
     onEditMode: function () {
-        console.log("edit mode");
         this.editPostView.$el.show();
         this.readPostView.$el.hide();
     },
 
     onReadMode: function () {
         this.render();
-        //this.readPostView.$el.show();
-        //this.editPostView.$el.hide();
     }
 });
