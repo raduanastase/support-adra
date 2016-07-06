@@ -14461,13 +14461,14 @@ module.exports = Backbone.View.extend({
             counties: [] /*this.model.get('counties')*/
             , loggedIn: true /*this.model.get('loggedIn')*/
         });
-        console.log("add post model", this.addPostModel.attributes);
         this.addPostView = new AddPostView({ model: this.addPostModel });
+        console.log("add post model", this.addPostModel.attributes);
 
         $('.add-case-button').on('click', this.onAddPostButtonClick.bind(this));
     },
 
     render: function render() {
+        console.log("AppView render");
         this.$el.html(template());
 
         this.$el.append(this.postView.el);
@@ -14482,16 +14483,20 @@ module.exports = Backbone.View.extend({
     },
 
     onAddPostButtonClick: function onAddPostButtonClick() {
+        Backbone.history.navigate('add-post', { trigger: true });
+    },
+
+    addPost: function addPost() {
         this.addPostView.render();
         this.addPostView.open();
     },
 
     onShowPost: function onShowPost(postId) {
-        this.postModel.set('id', postId);
-        Backbone.history.navigate('/posts/' + postId, { trigger: true });
+        Backbone.history.navigate('posts/' + postId, { trigger: true });
     },
 
-    showPost: function showPost() {
+    showPost: function showPost(postId) {
+        this.postModel.set('id', postId);
         this.postModel.fetch({
             success: this.onPostFetchSuccess.bind(this),
             error: this.onPostFetchError
@@ -14522,7 +14527,7 @@ module.exports = Backbone.Model.extend({
     },
 
     urlRoot: function urlRoot() {
-        return "/posts";
+        return "api/posts";
     },
 
     initialize: function initialize() {
@@ -14556,8 +14561,8 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },{"hbsfy/runtime":21}],28:[function(require,module,exports){
 'use strict';
 
-var /*$ = require('jquery')(window),*/
-Backbone = require('backbone'),
+var _ = require('underscore');
+var Backbone = require('backbone'),
     template = require("./AddPostView.hbs");
 
 Backbone.$ = $;
@@ -14591,8 +14596,10 @@ module.exports = Backbone.View.extend({
     },
 
     open: function open() {
-        this.$el.foundation('open');
-        Backbone.history.navigate('add-post');
+        //todo find out why i need to defer this
+        _.defer(function () {
+            this.$el.foundation('open');
+        }.bind(this));
     },
 
     close: function close() {
@@ -14650,7 +14657,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"./AddPostView.hbs":27,"backbone":1}],29:[function(require,module,exports){
+},{"./AddPostView.hbs":27,"backbone":1,"underscore":23}],29:[function(require,module,exports){
 "use strict";
 
 var Backbone = require('backbone');
@@ -14664,7 +14671,7 @@ module.exports = Backbone.Model.extend({
     },
 
     urlRoot: function urlRoot() {
-        return "/posts";
+        return "api/posts";
     },
 
     initialize: function initialize() {
@@ -14745,7 +14752,6 @@ module.exports = Backbone.View.extend({
     },
 
     open: function open() {
-        //console.log(this.$el[0]);
         this.$el.foundation('open');
     },
 
@@ -14756,15 +14762,12 @@ module.exports = Backbone.View.extend({
     },
 
     onEditMode: function onEditMode() {
-        console.log("edit mode");
         this.editPostView.$el.show();
         this.readPostView.$el.hide();
     },
 
     onReadMode: function onReadMode() {
         this.render();
-        //this.readPostView.$el.show();
-        //this.editPostView.$el.hide();
     }
 });
 
@@ -15290,7 +15293,7 @@ Backbone.$ = $;
 
 module.exports = Backbone.Collection.extend({
     url: function url() {
-        return 'posts/type/' + this.type;
+        return 'api/posts/type/' + this.type;
     },
 
     initialize: function initialize(type) {
@@ -15431,29 +15434,38 @@ var AppView = require('./AppView');
 Backbone.$ = $;
 
 /*var $mainEl = $('.main');
-var mainModel = new Backbone.Model($mainEl.data('raw'));
-var mainView = new MainView({el: $mainEl, model: mainModel});*/
+ var mainModel = new Backbone.Model($mainEl.data('raw'));
+ var mainView = new MainView({el: $mainEl, model: mainModel});*/
 
 module.exports = Backbone.Router.extend({
 
     routes: {
         "": "home",
         "posts/:id": "show",
+        "add-post": "addPost",
         "employees/:id/reports": "reports"
     },
 
     initialize: function initialize() {
         console.log("postsView creation");
-        this.postsView = new AppView({ el: $('.posts-view-wrapper'), model: new Backbone.Model({ loggedIn: /*window.pageData.userId > -1*/false }) });
+        this.appView = new AppView({
+            el: $('.posts-view-wrapper'),
+            model: new Backbone.Model({ loggedIn: /*window.pageData.userId > -1*/false })
+        });
+        this.appView.render();
     },
 
     home: function home() {
         //mainView.render();
-        this.postsView.render();
+        //this.appView.render();
     },
 
     show: function show(id) {
-        this.postsView.showPost(id);
+        this.appView.showPost(id);
+    },
+
+    addPost: function addPost() {
+        this.appView.addPost();
     }
 });
 

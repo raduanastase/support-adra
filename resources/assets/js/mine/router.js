@@ -8,28 +8,37 @@ var AppView = require('./AppView');
 Backbone.$ = $;
 
 /*var $mainEl = $('.main');
-var mainModel = new Backbone.Model($mainEl.data('raw'));
-var mainView = new MainView({el: $mainEl, model: mainModel});*/
+ var mainModel = new Backbone.Model($mainEl.data('raw'));
+ var mainView = new MainView({el: $mainEl, model: mainModel});*/
 
 module.exports = Backbone.Router.extend({
 
     routes: {
         "": "home",
         "posts/:id": "show",
+        "add-post": "addPost",
         "employees/:id/reports": "reports"
     },
 
-    initialize: function() {
+    initialize: function () {
         console.log("postsView creation");
-        this.postsView = new AppView({el: $('.posts-view-wrapper'), model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})});
+        this.appView = new AppView({
+            el: $('.posts-view-wrapper'),
+            model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})
+        });
+        this.appView.render();
     },
 
     home: function () {
         //mainView.render();
-        this.postsView.render();
+        //this.appView.render();
     },
 
-    show: function(id) {
-        this.postsView.showPost(id);
+    show: function (id) {
+        this.appView.showPost(id);
+    },
+
+    addPost: function () {
+        this.appView.addPost();
     }
 });

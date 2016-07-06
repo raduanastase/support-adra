@@ -35,13 +35,14 @@ module.exports = Backbone.View.extend({
             counties: []/*this.model.get('counties')*/,
             loggedIn: true/*this.model.get('loggedIn')*/
         });
-        console.log("add post model", this.addPostModel.attributes);
         this.addPostView = new AddPostView({model: this.addPostModel});
+        console.log("add post model", this.addPostModel.attributes);
 
         $('.add-case-button').on('click', this.onAddPostButtonClick.bind(this));
     },
 
     render: function () {
+        console.log("AppView render");
         this.$el.html(template());
 
         this.$el.append(this.postView.el);
@@ -56,16 +57,20 @@ module.exports = Backbone.View.extend({
     },
 
     onAddPostButtonClick: function () {
+        Backbone.history.navigate('add-post', {trigger: true});
+    },
+
+    addPost: function () {
         this.addPostView.render();
         this.addPostView.open();
     },
 
     onShowPost: function (postId) {
-        this.postModel.set('id', postId);
-        Backbone.history.navigate('/posts/' + postId, {trigger: true});
+        Backbone.history.navigate('posts/' + postId, {trigger: true});
     },
 
-    showPost: function () {
+    showPost: function (postId) {
+        this.postModel.set('id', postId);
         this.postModel.fetch({
             success: this.onPostFetchSuccess.bind(this),
             error: this.onPostFetchError

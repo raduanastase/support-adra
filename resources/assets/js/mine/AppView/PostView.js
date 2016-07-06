@@ -61,7 +61,6 @@ module.exports = Backbone.View.extend({
     },
 
     open: function () {
-        //console.log(this.$el[0]);
         this.$el.foundation('open');
     },
 

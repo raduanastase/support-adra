@@ -1,5 +1,5 @@
-var /*$ = require('jquery')(window),*/
-    Backbone = require('backbone'),
+var _ = require('underscore');
+var Backbone = require('backbone'),
     template = require("./AddPostView.hbs");
 
 Backbone.$ = $;
@@ -33,8 +33,10 @@ module.exports = Backbone.View.extend({
     },
 
     open: function () {
-        this.$el.foundation('open');
-        Backbone.history.navigate('add-post');
+        //todo find out why i need to defer this
+        _.defer(function () {
+            this.$el.foundation('open');
+        }.bind(this));
     },
 
     close: function () {

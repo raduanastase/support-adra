@@ -31,9 +31,9 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('posts', 'PostsController@index');
-Route::post('posts', 'PostsController@store');
-Route::get('posts/type/{type}', 'PostsController@postsOfType');
-Route::get('posts/{id}', 'PostsController@show');
-Route::delete('posts/{id}', 'PostsController@destroy');
-Route::put('posts/{id}', 'PostsController@update');
+Route::get('api/posts', 'PostsController@index');
+Route::post('api/posts', 'PostsController@store');
+Route::get('api/posts/type/{type}', 'PostsController@postsOfType');
+Route::get('api/posts/{id}', 'PostsController@show');
+Route::delete('api/posts/{id}', 'PostsController@destroy');
+Route::put('api/posts/{id}', 'PostsController@update');
