@@ -20,10 +20,9 @@ class PostsController extends Controller
 
     public static function counties()
     {
-        $counties = DB::table('counties')->pluck('name', 'id');
+        $counties = DB::table('counties')->pluck('name');
         ob_clean();
         $counties = json_encode($counties);
-        //$counties = preg_replace('/"([a-zA-Z_]+[a-zA-Z0-9_]*)":/','$1:',$counties);
 
         return $counties;
     }

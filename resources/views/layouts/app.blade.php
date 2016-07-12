@@ -11,16 +11,15 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="css/app.css">
     <script>
-        console.log("pageData");
-
         window.pageData = {
             userId: {{ $userId or 'undefined' }},
-            counties: []/*{{ $counties }}*/
+            counties: <?php echo $counties?>
         };
-        //console.log(JSON.parse({{ $counties }}));
+        console.log(window.pageData);
     </script>
 </head>
 <body id="app-layout">
+
 <div class="top-bar">
     <div class="top-bar-title">
         <span data-responsive-toggle="responsive-menu" data-hide-for="medium">

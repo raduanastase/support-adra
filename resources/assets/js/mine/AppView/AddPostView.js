@@ -46,14 +46,18 @@ module.exports = Backbone.View.extend({
     },
 
     onChangeImageUpload: function (event) {
-        var files = event.currentTarget.files;
+        this.files = event.currentTarget.files;
         var $fileList = this.$('.files-list');
-
+        console.log(this.files);
         $fileList.html('');
 
-        for (var i = 0; i < files.length; ++i) {
-            $fileList.append('<li>' + files.item(i).name + '</li>');
+        for (var i = 0; i < this.files.length; ++i) {
+            $fileList.append('<li>' + this.files.item(i).name + '</li>');
         }
+    },
+
+    getImagesList: function () {
+        return [];
     },
 
     onSubmitClick: function () {
@@ -77,7 +81,8 @@ module.exports = Backbone.View.extend({
             person_address: this.$('#person_address').val(),
             person_description: this.$('#person_description').val(),
             person_money_total: this.$('#person_money_total').val(),
-            person_money_partial: this.$('#person_money_partial').val()
+            person_money_partial: this.$('#person_money_partial').val(),
+            attachments: this.getImagesList()
         });
 
         this.model.unset('counties');
