@@ -7,6 +7,7 @@ var PostModel = require('./AppView/PostModel');
 var PostView = require('./AppView/PostView');
 var AddPostModel = require('./AppView/AddPostModel');
 var AddPostView = require('./AppView/AddPostView');
+
 const Config = [
     'approved',
     'resolved',

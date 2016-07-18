@@ -82,3 +82,19 @@ h6 {
 .delete-button {
   margin-top: 20px;
 }
+
+.loading-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background:rgba(255,255,255, 0.9);
+  width: 100%;
+  height: 100%;
+  display: none;
+
+  img {
+    position: absolute;
+    top: calc(50% - #{48px/2});
+    left: calc(50% - #{48px/2});
+  }
+}

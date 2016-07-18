@@ -1,6 +1,6 @@
 //var $ = require('jquery');
 var Backbone = require('backbone');
-require('./HandlebarsHelpers');
+require('./utils/HandlebarsHelpers');
 Backbone.$ = $;
 
 //adding CSRF TOKEN to all ajax requests

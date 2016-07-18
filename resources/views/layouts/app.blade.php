@@ -20,6 +20,8 @@
 </head>
 <body id="app-layout">
 
+<div class="loading-cover"><img src="img/loading.gif"></div>
+
 <div class="top-bar">
     <div class="top-bar-title">
         <span data-responsive-toggle="responsive-menu" data-hide-for="medium">

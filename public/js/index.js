@@ -14438,6 +14438,7 @@ var PostModel = require('./AppView/PostModel');
 var PostView = require('./AppView/PostView');
 var AddPostModel = require('./AppView/AddPostModel');
 var AddPostView = require('./AppView/AddPostView');
+
 var Config = ['approved', 'resolved', 'pending', 'rejected'];
 
 module.exports = Backbone.View.extend({
@@ -15149,6 +15150,7 @@ _ = require('underscore'),
 var ThumbnailPostView = require('./TabView/ThumbnailPostView');
 var PaginationView = require('./TabView/PaginationView');
 var PostsCollection = require('./TabView/PostsCollection');
+var LoadingCover = require('../utils/LoadingCover');
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
@@ -15181,13 +15183,17 @@ module.exports = Backbone.View.extend({
     },
 
     onFetchSuccess: function onFetchSuccess(collection, response) {
-        response.posts.data.forEach(function (postModel) {
+        response.posts.data.forEach(function (postModel, index, array) {
             var thumbnailPostView = new ThumbnailPostView({ model: new Backbone.Model(postModel) });
 
             this.listenTo(thumbnailPostView, 'show_post', this.onShowPost);
             thumbnailPostView.render();
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
+
+            if (index === array.length - 1) {
+                _.delay(LoadingCover.uncover, 500);
+            }
         }.bind(this));
 
         this.paginationView.model.set(_.omit(response.posts, 'data'));
@@ -15204,6 +15210,8 @@ module.exports = Backbone.View.extend({
     },
 
     onNewPage: function onNewPage(url) {
+        LoadingCover.cover();
+
         this.thumbnailPostViews.forEach(function (thumbnailPostView) {
             thumbnailPostView.destroy();
         });
@@ -15216,7 +15224,7 @@ module.exports = Backbone.View.extend({
     }
 });
 
-},{"./TabView.hbs":39,"./TabView/PaginationView":42,"./TabView/PostsCollection":43,"./TabView/ThumbnailPostView":45,"backbone":1,"underscore":23}],41:[function(require,module,exports){
+},{"../utils/LoadingCover":49,"./TabView.hbs":39,"./TabView/PaginationView":42,"./TabView/PostsCollection":43,"./TabView/ThumbnailPostView":45,"backbone":1,"underscore":23}],41:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
@@ -15391,23 +15399,10 @@ module.exports = Backbone.View.extend({
 },{"./ThumbnailPostView.hbs":44,"backbone":1,"underscore":23}],46:[function(require,module,exports){
 'use strict';
 
-var Handlebars = require('hbsfy/runtime');
-
-Handlebars.registerHelper({
-    sif: function sif(boolean, trueString, falseString) {
-        return boolean ? trueString : falseString;
-    },
-    eq: function eq(val1, val2) {
-        return val1 == val2;
-    }
-});
-
-},{"hbsfy/runtime":21}],47:[function(require,module,exports){
-'use strict';
-
 //var $ = require('jquery');
 var Backbone = require('backbone');
-require('./HandlebarsHelpers');
+require('./utils/HandlebarsHelpers');
+require('./utils/LoadingCover');
 Backbone.$ = $;
 
 //adding CSRF TOKEN to all ajax requests
@@ -15428,13 +15423,14 @@ $("body").on("click", ".back-button", function (event) {
 Backbone.history.start();
 $(document).foundation();
 
-},{"./HandlebarsHelpers":46,"./router":48,"backbone":1}],48:[function(require,module,exports){
+},{"./router":47,"./utils/HandlebarsHelpers":48,"./utils/LoadingCover":49,"backbone":1}],47:[function(require,module,exports){
 "use strict";
 
 var /*$ = global.$ = global.jQuery = require('jquery'),*/
 Backbone = require('backbone');
 /*var MainView = require('./views/MainView');*/
 var AppView = require('./AppView');
+var LoadingCover = require('./utils/LoadingCover');
 
 Backbone.$ = $;
 
@@ -15453,6 +15449,8 @@ module.exports = Backbone.Router.extend({
 
     initialize: function initialize() {
         console.log("postsView creation");
+        LoadingCover.cover();
+
         this.appView = new AppView({
             el: $('.posts-view-wrapper'),
             model: new Backbone.Model({ loggedIn: /*window.pageData.userId > -1*/false })
@@ -15474,6 +15472,49 @@ module.exports = Backbone.Router.extend({
     }
 });
 
-},{"./AppView":25,"backbone":1}]},{},[47]);
+},{"./AppView":25,"./utils/LoadingCover":49,"backbone":1}],48:[function(require,module,exports){
+'use strict';
+
+var Handlebars = require('hbsfy/runtime');
+
+Handlebars.registerHelper({
+    sif: function sif(boolean, trueString, falseString) {
+        return boolean ? trueString : falseString;
+    },
+    eq: function eq(val1, val2) {
+        return val1 == val2;
+    }
+});
+
+},{"hbsfy/runtime":21}],49:[function(require,module,exports){
+'use strict';
+
+var _ = require('underscore');
+var $ = require('jquery');
+
+var $loadingCover = $('.loading-cover');
+var $body = $('body');
+
+module.exports = {
+    $el: function $el() {
+        return $('.loading-cover');
+    },
+
+    cover: function cover($element) {
+        //$element = $element ? $element : $('body');
+
+        //$element.append(this.$el);
+        $body.append($loadingCover);
+        $loadingCover.show();
+    },
+
+    uncover: function uncover($element) {
+        /*$element = $element ? $element : $('body');
+          $element.remove(this.$el);*/
+        $loadingCover.hide();
+    }
+};
+
+},{"jquery":22,"underscore":23}]},{},[46]);
 
 //# sourceMappingURL=index.js.map

@@ -5,6 +5,7 @@ var /*$ = global.$ = global.jQuery = require('jquery'),*/
 var ThumbnailPostView = require('./TabView/ThumbnailPostView');
 var PaginationView = require('./TabView/PaginationView');
 var PostsCollection = require('./TabView/PostsCollection');
+var LoadingCover = require('../utils/LoadingCover');
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
@@ -37,13 +38,17 @@ module.exports = Backbone.View.extend({
     },
 
     onFetchSuccess: function (collection, response) {
-        response.posts.data.forEach(function (postModel) {
+        response.posts.data.forEach(function (postModel, index, array) {
             const thumbnailPostView = new ThumbnailPostView({model: new Backbone.Model(postModel)});
 
             this.listenTo(thumbnailPostView, 'show_post', this.onShowPost);
             thumbnailPostView.render();
             this.$('.thumbnail-posts-wrapper').append(thumbnailPostView.$el);
             this.thumbnailPostViews.push(thumbnailPostView);
+
+            if (index === array.length - 1) {
+                _.delay(LoadingCover.uncover, 500);
+            }
         }.bind(this));
 
         this.paginationView.model.set(_.omit(response.posts, 'data'));
@@ -60,6 +65,8 @@ module.exports = Backbone.View.extend({
     },
 
     onNewPage: function (url) {
+        LoadingCover.cover();
+
         this.thumbnailPostViews.forEach(function (thumbnailPostView) {
             thumbnailPostView.destroy();
         });

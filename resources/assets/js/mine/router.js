@@ -4,6 +4,7 @@ var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone');
 /*var MainView = require('./views/MainView');*/
 var AppView = require('./AppView');
+var LoadingCover = require('./utils/LoadingCover');
 
 Backbone.$ = $;
 
@@ -22,6 +23,8 @@ module.exports = Backbone.Router.extend({
 
     initialize: function () {
         console.log("postsView creation");
+        LoadingCover.cover();
+
         this.appView = new AppView({
             el: $('.posts-view-wrapper'),
             model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})
