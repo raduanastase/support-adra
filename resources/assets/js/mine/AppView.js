@@ -32,12 +32,10 @@ module.exports = Backbone.View.extend({
         });
         this.postView = new PostView({model: this.postModel});
 
-        this.addPostModel = new AddPostModel({
-            counties: []/*this.model.get('counties')*/,
-            loggedIn: true/*this.model.get('loggedIn')*/
-        });
+        this.addPostModel = new AddPostModel(
+            this.model.attributes
+        );
         this.addPostView = new AddPostView({model: this.addPostModel});
-        console.log("add post model", this.addPostModel.attributes);
 
         $('.add-case-button').on('click', this.onAddPostButtonClick.bind(this));
     },

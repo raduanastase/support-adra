@@ -33,6 +33,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('api/posts', 'PostsController@index');
 Route::post('api/posts', 'PostsController@store');
+Route::post('api/attachments', 'PostsController@storeAttachments');
 Route::get('api/posts/type/{type}', 'PostsController@postsOfType');
 Route::get('api/posts/{id}', 'PostsController@show');
 Route::delete('api/posts/{id}', 'PostsController@destroy');

@@ -13,7 +13,8 @@
     <script>
         window.pageData = {
             userId: {{ $userId or 'undefined' }},
-            counties: <?php echo $counties?>
+            counties: <?php echo $counties?>,
+            csrfToken: '{{ csrf_token() }}'
         };
         console.log(window.pageData);
     </script>

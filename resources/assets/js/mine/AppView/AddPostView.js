@@ -1,8 +1,9 @@
 var _ = require('underscore');
-var Backbone = require('backbone'),
-    template = require("./AddPostView.hbs");
-
-Backbone.$ = $;
+var $ = require('jquery');
+var Backbone = require('backbone');
+var template = require("./AddPostView.hbs");
+const SIZE_LIMIT = 3145728; //3 MegaBytes
+const NR_OF_ATTACHMENTS = 15;
 
 module.exports = Backbone.View.extend({
     className: 'full reveal',
@@ -46,22 +47,46 @@ module.exports = Backbone.View.extend({
     },
 
     onChangeImageUpload: function (event) {
-        this.files = event.currentTarget.files;
         var $fileList = this.$('.files-list');
-        console.log(this.files);
+        var $uploadButton = this.$('.upload-images label');
+        var files = event.currentTarget.files;
+        var finalFiles = [];
+        var largeFiles = [];
+        var filesCount = Math.min(files.length, NR_OF_ATTACHMENTS);
+
+        this.filesFormData = new FormData();
+
         $fileList.html('');
 
-        for (var i = 0; i < this.files.length; ++i) {
-            $fileList.append('<li>' + this.files.item(i).name + '</li>');
+        for (var i = 0; i < filesCount; ++i) {
+            if (files[i].size <= SIZE_LIMIT) {
+                $fileList.append('<li>' + files[i].name + '</li>');
+                finalFiles.push(files[i]);
+                this.filesFormData.append('filesToUpload[]', files[i]);
+            } else {
+                largeFiles.push(files[i].name);
+            }
+        }
+
+        if (filesCount != files.length) {
+            alert('Ati selectat prea multe imagini!\n\nS-au adaugat doar primele ' + NR_OF_ATTACHMENTS + ' imagini.');
+        }
+
+        if (finalFiles.length) {
+            $uploadButton.hide();
+        }
+
+        if (largeFiles.length) {
+            alert("Aceste fisiere sunt prea mari pentru a fi adaugate.\n\n" + JSON.stringify(largeFiles));
         }
     },
 
     getImagesList: function () {
-        return [];
+        return [{path: "img/path/to/image"}];
     },
 
     onSubmitClick: function () {
-        this.model.set({
+        /*this.model.set({
             title: this.$('#title').val(),
             type: this.model.get('loggedIn') ? 'approved' : 'pending',
             reporter_first_name: this.$('#reporter-first-name').val(),
@@ -89,12 +114,27 @@ module.exports = Backbone.View.extend({
         this.model.unset('loggedIn');
 
         this.model.save(null, {
-            success: function () {
-                this.close();
-                //I'm using this because laravel redirect would not work with same path without hashes
-                location.reload();
-                // I'm not using this to populate the collection because, according to pagination, the current collection may not be affected, thus a modification to the collection would be unnecessary
-            }.bind(this)
-        });
+         success: function () {
+         this.close();
+         //I'm using this because laravel redirect would not work with same path without hashes
+         location.reload();
+         // I'm not using this to populate the collection because, according to pagination, the current collection may not be affected, thus a modification to the collection would be unnecessary
+         }.bind(this)
+         });*/
+
+        //this is working but I need it to work with model.save
+        /*$.ajax({
+            url: 'api/attachments',
+            type: 'POST',
+            data: this.filesFormData,
+            contentType: false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')//i don't know why I have to do this because in the main file I added the headers to every ajax request
+            },
+            success: function (data) {
+                //alert(data);
+            }
+        });*/
     }
 });

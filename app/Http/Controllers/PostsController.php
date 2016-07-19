@@ -43,12 +43,25 @@ class PostsController extends Controller
         $input = Request::all();
         $input['created_at'] = Carbon::now();
 
+        /*$count = count($input['filesToUpload']['name']);
+        for ($i = 0; $i < $count; $i++) {
+            echo 'Name: '.$input['filesToUpload']['name'][$i].'<br/>';
+        }*/
+
         Post::create($input);
 
         return response()->json(['success' => true]);
 
         //return redirect('/');//doesn't work if it has hash
 
+    }
+
+    public function storeAttachments()
+    {
+        $count = count($_FILES['filesToUpload']['name']);
+        for ($i = 0; $i < $count; $i++) {
+            echo 'Name: '.$_FILES['filesToUpload']['name'][$i].'<br/>';
+        }
     }
 
     public function update($id)

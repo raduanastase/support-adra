@@ -9,6 +9,7 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
+console.log("adding headers");
 
 var Router = require('./router');
 var router = new Router();

@@ -27,7 +27,11 @@ module.exports = Backbone.Router.extend({
 
         this.appView = new AppView({
             el: $('.posts-view-wrapper'),
-            model: new Backbone.Model({loggedIn: /*window.pageData.userId > -1*/false})
+            model: new Backbone.Model({
+                counties: window.pageData.counties,
+                loggedIn: /*window.pageData.userId > -1*/false,
+                csrfToken: window.pageData.csrfToken
+            })
         });
         this.appView.render();
     },
