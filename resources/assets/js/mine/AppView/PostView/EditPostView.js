@@ -2,7 +2,7 @@ var /*$ = require('jquery')(window),*/
     Backbone = require('backbone'),
     template = require("./EditPostView.hbs");
 
-Backbone.$ = $;
+//Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
     events: function () {

@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
+var $ = require('jquery');
 
 var template = require("./AppView.hbs");
 var TabView = require('./AppView/TabView');

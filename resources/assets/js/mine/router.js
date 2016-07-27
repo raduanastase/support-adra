@@ -1,12 +1,12 @@
 "use strict";
 
-var /*$ = global.$ = global.jQuery = require('jquery'),*/
+var $ = require('jquery'),
     Backbone = require('backbone');
 /*var MainView = require('./views/MainView');*/
 var AppView = require('./AppView');
 var LoadingCover = require('./utils/LoadingCover');
 
-Backbone.$ = $;
+//Backbone.$ = $;
 
 /*var $mainEl = $('.main');
  var mainModel = new Backbone.Model($mainEl.data('raw'));

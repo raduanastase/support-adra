@@ -2,7 +2,7 @@ var Backbone = require('backbone'),
     template = require("./GalleryView.hbs");
 var _ = require('underscore');
 
-Backbone.$ = $;
+//Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
     className: 'orbit',

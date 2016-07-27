@@ -2,7 +2,7 @@
 
 //var $ = global.$ = global.jQuery = require('jquery');
 var Backbone = require('backbone');
-Backbone.$ = $;
+//Backbone.$ = $;
 
 module.exports = Backbone.Collection.extend({
     url: function () {

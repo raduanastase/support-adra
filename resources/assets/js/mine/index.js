@@ -1,4 +1,4 @@
-//var $ = require('jquery');
+//var $ = global.$ = global.jQuery = require('jquery');
 var Backbone = require('backbone');
 require('./utils/HandlebarsHelpers');
 Backbone.$ = $;

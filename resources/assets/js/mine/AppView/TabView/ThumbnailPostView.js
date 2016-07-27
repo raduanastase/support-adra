@@ -2,7 +2,7 @@ var /*$ = global.$ = global.jQuery = require('jquery'),*/
     Backbone = require('backbone'),
     template = require("./ThumbnailPostView.hbs");
 var _ = require('underscore');
-Backbone.$ = $;
+//Backbone.$ = $;
 
 var self; //MAKE THIS BETTER
 

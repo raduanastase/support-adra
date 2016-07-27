@@ -4,7 +4,7 @@
 </button>
 
 <!--<form id="add-case-form" method="post" data-abide novalidate enctype="multipart/form-data">--><!--the validation of foundation screwed up the form request sent by backbone-->
-<form id="add-case-form" method="post" action="api/posts" data-abide novalidate enctype="multipart/form-data">
+<form id="add-case-form" method="post" action="api/posts" novalidate>
     <input type="hidden" name="_token" value="{{csrf_token}}">
 
     <div data-abide-error class="alert callout" style="display: none;">
@@ -33,7 +33,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <!--<div class="row">
         <div class="small-12 columns section-title">
             Date de contact ale pesoanei care raporteaza
         </div>
@@ -138,7 +138,7 @@
             <label for="person-county-id">Judet
                 <small>*</small>
 
-                <select name="person-county-id" id="person-county-id"><!-- ADD REQUIRED -->
+                <select name="person-county-id" id="person-county-id">&lt;!&ndash; ADD REQUIRED &ndash;&gt;
                     <option value="0">Alege</option>
                     {{#each counties as |county|}}
                         <option value="{{@index}}">{{county}}</option>
@@ -204,7 +204,7 @@
                 </label>
             </div>
         </div>
-    {{/if}}
+    {{/if}}-->
 
     <div class="row">
         <div class="small-6 columns">
