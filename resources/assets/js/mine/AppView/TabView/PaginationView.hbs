@@ -1,0 +1,20 @@
+<ul class="pagination text-center" role="navigation" aria-label="Pagination">
+    {{#unless (eq last_page 0)}}
+        {{#if prev_page_url}}
+            <li class="pagination-previous {{sif prev_page_url '' 'disabled'}}">
+                <a href="#" aria-label="Pagina precedenta">Înapoi</a>
+            </li>
+        {{/if}}
+        <li class="current"><span class="show-for-sr">Ești pe pagina</span> {{current_page}}</li>
+        {{#if next_page_url}}
+            <!--<li class="ellipsis"></li>
+            <li>
+                <a href="#" class="page-number" aria-label="Pagina {{last_page}}">{{last_page}}</a>
+            </li>-->
+            <li class="pagination-next {{sif next_page_url '' 'disabled'}}">
+                <a href="#" aria-label="Următoarea pagină">Înainte</a>
+            </li>
+            <li class="disabled">({{last_page}} pagini)</li>
+        {{/if}}
+    {{/unless}}
+</ul>

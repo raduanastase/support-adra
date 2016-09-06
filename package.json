@@ -1,35 +1,27 @@
 {
-  "name": "support-adra",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "build": "browserify -t hbsfy sources/js/mine/index.js -o public/js/bundle.js",
-    "watch": "watchify -t hbsfy sources/js/mine/index.js -o public/js/bundle.js --debug --verbose --poll=true",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://gitlab.com/raduanastase/SupportAdra.git"
-  },
-  "author": "Amicus Coding Days",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://gitlab.com/raduanastase/SupportAdra/issues"
-  },
-  "homepage": "https://gitlab.com/raduanastase/SupportAdra#README",
   "private": true,
+  "scripts": {
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
   "dependencies": {
+    "jquery": ">= 2.1.0",
+    "modernizr": "3.3.1",
+    "fastclick": ">=0.6.11",
+    "jquery.cookie": "~1.4.0",
+    "jquery-placeholder": "~2.0.7",
     "backbone": "^1.1.2",
-    "browserify": "^13.0.0",
     "handlebars": "^4.0.5",
-    "jquery": "^2.1.3",
     "requirejs": "^2.1.15",
     "requirejs-text": "^2.0.12",
     "underscore": "^1.7.0"
   },
   "devDependencies": {
-    "hbsfy": "^2.5.1",
-    "watchify": "^3.7.0"
+    "gulp": "^3.9.1",
+    "gulp-sass": "2.3.1",
+    "laravel-elixir": "^5.0.0",
+    "jquery.autocomplete": "1.1.0",
+    "lodash": "~2.4.1",
+    "hbsfy": "^2.5.1"
   }
 }
