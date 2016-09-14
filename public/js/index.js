@@ -14423,7 +14423,7 @@ return jQuery;
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\r\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel3\">În așteptare</a></li>\r\n    <li class=\"tabs-title\"><a href=\"#panel4\">Refuzate</a></li>\r\n</ul>\r\n\r\n<div class=\"columns small-12 tabs-content\" data-tabs-content=\"posts-tabs\">\r\n</div>";
+    return "<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel3\">În așteptare</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel4\">Refuzate</a></li>\n</ul>\n\n<div class=\"columns small-12 tabs-content\" data-tabs-content=\"posts-tabs\">\n</div>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],25:[function(require,module,exports){
@@ -14459,6 +14459,7 @@ module.exports = Backbone.View.extend({
         });
         this.postView = new PostView({ model: this.postModel });
 
+        console.log("for post model", this.model.attributes);
         this.addPostModel = new AddPostModel(this.model.attributes);
         this.addPostView = new AddPostView({ model: this.addPostModel });
 
@@ -14543,19 +14544,19 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias1(((helper = (helper = helpers.index || (data && data.index)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"index","hash":{},"data":data}) : helper)))
     + "\">"
     + alias1(container.lambda(blockParams[0][0], depth0))
-    + "</option>\r\n";
+    + "</option>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"row\">\r\n            <div class=\"small-12 medium-6 columns\">\r\n                <label for=\"person-money-total\">\r\n                        <span class=\"row\">\r\n                            <span class=\"small-12 columns\">Suma necesara</span>\r\n                        </span>\r\n                        <span class=\"row\">\r\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-total\"\r\n                                                                  id=\"person-money-total\"></span>\r\n                            <span class=\"small-2 columns\">RON</span>\r\n                        </span>\r\n                </label>\r\n            </div>\r\n            <div class=\"small-12 medium-6 columns\">\r\n                <label for=\"person-money-partial\">\r\n                        <span class=\"row\">\r\n                            <span class=\"small-12 columns\">Suma stransa</span>\r\n                        </span>\r\n                        <span class=\"row\">\r\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-partial\"\r\n                                                                  id=\"person-money-partial\"></span>\r\n                            <span class=\"small-2 columns\">RON</span>\r\n                        </span>\r\n                </label>\r\n            </div>\r\n        </div>\r\n    ";
+    return "        <div class=\"row\">\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-total\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma necesara</span>\n                        </span>\n                        <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-total\"\n                                                                  id=\"person-money-total\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                        <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-partial\"\n                                                                  id=\"person-money-partial\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n        </div>\n    ";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
-  return "<h1>Adaugare caz</h1>\r\n<button class=\"close-button\" data-close aria-label=\"Close modal\" type=\"button\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n</button>\r\n\r\n<!--<form id=\"add-case-form\" method=\"post\" data-abide novalidate enctype=\"multipart/form-data\">--><!--the validation of foundation screwed up the form request sent by backbone-->\r\n<form id=\"add-case-form\" method=\"post\" action=\"api/posts\" novalidate>\r\n    <input type=\"hidden\" name=\"_token\" value=\""
-    + container.escapeExpression(((helper = (helper = helpers.csrf_token || (depth0 != null ? depth0.csrf_token : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"csrf_token","hash":{},"data":data,"blockParams":blockParams}) : helper)))
-    + "\">\r\n\r\n    <div data-abide-error class=\"alert callout\" style=\"display: none;\">\r\n        <p><i class=\"fi-alert\"></i> Unele campuri obligatorii sunt necompletate.</p>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns upload-images\">\r\n            <label for=\"image-upload-input\">\r\n                <input type=\"file\" id=\"image-upload-input\" multiple accept=\"image/*\">\r\n                <span class=\"button\" id=\"image-upload-button\">Adauga poze</span>\r\n            </label>\r\n            <ul class=\"files-list\">\r\n\r\n            </ul>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            <label for=\"case-name\">Numele cazului\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"title\" id=\"title\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <!--<div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            Date de contact ale pesoanei care raporteaza\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"reporter-last-name\">Numele\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"reporter-last-name\" id=\"reporter-last-name\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"reporter-first-name\">Prenumele\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"reporter-first-name\" id=\"reporter-first-name\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-cnp\">C.N.P.\r\n                <input type=\"text\" name=\"reporter-cnp\" id=\"reporter-cnp\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-ci-series\">C.I. Seria\r\n                <input type=\"text\" name=\"reporter-ci-series\" id=\"reporter-ci-series\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-ci-number\">C.I. Numar\r\n                <input type=\"text\" name=\"reporter-ci-number\" id=\"reporter-ci-number\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"reporter-phone\">Numar de telefon\r\n                <small>*</small>\r\n                <input type=\"tel\" name=\"reporter-phone\" id=\"reporter-phone\" required pattern=\"number\">\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"reporter-email\">Email\r\n                <input type=\"email\" name=\"reporter-email\" id=\"reporter-email\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            Date despre persoana in cauza\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"person-last-name\">Numele <b>persoanei in cauza</b>\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"person-last-name\" id=\"person-last-name\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"person-first-name\">Prenumele <b>persoanei in cauza</b>\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"person-first-name\" id=\"person-first-name\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-cnp\">C.N.P.\r\n                <input type=\"text\" name=\"person-cnp\" id=\"person-cnp\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-ci-series\">C.I. Seria\r\n                <input type=\"text\" name=\"person-ci-series\" id=\"person-ci-series\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-ci-number\">C.I. Numar\r\n                <input type=\"text\" name=\"person-ci-number\" id=\"person-ci-number\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-county-id\">Judet\r\n                <small>*</small>\r\n\r\n                <select name=\"person-county-id\" id=\"person-county-id\">&lt;!&ndash; ADD REQUIRED &ndash;&gt;\r\n                    <option value=\"0\">Alege</option>\r\n"
+  return "<h1>Adaugare caz</h1>\n<button class=\"close-button\" data-close aria-label=\"Close modal\" type=\"button\">\n    <span aria-hidden=\"true\">&times;</span>\n</button>\n\n<!--<form id=\"add-case-form\" method=\"post\" data-abide novalidate enctype=\"multipart/form-data\">--><!--the validation of foundation screwed up the form request sent by backbone-->\n<form id=\"add-case-form\" novalidate>\n    <input type=\"hidden\" name=\"_token\" value=\""
+    + container.escapeExpression(((helper = (helper = helpers.csrfToken || (depth0 != null ? depth0.csrfToken : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"csrfToken","hash":{},"data":data,"blockParams":blockParams}) : helper)))
+    + "\">\n\n    <div data-abide-error class=\"alert callout\" style=\"display: none;\">\n        <p><i class=\"fi-alert\"></i> Unele campuri obligatorii sunt necompletate.</p>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns upload-images\">\n            <label for=\"image-upload-input\">\n                <input type=\"file\" id=\"image-upload-input\" multiple accept=\"image/*\">\n                <span class=\"button\" id=\"image-upload-button\">Adauga poze</span>\n            </label>\n            <ul class=\"files-list\">\n\n            </ul>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            <label for=\"case-name\">Numele cazului\n                <small>*</small>\n                <input type=\"text\" name=\"title\" id=\"title\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n    <!--<div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            Date de contact ale pesoanei care raporteaza\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-6 columns\">\n            <label for=\"reporter-last-name\">Numele\n                <small>*</small>\n                <input type=\"text\" name=\"reporter-last-name\" id=\"reporter-last-name\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n        <div class=\"small-6 columns\">\n            <label for=\"reporter-first-name\">Prenumele\n                <small>*</small>\n                <input type=\"text\" name=\"reporter-first-name\" id=\"reporter-first-name\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"reporter-cnp\">C.N.P.\n                <input type=\"text\" name=\"reporter-cnp\" id=\"reporter-cnp\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"reporter-ci-series\">C.I. Seria\n                <input type=\"text\" name=\"reporter-ci-series\" id=\"reporter-ci-series\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"reporter-ci-number\">C.I. Numar\n                <input type=\"text\" name=\"reporter-ci-number\" id=\"reporter-ci-number\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"reporter-phone\">Numar de telefon\n                <small>*</small>\n                <input type=\"tel\" name=\"reporter-phone\" id=\"reporter-phone\" required pattern=\"number\">\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"reporter-email\">Email\n                <input type=\"email\" name=\"reporter-email\" id=\"reporter-email\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            Date despre persoana in cauza\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-6 columns\">\n            <label for=\"person-last-name\">Numele <b>persoanei in cauza</b>\n                <small>*</small>\n                <input type=\"text\" name=\"person-last-name\" id=\"person-last-name\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n        <div class=\"small-6 columns\">\n            <label for=\"person-first-name\">Prenumele <b>persoanei in cauza</b>\n                <small>*</small>\n                <input type=\"text\" name=\"person-first-name\" id=\"person-first-name\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"person-cnp\">C.N.P.\n                <input type=\"text\" name=\"person-cnp\" id=\"person-cnp\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"person-ci-series\">C.I. Seria\n                <input type=\"text\" name=\"person-ci-series\" id=\"person-ci-series\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"person-ci-number\">C.I. Numar\n                <input type=\"text\" name=\"person-ci-number\" id=\"person-ci-number\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-county-id\">Judet\n                <small>*</small>\n\n                <select name=\"person-county-id\" id=\"person-county-id\">&lt;!&ndash; ADD REQUIRED &ndash;&gt;\n                    <option value=\"0\">Alege</option>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.counties : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 1, blockParams),"inverse":container.noop,"data":data,"blockParams":blockParams})) != null ? stack1 : "")
-    + "                </select>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-city\">Localitate\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"person-city\" id=\"person-city\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"person-address\">Alte detalii adresa (strada,numar,etc.)\r\n                <small>*</small>\r\n                <input type=\"text\" name=\"person-address\" id=\"person-address\" required>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"person-description\">Descriere\r\n                <small>*</small>\r\n                <textarea type=\"text\" name=\"person-description\" id=\"person-description\" maxlength=\"1000\"\r\n                          required></textarea>\r\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n"
+    + "                </select>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-city\">Localitate\n                <small>*</small>\n                <input type=\"text\" name=\"person-city\" id=\"person-city\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"person-address\">Alte detalii adresa (strada,numar,etc.)\n                <small>*</small>\n                <input type=\"text\" name=\"person-address\" id=\"person-address\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"person-description\">Descriere\n                <small>*</small>\n                <textarea type=\"text\" name=\"person-description\" id=\"person-description\" maxlength=\"1000\"\n                          required></textarea>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0, blockParams),"inverse":container.noop,"data":data,"blockParams":blockParams})) != null ? stack1 : "")
-    + "-->\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <button id=\"submit-button\" class=\"button float-right\" type=\"submit\" value=\"Submit\">Submit</button>\r\n        </div>\r\n        <div class=\"small-6 columns\">\r\n            <button class=\"button\" type=\"reset\" value=\"Reset\">Reset</button>\r\n        </div>\r\n    </div>\r\n</form>";
+    + "-->\n\n    <div class=\"row\">\n        <div class=\"small-6 columns\">\n            <button id=\"submit-button\" class=\"button float-right\" type=\"submit\" value=\"Submit\">Submit</button>\n        </div>\n        <div class=\"small-6 columns\">\n            <button class=\"button\" type=\"reset\" value=\"Reset\">Reset</button>\n        </div>\n    </div>\n</form>";
 },"useData":true,"useBlockParams":true});
 
 },{"hbsfy/runtime":21}],28:[function(require,module,exports){
@@ -14573,7 +14574,8 @@ module.exports = Backbone.View.extend({
 
     events: function events() {
         return {
-            'click .close-button': 'close'
+            'click .close-button': 'close',
+            'click #submit-button': 'onSubmitClick'
         };
     },
 
@@ -14647,10 +14649,11 @@ module.exports = Backbone.View.extend({
     },
 
     onSubmitClick: function onSubmitClick() {
-        /*this.model.set({
+        this.model.set({
             title: this.$('#title').val(),
+            filesToUpload: this.filesFormData,
             type: this.model.get('loggedIn') ? 'approved' : 'pending',
-            reporter_first_name: this.$('#reporter-first-name').val(),
+            /*reporter_first_name: this.$('#reporter-first-name').val(),
             reporter_last_name: this.$('#reporter-last-name').val(),
             reporter_cnp: this.$('#reporter-cnp').val(),
             reporter_ci_series: this.$('#reporter-ci-series').val(),
@@ -14667,19 +14670,23 @@ module.exports = Backbone.View.extend({
             person_address: this.$('#person_address').val(),
             person_description: this.$('#person_description').val(),
             person_money_total: this.$('#person_money_total').val(),
-            person_money_partial: this.$('#person_money_partial').val(),
+            person_money_partial: this.$('#person_money_partial').val(),*/
             attachments: this.getImagesList()
         });
-          this.model.unset('counties');
+
+        this.model.unset('counties');
         this.model.unset('loggedIn');
-          this.model.save(null, {
-         success: function () {
-         this.close();
-         //I'm using this because laravel redirect would not work with same path without hashes
-         location.reload();
-         // I'm not using this to populate the collection because, according to pagination, the current collection may not be affected, thus a modification to the collection would be unnecessary
-         }.bind(this)
-         });*/
+
+        console.log("on save model", this.model.attributes);
+
+        this.model.save(null, {
+            success: function () {
+                this.close();
+                //I'm using this because laravel redirect would not work with same path without hashes
+                //location.reload();
+                // I'm not using this to populate the collection because, according to pagination, the current collection may not be affected, thus a modification to the collection would be unnecessary
+            }.bind(this)
+        });
 
         //this is working but I need it to work with model.save
         /*$.ajax({
@@ -14692,7 +14699,7 @@ module.exports = Backbone.View.extend({
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')//i don't know why I have to do this because in the main file I added the headers to every ajax request
             },
             success: function (data) {
-                //alert(data);
+                alert(data);
             }
         });*/
     }
@@ -14724,7 +14731,7 @@ module.exports = Backbone.Model.extend({
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<button class=\"close-button\" aria-label=\"Close modal\" type=\"button\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n</button>\r\n<div class=\"read-post-wrapper\"></div>\r\n<div class=\"edit-post-wrapper\"></div>";
+    return "<button class=\"close-button\" aria-label=\"Close modal\" type=\"button\">\n    <span aria-hidden=\"true\">&times;</span>\n</button>\n<div class=\"read-post-wrapper\"></div>\n<div class=\"edit-post-wrapper\"></div>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],31:[function(require,module,exports){
@@ -14822,49 +14829,49 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + "</option>\r\n";
+    + "</option>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<h1>Editare caz</h1>\r\n<button class=\"close-button\" data-close aria-label=\"Close modal\" type=\"button\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n</button>\r\n\r\n<div id=\"edit-post\">\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns current-images\">\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns upload-images\">\r\n            <label for=\"image-upload-input\">\r\n                <input type=\"file\" id=\"image-upload-input\" multiple accept=\"image/*\">\r\n                <span class=\"button\" id=\"image-upload-button\">Adauga poze</span>\r\n            </label>\r\n            <ul class=\"files-list\">\r\n\r\n            </ul>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            <label for=\"case-name\">Numele cazului\r\n                <input type=\"text\" name=\"title\" id=\"title\" value=\""
+  return "<h1>Editare caz</h1>\n<button class=\"close-button\" data-close aria-label=\"Close modal\" type=\"button\">\n    <span aria-hidden=\"true\">&times;</span>\n</button>\n\n<div id=\"edit-post\">\n    <div class=\"row\">\n        <div class=\"small-12 columns current-images\">\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns upload-images\">\n            <label for=\"image-upload-input\">\n                <input type=\"file\" id=\"image-upload-input\" multiple accept=\"image/*\">\n                <span class=\"button\" id=\"image-upload-button\">Adauga poze</span>\n            </label>\n            <ul class=\"files-list\">\n\n            </ul>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            <label for=\"case-name\">Numele cazului\n                <input type=\"text\" name=\"title\" id=\"title\" value=\""
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            Date de contact ale pesoanei care raporteaza\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"reporter-last-name\">Numele\r\n                <input type=\"text\" name=\"reporter-last-name\" id=\"reporter-last-name\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            Date de contact ale pesoanei care raporteaza\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-6 columns\">\n            <label for=\"reporter-last-name\">Numele\n                <input type=\"text\" name=\"reporter-last-name\" id=\"reporter-last-name\" value=\""
     + alias4(((helper = (helper = helpers.reporter_last_name || (depth0 != null ? depth0.reporter_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_last_name","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"reporter-first-name\">Prenumele\r\n                <input type=\"text\" name=\"reporter-first-name\" id=\"reporter-first-name\" value=\""
+    + "\">\n            </label>\n        </div>\n        <div class=\"small-6 columns\">\n            <label for=\"reporter-first-name\">Prenumele\n                <input type=\"text\" name=\"reporter-first-name\" id=\"reporter-first-name\" value=\""
     + alias4(((helper = (helper = helpers.reporter_first_name || (depth0 != null ? depth0.reporter_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_first_name","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-cnp\">C.N.P.\r\n                <input type=\"text\" name=\"reporter-cnp\" id=\"reporter-cnp\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"reporter-cnp\">C.N.P.\n                <input type=\"text\" name=\"reporter-cnp\" id=\"reporter-cnp\" value=\""
     + alias4(((helper = (helper = helpers.reporter_cnp || (depth0 != null ? depth0.reporter_cnp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_cnp","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-ci-series\">C.I. Seria\r\n                <input type=\"text\" name=\"reporter-ci-series\" id=\"reporter-ci-series\" value=\""
+    + "\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"reporter-ci-series\">C.I. Seria\n                <input type=\"text\" name=\"reporter-ci-series\" id=\"reporter-ci-series\" value=\""
     + alias4(((helper = (helper = helpers.reporter_ci_series || (depth0 != null ? depth0.reporter_ci_series : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_series","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"reporter-ci-number\">C.I. Numar\r\n                <input type=\"text\" name=\"reporter-ci-number\" id=\"reporter-ci-number\" value=\""
+    + "\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"reporter-ci-number\">C.I. Numar\n                <input type=\"text\" name=\"reporter-ci-number\" id=\"reporter-ci-number\" value=\""
     + alias4(((helper = (helper = helpers.reporter_ci_number || (depth0 != null ? depth0.reporter_ci_number : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_number","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"reporter-phone\">Numar de telefon\r\n                <input type=\"tel\" name=\"reporter-phone\" id=\"reporter-phone\" pattern=\"number\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"reporter-phone\">Numar de telefon\n                <input type=\"tel\" name=\"reporter-phone\" id=\"reporter-phone\" pattern=\"number\" value=\""
     + alias4(((helper = (helper = helpers.reporter_phone || (depth0 != null ? depth0.reporter_phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_phone","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"reporter-email\">Email\r\n                <input type=\"email\" name=\"reporter-email\" id=\"reporter-email\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"reporter-email\">Email\n                <input type=\"email\" name=\"reporter-email\" id=\"reporter-email\" value=\""
     + alias4(((helper = (helper = helpers.reporter_email || (depth0 != null ? depth0.reporter_email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_email","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns section-title\">\r\n            Date despre persoana in cauza\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"person-last-name\">Numele <b>persoanei in cauza</b>\r\n                <input type=\"text\" name=\"person-last-name\" id=\"person-last-name\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            Date despre persoana in cauza\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-6 columns\">\n            <label for=\"person-last-name\">Numele <b>persoanei in cauza</b>\n                <input type=\"text\" name=\"person-last-name\" id=\"person-last-name\" value=\""
     + alias4(((helper = (helper = helpers.person_last_name || (depth0 != null ? depth0.person_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_last_name","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-6 columns\">\r\n            <label for=\"person-first-name\">Prenumele <b>persoanei in cauza</b>\r\n                <input type=\"text\" name=\"person-first-name\" id=\"person-first-name\" value=\""
+    + "\">\n            </label>\n        </div>\n        <div class=\"small-6 columns\">\n            <label for=\"person-first-name\">Prenumele <b>persoanei in cauza</b>\n                <input type=\"text\" name=\"person-first-name\" id=\"person-first-name\" value=\""
     + alias4(((helper = (helper = helpers.person_first_name || (depth0 != null ? depth0.person_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_first_name","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-cnp\">C.N.P.\r\n                <input type=\"text\" name=\"person-cnp\" id=\"person-cnp\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"person-cnp\">C.N.P.\n                <input type=\"text\" name=\"person-cnp\" id=\"person-cnp\" value=\""
     + alias4(((helper = (helper = helpers.person_cnp || (depth0 != null ? depth0.person_cnp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_cnp","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-ci-series\">C.I. Seria\r\n                <input type=\"text\" name=\"person-ci-series\" id=\"person-ci-series\" value=\""
+    + "\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"person-ci-series\">C.I. Seria\n                <input type=\"text\" name=\"person-ci-series\" id=\"person-ci-series\" value=\""
     + alias4(((helper = (helper = helpers.person_ci_series || (depth0 != null ? depth0.person_ci_series : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_ci_series","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-4 columns\">\r\n            <label for=\"person-ci-number\">C.I. Numar\r\n                <input type=\"text\" name=\"person-ci-number\" id=\"person-ci-number\" value=\""
+    + "\">\n            </label>\n        </div>\n        <div class=\"small-12 medium-4 columns\">\n            <label for=\"person-ci-number\">C.I. Numar\n                <input type=\"text\" name=\"person-ci-number\" id=\"person-ci-number\" value=\""
     + alias4(((helper = (helper = helpers.person_ci_number || (depth0 != null ? depth0.person_ci_number : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_ci_number","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-county\">Judet\r\n                <select name=\"person-county\" id=\"person-county\"><!-- ADD REQUIRED -->\r\n                    <option value=\"0\">Alege</option>\r\n"
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-county\">Judet\n                <select name=\"person-county\" id=\"person-county\"><!-- ADD REQUIRED -->\n                    <option value=\"0\">Alege</option>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.counties : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "                </select>\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-city\">Localitate\r\n                <input type=\"text\" name=\"person-city\" id=\"person-city\" value=\""
+    + "                </select>\n            </label>\n        </div>\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-city\">Localitate\n                <input type=\"text\" name=\"person-city\" id=\"person-city\" value=\""
     + alias4(((helper = (helper = helpers.person_city || (depth0 != null ? depth0.person_city : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_city","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"person-address\">Alte detalii adresa (strada,numar,etc.)\r\n                <input type=\"text\" name=\"person-address\" id=\"person-address\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"person-address\">Alte detalii adresa (strada,numar,etc.)\n                <input type=\"text\" name=\"person-address\" id=\"person-address\" value=\""
     + alias4(((helper = (helper = helpers.person_address || (depth0 != null ? depth0.person_address : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_address","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns\">\r\n            <label for=\"person-description\">Descriere\r\n                <textarea type=\"text\" name=\"person-description\" id=\"person-description\" maxlength=\"1000\" value=\""
+    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"person-description\">Descriere\n                <textarea type=\"text\" name=\"person-description\" id=\"person-description\" maxlength=\"1000\" value=\""
     + alias4(((helper = (helper = helpers.person_description || (depth0 != null ? depth0.person_description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_description","hash":{},"data":data}) : helper)))
-    + "\"></textarea>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-money-total\">\r\n                        <span class=\"row\">\r\n                            <span class=\"small-12 columns\">Suma necesara</span>\r\n                        </span>\r\n                        <span class=\"row\">\r\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-total\" id=\"person-money-total\" value=\""
+    + "\"></textarea>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-money-total\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma necesara</span>\n                        </span>\n                        <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-total\" id=\"person-money-total\" value=\""
     + alias4(((helper = (helper = helpers.person_money_total || (depth0 != null ? depth0.person_money_total : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_total","hash":{},"data":data}) : helper)))
-    + "\"></span>\r\n                            <span class=\"small-2 columns\">RON</span>\r\n                        </span>\r\n            </label>\r\n        </div>\r\n        <div class=\"small-12 medium-6 columns\">\r\n            <label for=\"person-money-partial\">\r\n                        <span class=\"row\">\r\n                            <span class=\"small-12 columns\">Suma stransa</span>\r\n                        </span>\r\n                        <span class=\"row\">\r\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-partial\" id=\"person-money-partial\" value=\""
+    + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                        <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-partial\" id=\"person-money-partial\" value=\""
     + alias4(((helper = (helper = helpers.person_money_partial || (depth0 != null ? depth0.person_money_partial : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_partial","hash":{},"data":data}) : helper)))
-    + "\"></span>\r\n                            <span class=\"small-2 columns\">RON</span>\r\n                        </span>\r\n            </label>\r\n        </div>\r\n    </div>\r\n\r\n    <div class=\"row\">\r\n        <div class=\"small-12 columns text-center\">\r\n            <button class=\"button save-button\" value=\"Salveaza\">Salveaza</button>\r\n        </div>\r\n    </div>\r\n</div>";
+    + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns text-center\">\n            <button class=\"button save-button\" value=\"Salveaza\">Salveaza</button>\n        </div>\n    </div>\n</div>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],33:[function(require,module,exports){
@@ -14992,9 +14999,9 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 
   return "            <li class=\""
     + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
-    + " orbit-slide\">\r\n                <img class=\"orbit-image\" src=\""
+    + " orbit-slide\">\n                <img class=\"orbit-image\" src=\""
     + alias3(((helper = (helper = helpers.path || (depth0 != null ? depth0.path : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"path","hash":{},"data":data}) : helper)))
-    + "\">\r\n            </li>\r\n";
+    + "\">\n            </li>\n";
 },"4":function(container,depth0,helpers,partials,data) {
     var stack1;
 
@@ -15006,13 +15013,13 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
     + "\" data-slide=\""
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\"></button>\r\n";
+    + "\"></button>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
-  return "<ul class=\"orbit-container\">\r\n    <button class=\"orbit-previous\"><span class=\"show-for-sr\">Previous Slide</span>&#9664;&#xFE0E;</button>\r\n    <button class=\"orbit-next\"><span class=\"show-for-sr\">Next Slide</span>&#9654;&#xFE0E;</button>\r\n"
+  return "<ul class=\"orbit-container\">\n    <button class=\"orbit-previous\"><span class=\"show-for-sr\">Previous Slide</span>&#9664;&#xFE0E;</button>\n    <button class=\"orbit-next\"><span class=\"show-for-sr\">Next Slide</span>&#9654;&#xFE0E;</button>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</ul>\r\n<nav class=\"orbit-bullets\">\r\n"
+    + "</ul>\n<nav class=\"orbit-bullets\">\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.images : depth0),{"name":"each","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</nav>";
 },"useData":true});
@@ -15062,7 +15069,7 @@ module.exports = Backbone.View.extend({
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
-    return "    <div class=\"row\">\r\n        <button class=\"button tiny hollow edit-button\" type=\"button\">\r\n            Editeaza cazul\r\n        </button>\r\n    </div>\r\n";
+    return "    <div class=\"row\">\n        <button class=\"button tiny hollow edit-button\" type=\"button\">\n            Editeaza cazul\n        </button>\n    </div>\n";
 },"3":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
@@ -15070,53 +15077,53 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\">"
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
-    + "</option>\r\n";
+    + "</option>\n";
 },"5":function(container,depth0,helpers,partials,data) {
-    return "    <div class=\"row\">\r\n        <div class=\"small-12 columns text-center\">\r\n            <button class=\"button alert delete-button\" type=\"button\">\r\n                Sterge cazul\r\n            </button>\r\n        </div>\r\n    </div>\r\n";
+    return "    <div class=\"row\">\n        <div class=\"small-12 columns text-center\">\n            <button class=\"button alert delete-button\" type=\"button\">\n                Sterge cazul\n            </button>\n        </div>\n    </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<button class=\"close-button\" aria-label=\"Close modal\" type=\"button\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n</button>\r\n\r\n"
+  return "<button class=\"close-button\" aria-label=\"Close modal\" type=\"button\">\n    <span aria-hidden=\"true\">&times;</span>\n</button>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\r\n<div class=\"row\">\r\n    <h1 class=\"small-12 columns title\">\r\n        "
+    + "\n<div class=\"row\">\n    <h1 class=\"small-12 columns title\">\n        "
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "\r\n    </h1>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns gallery-wrapper\">\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns section-title\">\r\n        Date de contact ale pesoanei care raporteaza\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Nume</div>\r\n        <div class=\"reporter-last-name modal-label-value\">"
+    + "\n    </h1>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-12 columns gallery-wrapper\">\n\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-12 columns section-title\">\n        Date de contact ale pesoanei care raporteaza\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Nume</div>\n        <div class=\"reporter-last-name modal-label-value\">"
     + alias4(((helper = (helper = helpers.reporter_last_name || (depth0 != null ? depth0.reporter_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_last_name","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Prenume</div>\r\n        <div class=\"reporter-first-name modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Prenume</div>\n        <div class=\"reporter-first-name modal-label-value\">"
     + alias4(((helper = (helper = helpers.reporter_first_name || (depth0 != null ? depth0.reporter_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_first_name","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">C.N.P.</div>\r\n        <div class=\"reporter-cnp modal-label-value\">"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-4 columns\">\n        <div class=\"modal-label\">C.N.P.</div>\n        <div class=\"reporter-cnp modal-label-value\">"
     + alias4(((helper = (helper = helpers.reporter_cnp || (depth0 != null ? depth0.reporter_cnp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_cnp","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Seria</div>\r\n        <div class=\"reporter-ci-series modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-4 columns\">\n        <div class=\"modal-label\">B.I. Seria</div>\n        <div class=\"reporter-ci-series modal-label-value\">"
     + alias4(((helper = (helper = helpers.reporter_ci_series || (depth0 != null ? depth0.reporter_ci_series : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_series","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Numar</div>\r\n        <div class=\"reporter-ci-number modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-4 columns\">\n        <div class=\"modal-label\">B.I. Numar</div>\n        <div class=\"reporter-ci-number modal-label-value\">"
     + alias4(((helper = (helper = helpers.reporter_ci_number || (depth0 != null ? depth0.reporter_ci_number : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_ci_number","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Numar de telefon</div>\r\n        <div class=\"reporter-phone modal-label-value\">"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Numar de telefon</div>\n        <div class=\"reporter-phone modal-label-value\">"
     + alias4(((helper = (helper = helpers.reporter_phone || (depth0 != null ? depth0.reporter_phone : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_phone","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Email</div>\r\n        <div class=\"reporter-email modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Email</div>\n        <div class=\"reporter-email modal-label-value\">"
     + alias4(((helper = (helper = helpers.reporter_email || (depth0 != null ? depth0.reporter_email : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_email","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns section-title\">\r\n        Date despre persoana in cauza\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Numele <b>persoanei in cauza</b></div>\r\n        <div class=\"person-last-name modal-label-value\">"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-12 columns section-title\">\n        Date despre persoana in cauza\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Numele <b>persoanei in cauza</b></div>\n        <div class=\"person-last-name modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_last_name || (depth0 != null ? depth0.person_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_last_name","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Prenumele <b>persoanei in cauza</b></div>\r\n        <div class=\"person-first-name modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Prenumele <b>persoanei in cauza</b></div>\n        <div class=\"person-first-name modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_first_name || (depth0 != null ? depth0.person_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_first_name","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">C.N.P.</div>\r\n        <div class=\"person-cnp modal-label-value\">"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-4 columns\">\n        <div class=\"modal-label\">C.N.P.</div>\n        <div class=\"person-cnp modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_cnp || (depth0 != null ? depth0.person_cnp : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_cnp","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Seria</div>\r\n        <div class=\"person-ci-series modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-4 columns\">\n        <div class=\"modal-label\">B.I. Seria</div>\n        <div class=\"person-ci-series modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_ci_series || (depth0 != null ? depth0.person_ci_series : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_ci_series","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-4 columns\">\r\n        <div class=\"modal-label\">B.I. Numar</div>\r\n        <div class=\"person-ci-number modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-4 columns\">\n        <div class=\"modal-label\">B.I. Numar</div>\n        <div class=\"person-ci-number modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_ci_number || (depth0 != null ? depth0.person_ci_number : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_ci_number","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Judet</div>\r\n        <div class=\"person-county modal-label-value\">\r\n            <select name=\"person-county\" id=\"person-county\" disabled=\"disabled\">\r\n                <option value=\"0\">Alege</option>\r\n"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Judet</div>\n        <div class=\"person-county modal-label-value\">\n            <select name=\"person-county\" id=\"person-county\" disabled=\"disabled\">\n                <option value=\"0\">Alege</option>\n"
     + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.counties : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "            </select>\r\n        </div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Localitate</div>\r\n        <div class=\"person-city modal-label-value\">"
+    + "            </select>\n        </div>\n    </div>\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Localitate</div>\n        <div class=\"person-city modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_city || (depth0 != null ? depth0.person_city : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_city","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns\">\r\n        <div class=\"modal-label\">Alte detalii adresa (strada,numar,etc.)</div>\r\n        <div class=\"person-address modal-label-value\">"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-12 columns\">\n        <div class=\"modal-label\">Alte detalii adresa (strada,numar,etc.)</div>\n        <div class=\"person-address modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_address || (depth0 != null ? depth0.person_address : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_address","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-12 columns\">\r\n        <div class=\"modal-label\">Descriere</div>\r\n        <div class=\"person-description modal-label-value\">"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-12 columns\">\n        <div class=\"modal-label\">Descriere</div>\n        <div class=\"person-description modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_description || (depth0 != null ? depth0.person_description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_description","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Suma necesara</div>\r\n        <div class=\"person-money-total modal-label-value\">"
+    + "</div>\n    </div>\n</div>\n\n<div class=\"row\">\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Suma necesara</div>\n        <div class=\"person-money-total modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_money_total || (depth0 != null ? depth0.person_money_total : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_total","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n    <div class=\"small-6 columns\">\r\n        <div class=\"modal-label\">Suma stransa</div>\r\n        <div class=\"person-money-partial modal-label-value\">"
+    + "</div>\n    </div>\n    <div class=\"small-6 columns\">\n        <div class=\"modal-label\">Suma stransa</div>\n        <div class=\"person-money-partial modal-label-value\">"
     + alias4(((helper = (helper = helpers.person_money_partial || (depth0 != null ? depth0.person_money_partial : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_partial","hash":{},"data":data}) : helper)))
-    + "</div>\r\n    </div>\r\n</div>\r\n\r\n"
+    + "</div>\n    </div>\n</div>\n\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"useData":true});
 
@@ -15172,7 +15179,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.active : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
     + "\" id=\"panel"
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\">\r\n    <div class=\"row small-up-2 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\r\n\r\n    </div>\r\n    <div class=\"pagination-view-wrapper\">\r\n\r\n    </div>\r\n</div>";
+    + "\">\n    <div class=\"row small-up-2 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\n\n    </div>\n    <div class=\"pagination-view-wrapper\">\n\n    </div>\n</div>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],40:[function(require,module,exports){
@@ -15268,28 +15275,28 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
   return ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.prev_page_url : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "        <li class=\"current\"><span class=\"show-for-sr\">Ești pe pagina</span> "
     + container.escapeExpression(((helper = (helper = helpers.current_page || (depth0 != null ? depth0.current_page : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"current_page","hash":{},"data":data}) : helper)))
-    + "</li>\r\n"
+    + "</li>\n"
     + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.next_page_url : depth0),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
 },"2":function(container,depth0,helpers,partials,data) {
     return "            <li class=\"pagination-previous "
     + container.escapeExpression((helpers.sif || (depth0 && depth0.sif) || helpers.helperMissing).call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.prev_page_url : depth0),"","disabled",{"name":"sif","hash":{},"data":data}))
-    + "\">\r\n                <a href=\"#\" aria-label=\"Pagina precedenta\">Înapoi</a>\r\n            </li>\r\n";
+    + "\">\n                <a href=\"#\" aria-label=\"Pagina precedenta\">Înapoi</a>\n            </li>\n";
 },"4":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "            <!--<li class=\"ellipsis\"></li>\r\n            <li>\r\n                <a href=\"#\" class=\"page-number\" aria-label=\"Pagina "
+  return "            <!--<li class=\"ellipsis\"></li>\n            <li>\n                <a href=\"#\" class=\"page-number\" aria-label=\"Pagina "
     + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
     + "\">"
     + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
-    + "</a>\r\n            </li>-->\r\n            <li class=\"pagination-next "
+    + "</a>\n            </li>-->\n            <li class=\"pagination-next "
     + alias4((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.next_page_url : depth0),"","disabled",{"name":"sif","hash":{},"data":data}))
-    + "\">\r\n                <a href=\"#\" aria-label=\"Următoarea pagină\">Înainte</a>\r\n            </li>\r\n            <li class=\"disabled\">("
+    + "\">\n                <a href=\"#\" aria-label=\"Următoarea pagină\">Înainte</a>\n            </li>\n            <li class=\"disabled\">("
     + alias4(((helper = (helper = helpers.last_page || (depth0 != null ? depth0.last_page : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"last_page","hash":{},"data":data}) : helper)))
-    + " pagini)</li>\r\n";
+    + " pagini)</li>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, alias1=depth0 != null ? depth0 : {};
 
-  return "<ul class=\"pagination text-center\" role=\"navigation\" aria-label=\"Pagination\">\r\n"
+  return "<ul class=\"pagination text-center\" role=\"navigation\" aria-label=\"Pagination\">\n"
     + ((stack1 = helpers.unless.call(alias1,(helpers.eq || (depth0 && depth0.eq) || helpers.helperMissing).call(alias1,(depth0 != null ? depth0.last_page : depth0),0,{"name":"eq","hash":{},"data":data}),{"name":"unless","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</ul>";
 },"useData":true});
@@ -15355,13 +15362,13 @@ var HandlebarsCompiler = require('hbsfy/runtime');
 module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<a data-open=\"view-case-modal\">\r\n    <div class=\"thumbnail\">\r\n        <img class=\"thumbnail-img\" src=\""
+  return "<a data-open=\"view-case-modal\">\n    <div class=\"thumbnail\">\n        <img class=\"thumbnail-img\" src=\""
     + alias4(((helper = (helper = helpers.cover_image_path || (depth0 != null ? depth0.cover_image_path : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"cover_image_path","hash":{},"data":data}) : helper)))
-    + "\">\r\n        <h5 class=\"case-name\">"
+    + "\">\n        <h5 class=\"case-name\">"
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "</h5>\r\n        <h6 class=\"case-description\">"
+    + "</h5>\n        <h6 class=\"case-description\">"
     + alias4(((helper = (helper = helpers.person_description || (depth0 != null ? depth0.person_description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_description","hash":{},"data":data}) : helper)))
-    + "</h6>\r\n    </div>\r\n</a>";
+    + "</h6>\n    </div>\n</a>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],45:[function(require,module,exports){
@@ -15445,7 +15452,6 @@ $.ajaxSetup({
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
 });
-console.log("adding headers");
 
 var Router = require('./router');
 var router = new Router();
@@ -15483,7 +15489,6 @@ module.exports = Backbone.Router.extend({
     },
 
     initialize: function initialize() {
-        console.log("postsView creation");
         LoadingCover.cover();
 
         this.appView = new AppView({
@@ -15549,7 +15554,7 @@ module.exports = {
 
     uncover: function uncover($element) {
         /*$element = $element ? $element : $('body');
-          $element.remove(this.$el);*/
+         $element.remove(this.$el);*/
         $loadingCover.hide();
     }
 };

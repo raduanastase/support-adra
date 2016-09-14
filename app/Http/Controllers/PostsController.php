@@ -43,10 +43,13 @@ class PostsController extends Controller
         $input = Request::all();
         $input['created_at'] = Carbon::now();
 
-        /*$count = count($input['filesToUpload']['name']);
-        for ($i = 0; $i < $count; $i++) {
-            echo 'Name: '.$input['filesToUpload']['name'][$i].'<br/>';
-        }*/
+        var_dump($input); //die();
+        //die('aaaaaaaaa');
+
+//        $count = count($input['filesToUpload']['name']);
+//        for ($i = 0; $i < $count; $i++) {
+//            echo 'Name: '.$input['filesToUpload']['name'][$i].'<br/>';
+//        }
 
         Post::create($input);
 

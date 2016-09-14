@@ -10,7 +10,8 @@ module.exports = Backbone.View.extend({
 
     events: function () {
         return {
-            'click .close-button': 'close'
+            'click .close-button': 'close',
+            'click #submit-button': 'onSubmitClick'
         }
     },
 
@@ -84,10 +85,11 @@ module.exports = Backbone.View.extend({
     },
 
     onSubmitClick: function () {
-        /*this.model.set({
+        this.model.set({
             title: this.$('#title').val(),
+            filesToUpload: this.filesFormData,
             type: this.model.get('loggedIn') ? 'approved' : 'pending',
-            reporter_first_name: this.$('#reporter-first-name').val(),
+            /*reporter_first_name: this.$('#reporter-first-name').val(),
             reporter_last_name: this.$('#reporter-last-name').val(),
             reporter_cnp: this.$('#reporter-cnp').val(),
             reporter_ci_series: this.$('#reporter-ci-series').val(),
@@ -104,21 +106,27 @@ module.exports = Backbone.View.extend({
             person_address: this.$('#person_address').val(),
             person_description: this.$('#person_description').val(),
             person_money_total: this.$('#person_money_total').val(),
-            person_money_partial: this.$('#person_money_partial').val(),
+            person_money_partial: this.$('#person_money_partial').val(),*/
             attachments: this.getImagesList()
         });
 
         this.model.unset('counties');
         this.model.unset('loggedIn');
 
+        console.log("on save model", this.model.attributes);
+
         this.model.save(null, {
-         success: function () {
-         this.close();
-         //I'm using this because laravel redirect would not work with same path without hashes
-         location.reload();
-         // I'm not using this to populate the collection because, according to pagination, the current collection may not be affected, thus a modification to the collection would be unnecessary
-         }.bind(this)
-         });*/
+            success: function (response) {
+                this.close();
+                console.log("response", response);
+                //I'm using this because laravel redirect would not work with same path without hashes
+                //location.reload();
+                // I'm not using this to populate the collection because, according to pagination, the current collection may not be affected, thus a modification to the collection would be unnecessary
+            }.bind(this),
+            error: function (response) {
+                console.log("error response", response);
+            }
+        });
 
         //this is working but I need it to work with model.save
         /*$.ajax({
@@ -131,7 +139,7 @@ module.exports = Backbone.View.extend({
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')//i don't know why I have to do this because in the main file I added the headers to every ajax request
             },
             success: function (data) {
-                //alert(data);
+                alert(data);
             }
         });*/
     }

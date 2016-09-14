@@ -22,7 +22,6 @@ module.exports = Backbone.Router.extend({
     },
 
     initialize: function () {
-        console.log("postsView creation");
         LoadingCover.cover();
 
         this.appView = new AppView({

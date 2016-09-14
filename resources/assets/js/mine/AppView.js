@@ -33,6 +33,7 @@ module.exports = Backbone.View.extend({
         });
         this.postView = new PostView({model: this.postModel});
 
+        console.log("for post model", this.model.attributes);
         this.addPostModel = new AddPostModel(
             this.model.attributes
         );
