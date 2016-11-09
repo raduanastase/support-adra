@@ -22,7 +22,6 @@ module.exports = Backbone.View.extend({
     initialize: function () {
         this.$el.html(template(this.model.attributes));
 
-        //this.readMode = true;
         this.readPostView = new ReadPostView({model: this.model});
         this.listenTo(this.readPostView, 'edit_mode', this.onEditMode);
         this.listenTo(this.readPostView, 'delete_post', this.delete);

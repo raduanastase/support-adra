@@ -28,8 +28,8 @@ module.exports = Backbone.View.extend({
         }.bind(this));
 
         this.postModel = new PostModel({
-            counties: []/*this.model.get('counties')*/,
-            loggedIn: true/*this.model.get('loggedIn')*/
+            counties: this.model.get('counties'),
+            loggedIn: this.model.get('loggedIn')
         });
         this.postView = new PostView({model: this.postModel});
 

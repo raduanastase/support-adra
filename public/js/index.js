@@ -14460,8 +14460,8 @@ module.exports = Backbone.View.extend({
         }.bind(this));
 
         this.postModel = new PostModel({
-            counties: [] /*this.model.get('counties')*/
-            , loggedIn: true /*this.model.get('loggedIn')*/
+            counties: this.model.get('counties'),
+            loggedIn: this.model.get('loggedIn')
         });
         this.postView = new PostView({ model: this.postModel });
 
@@ -14709,7 +14709,6 @@ module.exports = Backbone.View.extend({
     initialize: function initialize() {
         this.$el.html(template(this.model.attributes));
 
-        //this.readMode = true;
         this.readPostView = new ReadPostView({ model: this.model });
         this.listenTo(this.readPostView, 'edit_mode', this.onEditMode);
         this.listenTo(this.readPostView, 'delete_post', this.delete);
