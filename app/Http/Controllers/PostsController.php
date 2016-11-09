@@ -39,7 +39,7 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        $post = Post::create(Input::all());
+        $post = Post::create($request->all());
 
         if ($request->hasFile('files')) {
             $files = $request->file('files');

@@ -104,7 +104,7 @@
             <select name="person-county" id="person-county" disabled="disabled">
                 <option value="0">Alege</option>
                 {{#each counties}}
-                    <option value="{{id}}">{{name}}</option>
+                    <option value="{{id}}" {{sif (eq id person_county_id) 'selected="selected"' ''}}>{{name}}</option>
                 {{/each}}
             </select>
         </div>

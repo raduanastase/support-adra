@@ -13,7 +13,28 @@ class Post extends Model
      * @var array
      */
     protected $fillable = array(
-        'title', 'type', 'reporter_first_name', 'reporter_last_name', 'reporter_cnp', 'reporter_ci_series', 'reporter_ci_number', 'reporter_phone', 'reporter_email', 'person_first_name', 'created_at', 'updated_at'
+        'title',
+        'type',
+        'reporter_first_name',
+        'reporter_last_name',
+        'reporter_cnp',
+        'reporter_ci_series',
+        'reporter_ci_number',
+        'reporter_phone',
+        'reporter_email',
+        'person_first_name',
+        'person_last_name',
+        'person_cnp',
+        'person_ci_series',
+        'person_ci_number',
+        'person_county_id',
+        'person_city',
+        'person_address',
+        'person_description',
+        'person_money_total',
+        'person_money_partial',
+        'created_at',
+        'updated_at'
     );
 
     /**

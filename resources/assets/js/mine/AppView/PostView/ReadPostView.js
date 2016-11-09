@@ -34,5 +34,9 @@ module.exports = Backbone.View.extend({
     edit: function () {
         this.galleryView.reset();
         this.trigger('edit_mode');
+    },
+
+    delete: function () {
+        this.trigger('delete_post');
     }
 });

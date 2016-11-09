@@ -25,6 +25,7 @@ module.exports = Backbone.View.extend({
         //this.readMode = true;
         this.readPostView = new ReadPostView({model: this.model});
         this.listenTo(this.readPostView, 'edit_mode', this.onEditMode);
+        this.listenTo(this.readPostView, 'delete_post', this.delete);
         this.editPostView = new EditPostView({model: this.model});
         this.listenTo(this.editPostView, 'read_mode', this.onReadMode);
     },
@@ -42,14 +43,6 @@ module.exports = Backbone.View.extend({
 
         this.readPostView.delegateEvents();
         this.editPostView.delegateEvents();
-
-        /*if(this.readMode) {
-            this.readPostView.$el.show();
-            this.editPostView.$el.hide();
-        } else {
-            this.editPostView.$el.show();
-            this.readPostView.$el.hide();
-        }*/
 
         return this;
     },
