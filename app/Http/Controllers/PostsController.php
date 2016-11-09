@@ -39,6 +39,8 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
+        $request->merge(["type" => "pending"]);
+
         $post = Post::create($request->all());
 
         if ($request->hasFile('files')) {
@@ -61,10 +63,10 @@ class PostsController extends Controller
         return redirect('/');
     }
 
-    public function update($id)
+    public function update($id, Request $request)
     {
         $post = Post::find($id);
-        $post->update(Request::all());
+        $post->update($request->all());
 
         return response()->json(['success' => true]);
     }
