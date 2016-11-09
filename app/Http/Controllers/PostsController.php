@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Attachment;
 use App\Post;
-/*use Illuminate\Http\Request;*/
-use Carbon\Carbon;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use DB;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
 
 
 class PostsController extends Controller
@@ -46,8 +42,17 @@ class PostsController extends Controller
         $post = Post::create(Input::all());
         $files = $request->file('files');
 
-        foreach ($files as $file) {
-            $file->move(base_path() . '/public/attachments/', $post->id . ' - ' . $file->getClientOriginalName());
+        foreach ($files as $index=>$file) {
+            $fileName = $post->id . ' - ' . $file->getClientOriginalName();
+            $file->move(base_path() . '/public/attachments/', $fileName);
+
+            $attachment = new Attachment([
+                'path' => 'attachments/'.$fileName,
+                'is_private' => false,
+                'is_cover_image' => $index == 0 ? true : false
+            ]);
+
+            $post->attachments()->save($attachment);
         }
 
         return redirect('/');
