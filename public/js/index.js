@@ -14422,8 +14422,14 @@ return jQuery;
 },{}],24:[function(require,module,exports){
 // hbsfy compiled Handlebars template
 var HandlebarsCompiler = require('hbsfy/runtime');
-module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel3\">În așteptare</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel4\">Refuzate</a></li>\n</ul>\n\n<div class=\"columns small-12 tabs-content\" data-tabs-content=\"posts-tabs\">\n</div>";
+module.exports = HandlebarsCompiler.template({"1":function(container,depth0,helpers,partials,data) {
+    return "        <li class=\"tabs-title\"><a href=\"#panel3\">În așteptare</a></li>\n        <li class=\"tabs-title\"><a href=\"#panel4\">Refuzate</a></li>\n";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return "<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\n"
+    + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "</ul>\n\n<div class=\"columns small-12 tabs-content\" data-tabs-content=\"posts-tabs\">\n</div>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],25:[function(require,module,exports){
@@ -14466,7 +14472,7 @@ module.exports = Backbone.View.extend({
     },
 
     render: function render() {
-        this.$el.html(template());
+        this.$el.html(template(this.model.attributes));
 
         this.$el.append(this.postView.el);
         this.$el.append(this.addPostView.render().el);
@@ -14768,9 +14774,9 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
 
-  return "<h1>Editare caz</h1>\n<button class=\"close-button\" data-close aria-label=\"Close modal\" type=\"button\">\n    <span aria-hidden=\"true\">&times;</span>\n</button>\n\n<div id=\"edit-post\">\n    <div class=\"row\">\n        <div class=\"small-12 columns current-images\">\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns upload-images\">\n            <label for=\"image-upload-input\">\n                <input type=\"file\" id=\"image-upload-input\" multiple accept=\"image/*\">\n                <span class=\"button\" id=\"image-upload-button\">Adauga poze</span>\n            </label>\n            <ul class=\"files-list\">\n\n            </ul>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            <label for=\"case-name\">Numele cazului\n                <input type=\"text\" name=\"title\" id=\"title\" value=\""
+  return "<h1>Editare caz</h1>\n<button class=\"close-button\" data-close aria-label=\"Close modal\" type=\"button\">\n    <span aria-hidden=\"true\">&times;</span>\n</button>\n\n<form id=\"edit-post\" data-abide novalidate>\n    <div class=\"row\">\n        <div class=\"small-12 columns current-images\">\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns upload-images\">\n            <label for=\"image-upload-input\">\n                <input type=\"file\" id=\"image-upload-input\" multiple accept=\"image/*\">\n                <span class=\"button\" id=\"image-upload-button\">Adauga poze</span>\n            </label>\n            <ul class=\"files-list\">\n\n            </ul>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            <label for=\"case-name\">Numele cazului\n                <input type=\"text\" name=\"title\" id=\"title\" value=\""
     + alias4(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"title","hash":{},"data":data}) : helper)))
-    + "\">\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            Date de contact ale pesoanei care raporteaza\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-6 columns\">\n            <label for=\"reporter-last-name\">Numele\n                <input type=\"text\" name=\"reporter-last-name\" id=\"reporter-last-name\" value=\""
+    + "\" required>\n                <span class=\"form-error\">Completarea campului este obligatorie</span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns section-title\">\n            Date de contact ale pesoanei care raporteaza\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-6 columns\">\n            <label for=\"reporter-last-name\">Numele\n                <input type=\"text\" name=\"reporter-last-name\" id=\"reporter-last-name\" value=\""
     + alias4(((helper = (helper = helpers.reporter_last_name || (depth0 != null ? depth0.reporter_last_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_last_name","hash":{},"data":data}) : helper)))
     + "\">\n            </label>\n        </div>\n        <div class=\"small-6 columns\">\n            <label for=\"reporter-first-name\">Prenumele\n                <input type=\"text\" name=\"reporter-first-name\" id=\"reporter-first-name\" value=\""
     + alias4(((helper = (helper = helpers.reporter_first_name || (depth0 != null ? depth0.reporter_first_name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"reporter_first_name","hash":{},"data":data}) : helper)))
@@ -14806,7 +14812,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.person_money_total || (depth0 != null ? depth0.person_money_total : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_total","hash":{},"data":data}) : helper)))
     + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                        <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-partial\" id=\"person-money-partial\" value=\""
     + alias4(((helper = (helper = helpers.person_money_partial || (depth0 != null ? depth0.person_money_partial : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_partial","hash":{},"data":data}) : helper)))
-    + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns text-center\">\n            <button class=\"button save-button\" value=\"Salveaza\">Salveaza</button>\n        </div>\n    </div>\n</div>";
+    + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns text-center\">\n            <button class=\"button save-button\" value=\"Salveaza\" type=\"submit\">Salveaza</button>\n        </div>\n    </div>\n</form>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],33:[function(require,module,exports){
@@ -14859,16 +14865,16 @@ module.exports = Backbone.View.extend({
             reporter_phone: this.$('#reporter-phone').val(),
             reporter_email: this.$('#reporter-email').val(),
             person_first_name: this.$('#person-first-name').val(),
-            person_last_name: this.$('#person_last_name').val(),
-            person_cnp: this.$('#person_cnp').val(),
-            person_ci_series: this.$('#person_ci_series').val(),
-            person_ci_number: this.$('#person_ci_number').val(),
-            person_county_id: this.$('#person_county_id').val(),
-            person_city: this.$('#person_city').val(),
-            person_address: this.$('#person_address').val(),
-            person_description: this.$('#person_description').val(),
-            person_money_total: this.$('#person_money_total').val(),
-            person_money_partial: this.$('#person_money_partial').val()
+            person_last_name: this.$('#person-last-name').val(),
+            person_cnp: this.$('#person-cnp').val(),
+            person_ci_series: this.$('#person-ci-series').val(),
+            person_ci_number: this.$('#person-ci-number').val(),
+            person_county_id: this.$('#person-county-id').val(),
+            person_city: this.$('#person-city').val(),
+            person_address: this.$('#person-address').val(),
+            person_description: this.$('#person-description').val(),
+            person_money_total: this.$('#person-money-total').val(),
+            person_money_partial: this.$('#person-money-partial').val()
         });
 
         //I don't know what happens if I don't unset this values
@@ -15436,7 +15442,7 @@ module.exports = Backbone.Router.extend({
             el: $('.posts-view-wrapper'),
             model: new Backbone.Model({
                 counties: window.pageData.counties,
-                loggedIn: /*window.pageData.userId > -1*/false,
+                loggedIn: window.pageData.userId > -1,
                 csrfToken: window.pageData.csrfToken
             })
         });

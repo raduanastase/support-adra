@@ -45,16 +45,16 @@ module.exports = Backbone.View.extend({
             reporter_phone: this.$('#reporter-phone').val(),
             reporter_email: this.$('#reporter-email').val(),
             person_first_name: this.$('#person-first-name').val(),
-            person_last_name: this.$('#person_last_name').val(),
-            person_cnp: this.$('#person_cnp').val(),
-            person_ci_series: this.$('#person_ci_series').val(),
-            person_ci_number: this.$('#person_ci_number').val(),
-            person_county_id: this.$('#person_county_id').val(),
-            person_city: this.$('#person_city').val(),
-            person_address: this.$('#person_address').val(),
-            person_description: this.$('#person_description').val(),
-            person_money_total: this.$('#person_money_total').val(),
-            person_money_partial: this.$('#person_money_partial').val()
+            person_last_name: this.$('#person-last-name').val(),
+            person_cnp: this.$('#person-cnp').val(),
+            person_ci_series: this.$('#person-ci-series').val(),
+            person_ci_number: this.$('#person-ci-number').val(),
+            person_county_id: this.$('#person-county-id').val(),
+            person_city: this.$('#person-city').val(),
+            person_address: this.$('#person-address').val(),
+            person_description: this.$('#person-description').val(),
+            person_money_total: this.$('#person-money-total').val(),
+            person_money_partial: this.$('#person-money-partial').val()
         });
 
         //I don't know what happens if I don't unset this values

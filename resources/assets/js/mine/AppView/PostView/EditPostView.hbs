@@ -3,7 +3,7 @@
     <span aria-hidden="true">&times;</span>
 </button>
 
-<div id="edit-post">
+<form id="edit-post" data-abide novalidate>
     <div class="row">
         <div class="small-12 columns current-images">
         </div>
@@ -24,7 +24,8 @@
     <div class="row">
         <div class="small-12 columns section-title">
             <label for="case-name">Numele cazului
-                <input type="text" name="title" id="title" value="{{title}}">
+                <input type="text" name="title" id="title" value="{{title}}" required>
+                <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
     </div>
@@ -180,7 +181,7 @@
 
     <div class="row">
         <div class="small-12 columns text-center">
-            <button class="button save-button" value="Salveaza">Salveaza</button>
+            <button class="button save-button" value="Salveaza" type="submit">Salveaza</button>
         </div>
     </div>
-</div>
+</form>
