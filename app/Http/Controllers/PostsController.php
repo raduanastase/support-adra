@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Post;
 /*use Illuminate\Http\Request;*/
 use Carbon\Carbon;
-use Request;
-use App\Http\Requests;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 
 
 class PostsController extends Controller
@@ -38,33 +41,16 @@ class PostsController extends Controller
         return Post::with('attachments')->get()->find($id);
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $input = Request::all();
-        $input['created_at'] = Carbon::now();
+        $post = Post::create(Input::all());
+        $files = $request->file('files');
 
-        var_dump($input); //die();
-        //die('aaaaaaaaa');
-
-//        $count = count($input['filesToUpload']['name']);
-//        for ($i = 0; $i < $count; $i++) {
-//            echo 'Name: '.$input['filesToUpload']['name'][$i].'<br/>';
-//        }
-
-        Post::create($input);
-
-        return response()->json(['success' => true]);
-
-        //return redirect('/');//doesn't work if it has hash
-
-    }
-
-    public function storeAttachments()
-    {
-        $count = count($_FILES['filesToUpload']['name']);
-        for ($i = 0; $i < $count; $i++) {
-            echo 'Name: '.$_FILES['filesToUpload']['name'][$i].'<br/>';
+        foreach ($files as $file) {
+            $file->move(base_path() . '/public/attachments/', $post->id . ' - ' . $file->getClientOriginalName());
         }
+
+        return redirect('/');
     }
 
     public function update($id)

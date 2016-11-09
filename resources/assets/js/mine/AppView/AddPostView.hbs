@@ -3,8 +3,8 @@
     <span aria-hidden="true">&times;</span>
 </button>
 
-<!--<form id="add-case-form" method="post" data-abide novalidate enctype="multipart/form-data">--><!--the validation of foundation screwed up the form request sent by backbone-->
-<form id="add-case-form" novalidate>
+<form id="add-case-form" method="post" action="api/posts" data-abide novalidate enctype="multipart/form-data"><!--the validation of foundation screwed up the form request sent by backbone-->
+<!--<form id="add-case-form" novalidate enctype="multipart/form-data">-->
     <input type="hidden" name="_token" value="{{csrfToken}}">
 
     <div data-abide-error class="alert callout" style="display: none;">
@@ -14,7 +14,7 @@
     <div class="row">
         <div class="small-12 columns upload-images">
             <label for="image-upload-input">
-                <input type="file" id="image-upload-input" multiple accept="image/*">
+                <input type="file" id="image-upload-input" name="files[]" multiple accept="image/*">
                 <span class="button" id="image-upload-button">Adauga poze</span>
             </label>
             <ul class="files-list">
@@ -208,7 +208,7 @@
 
     <div class="row">
         <div class="small-6 columns">
-            <button id="submit-button" class="button float-right" type="submit" value="Submit">Submit</button>
+            <button id="submit-button" class="button float-right" value="Submit">Submit</button>
         </div>
         <div class="small-6 columns">
             <button class="button" type="reset" value="Reset">Reset</button>
