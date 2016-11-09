@@ -42,7 +42,7 @@ module.exports = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html(template());
+        this.$el.html(template(this.model.attributes));
 
         this.$el.append(this.postView.el);
         this.$el.append(this.addPostView.render().el);

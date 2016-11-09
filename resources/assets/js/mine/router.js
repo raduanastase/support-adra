@@ -28,7 +28,7 @@ module.exports = Backbone.Router.extend({
             el: $('.posts-view-wrapper'),
             model: new Backbone.Model({
                 counties: window.pageData.counties,
-                loggedIn: /*window.pageData.userId > -1*/false,
+                loggedIn: window.pageData.userId > -1,
                 csrfToken: window.pageData.csrfToken
             })
         });

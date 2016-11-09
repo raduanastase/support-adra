@@ -1,8 +1,10 @@
 <ul class="tabs" data-tabs id="posts-tabs">
     <li class="tabs-title is-active"><a href="#panel1" aria-selected="true">Aprobate</a></li>
     <li class="tabs-title"><a href="#panel2">Rezolvate</a></li>
-    <li class="tabs-title"><a href="#panel3">În așteptare</a></li>
-    <li class="tabs-title"><a href="#panel4">Refuzate</a></li>
+    {{#if loggedIn}}
+        <li class="tabs-title"><a href="#panel3">În așteptare</a></li>
+        <li class="tabs-title"><a href="#panel4">Refuzate</a></li>
+    {{/if}}
 </ul>
 
 <div class="columns small-12 tabs-content" data-tabs-content="posts-tabs">

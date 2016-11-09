@@ -13,9 +13,10 @@
     <script>
         window.pageData = {
             userId: {{ $userId or 'undefined' }},
-            counties: {!! $counties !!},
+            counties: {!! $counties or 'undefined' !!},
             csrfToken: '{{ csrf_token() }}'
         };
+        console.log("window page data", window.pageData);
     </script>
 </head>
 <body id="app-layout">
