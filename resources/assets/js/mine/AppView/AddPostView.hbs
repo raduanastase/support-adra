@@ -3,8 +3,7 @@
     <span aria-hidden="true">&times;</span>
 </button>
 
-<form id="add-case-form" method="post" action="api/posts" data-abide novalidate enctype="multipart/form-data"><!--the validation of foundation screwed up the form request sent by backbone-->
-<!--<form id="add-case-form" novalidate enctype="multipart/form-data">-->
+<form id="add-case-form" method="post" action="api/posts" data-abide novalidate enctype="multipart/form-data">
     <input type="hidden" name="_token" value="{{csrfToken}}">
 
     <div data-abide-error class="alert callout" style="display: none;">
@@ -25,7 +24,7 @@
 
     <div class="row">
         <div class="small-12 columns section-title">
-            <label for="case-name">Numele cazului
+            <label for="title">Numele cazului
                 <small>*</small>
                 <input type="text" name="title" id="title" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
@@ -33,7 +32,7 @@
         </div>
     </div>
 
-    <!--<div class="row">
+    <div class="row">
         <div class="small-12 columns section-title">
             Date de contact ale pesoanei care raporteaza
         </div>
@@ -43,14 +42,14 @@
         <div class="small-6 columns">
             <label for="reporter-last-name">Numele
                 <small>*</small>
-                <input type="text" name="reporter-last-name" id="reporter-last-name" required>
+                <input type="text" name="reporter_last_name" id="reporter-last-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
         <div class="small-6 columns">
             <label for="reporter-first-name">Prenumele
                 <small>*</small>
-                <input type="text" name="reporter-first-name" id="reporter-first-name" required>
+                <input type="text" name="reporter_first_name" id="reporter-first-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -59,17 +58,17 @@
     <div class="row">
         <div class="small-12 medium-4 columns">
             <label for="reporter-cnp">C.N.P.
-                <input type="text" name="reporter-cnp" id="reporter-cnp">
+                <input type="text" name="reporter_cnp" id="reporter_cnp">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="reporter-ci-series">C.I. Seria
-                <input type="text" name="reporter-ci-series" id="reporter-ci-series">
+                <input type="text" name="reporter_ci_series" id="reporter-ci-series">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="reporter-ci-number">C.I. Numar
-                <input type="text" name="reporter-ci-number" id="reporter-ci-number">
+                <input type="text" name="reporter_ci_number" id="reporter-ci-number">
             </label>
         </div>
     </div>
@@ -78,8 +77,8 @@
         <div class="small-12 columns">
             <label for="reporter-phone">Numar de telefon
                 <small>*</small>
-                <input type="tel" name="reporter-phone" id="reporter-phone" required pattern="number">
-                <span class="form-error">Completarea campului este obligatorie</span>
+                <input type="tel" name="reporter_phone" id="reporter_phone" required pattern="number">
+                <span class="form-error">Completarea campului este obligatorie si trebuie sa fie numai cifre!</span>
             </label>
         </div>
     </div>
@@ -87,7 +86,7 @@
     <div class="row">
         <div class="small-12 columns">
             <label for="reporter-email">Email
-                <input type="email" name="reporter-email" id="reporter-email">
+                <input type="email" name="reporter_email" id="reporter_email">
             </label>
         </div>
     </div>
@@ -102,14 +101,14 @@
         <div class="small-6 columns">
             <label for="person-last-name">Numele <b>persoanei in cauza</b>
                 <small>*</small>
-                <input type="text" name="person-last-name" id="person-last-name" required>
+                <input type="text" name="person_last_name" id="person-last-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
         <div class="small-6 columns">
             <label for="person-first-name">Prenumele <b>persoanei in cauza</b>
                 <small>*</small>
-                <input type="text" name="person-first-name" id="person-first-name" required>
+                <input type="text" name="person_first_name" id="person-first-name" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -118,17 +117,17 @@
     <div class="row">
         <div class="small-12 medium-4 columns">
             <label for="person-cnp">C.N.P.
-                <input type="text" name="person-cnp" id="person-cnp">
+                <input type="text" name="person_cnp" id="person_cnp">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="person-ci-series">C.I. Seria
-                <input type="text" name="person-ci-series" id="person-ci-series">
+                <input type="text" name="person_ci_series" id="person-ci-series">
             </label>
         </div>
         <div class="small-12 medium-4 columns">
             <label for="person-ci-number">C.I. Numar
-                <input type="text" name="person-ci-number" id="person-ci-number">
+                <input type="text" name="person_ci_number" id="person-ci-number">
             </label>
         </div>
     </div>
@@ -137,9 +136,8 @@
         <div class="small-12 medium-6 columns">
             <label for="person-county-id">Judet
                 <small>*</small>
-
-                <select name="person-county-id" id="person-county-id">&lt;!&ndash; ADD REQUIRED &ndash;&gt;
-                    <option value="0">Alege</option>
+                <select name="person_county_id" id="person-county-id" required>
+                    <option value="">Alege</option>
                     {{#each counties as |county|}}
                         <option value="{{@index}}">{{county}}</option>
                     {{/each}}
@@ -150,7 +148,7 @@
         <div class="small-12 medium-6 columns">
             <label for="person-city">Localitate
                 <small>*</small>
-                <input type="text" name="person-city" id="person-city" required>
+                <input type="text" name="person_city" id="person_city" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -160,7 +158,7 @@
         <div class="small-12 columns">
             <label for="person-address">Alte detalii adresa (strada,numar,etc.)
                 <small>*</small>
-                <input type="text" name="person-address" id="person-address" required>
+                <input type="text" name="person_address" id="person_address" required>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
         </div>
@@ -170,7 +168,7 @@
         <div class="small-12 columns">
             <label for="person-description">Descriere
                 <small>*</small>
-                <textarea type="text" name="person-description" id="person-description" maxlength="1000"
+                <textarea type="text" name="person_description" id="person_description" maxlength="1000"
                           required></textarea>
                 <span class="form-error">Completarea campului este obligatorie</span>
             </label>
@@ -184,8 +182,8 @@
                         <span class="row">
                             <span class="small-12 columns">Suma necesara</span>
                         </span>
-                        <span class="row">
-                            <span class="small-10 columns"><input type="text" name="person-money-total"
+                    <span class="row">
+                            <span class="small-10 columns"><input type="text" name="person_money_total"
                                                                   id="person-money-total"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
@@ -196,15 +194,15 @@
                         <span class="row">
                             <span class="small-12 columns">Suma stransa</span>
                         </span>
-                        <span class="row">
-                            <span class="small-10 columns"><input type="text" name="person-money-partial"
+                    <span class="row">
+                            <span class="small-10 columns"><input type="text" name="person_money_partial"
                                                                   id="person-money-partial"></span>
                             <span class="small-2 columns">RON</span>
                         </span>
                 </label>
             </div>
         </div>
-    {{/if}}-->
+    {{/if}}
 
     <div class="row">
         <div class="small-6 columns">

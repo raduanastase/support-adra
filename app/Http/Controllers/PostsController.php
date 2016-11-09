@@ -40,19 +40,22 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         $post = Post::create(Input::all());
-        $files = $request->file('files');
 
-        foreach ($files as $index=>$file) {
-            $fileName = $post->id . ' - ' . $file->getClientOriginalName();
-            $file->move(base_path() . '/public/attachments/', $fileName);
+        if ($request->hasFile('files')) {
+            $files = $request->file('files');
 
-            $attachment = new Attachment([
-                'path' => 'attachments/'.$fileName,
-                'is_private' => false,
-                'is_cover_image' => $index == 0 ? true : false
-            ]);
+            foreach ($files as $index => $file) {
+                $fileName = $post->id . ' - ' . $file->getClientOriginalName();
+                $file->move(base_path() . '/public/attachments/', $fileName);
 
-            $post->attachments()->save($attachment);
+                $attachment = new Attachment([
+                    'path' => 'attachments/' . $fileName,
+                    'is_private' => false,
+                    'is_cover_image' => $index == 0 ? true : false
+                ]);
+
+                $post->attachments()->save($attachment);
+            }
         }
 
         return redirect('/');
