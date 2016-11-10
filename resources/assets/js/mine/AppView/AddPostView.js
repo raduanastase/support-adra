@@ -11,8 +11,8 @@ module.exports = Backbone.View.extend({
     events: function () {
         return {
             'change #image-upload-input': 'onChangeImageUpload',
-            'click .close-button': 'close'/*,
-            'click #submit-button': 'onSubmitClick'*/
+            'click .close-button': 'close',
+            'click #submit-button': 'onSubmitClick'
         }
     },
 
@@ -24,7 +24,7 @@ module.exports = Backbone.View.extend({
     },
 
     initialize: function () {
-        //this.listenTo(this.model, 'change', this.render);
+        this.invalidFilesMessage = '';
     },
 
     render: function () {
