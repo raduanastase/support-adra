@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     <title>Sustine ADRA</title>
 
@@ -38,27 +38,26 @@
                     </a>
                 </li>
                 @if (Auth::guest())
-                <li><a href="{{ url('/login') }}">Login</a></li>
-                <li><a href="{{ url('/register') }}">Inregistrare</a></li>
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    <li><a href="{{ url('/register') }}">Inregistrare</a></li>
                 @else
-                <li>
-                    <a href="#">
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
-                </li>
-                <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Iesire din cont</a></li>
+                    <li>
+                        <a href="#">
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+                    </li>
+                    <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Iesire din cont</a></li>
                 @endif
-                <li><button class="button add-case-button">Adaugă caz</button></li>
             </ul>
         </div>
-        <div class="top-bar-right">
+        {{--<div class="top-bar-right">
             <ul class="menu">
                 <li><input type="search" placeholder="Cauta"></li>
                 <li>
                     <button type="button" class="button">Cauta</button>
                 </li>
             </ul>
-        </div>
+        </div>--}}
     </div>
 </div>
 

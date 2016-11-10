@@ -6,12 +6,6 @@ var $ = require('jquery'),
 var AppView = require('./AppView');
 var LoadingCover = require('./utils/LoadingCover');
 
-//Backbone.$ = $;
-
-/*var $mainEl = $('.main');
- var mainModel = new Backbone.Model($mainEl.data('raw'));
- var mainView = new MainView({el: $mainEl, model: mainModel});*/
-
 module.exports = Backbone.Router.extend({
 
     routes: {

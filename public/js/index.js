@@ -14427,7 +14427,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
     var stack1;
 
-  return "<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\n"
+  return "<button class=\"button add-case-button\">Adaugă caz</button>\n\n<ul class=\"tabs\" data-tabs id=\"posts-tabs\">\n    <li class=\"tabs-title is-active\"><a href=\"#panel1\" aria-selected=\"true\">Aprobate</a></li>\n    <li class=\"tabs-title\"><a href=\"#panel2\">Rezolvate</a></li>\n"
     + ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.loggedIn : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
     + "</ul>\n\n<div class=\"columns small-12 tabs-content\" data-tabs-content=\"posts-tabs\">\n</div>";
 },"useData":true});
@@ -14449,6 +14449,12 @@ var AddPostView = require('./AppView/AddPostView');
 var Config = ['approved', 'resolved', 'pending', 'rejected'];
 
 module.exports = Backbone.View.extend({
+    events: function events() {
+        return {
+            'click .add-case-button': 'onAddPostButtonClick'
+        };
+    },
+
     initialize: function initialize() {
         this.tabs = [];
 
@@ -14467,8 +14473,6 @@ module.exports = Backbone.View.extend({
 
         this.addPostModel = new AddPostModel(this.model.attributes);
         this.addPostView = new AddPostView({ model: this.addPostModel });
-
-        $('.add-case-button').on('click', this.onAddPostButtonClick.bind(this));
     },
 
     render: function render() {
@@ -14550,7 +14554,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias1(container.lambda(blockParams[0][0], depth0))
     + "</option>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"row\">\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-total\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma necesara</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_total\"\n                                                                  id=\"person-money-total\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_partial\"\n                                                                  id=\"person-money-partial\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"small-12 columns\">\n                <label for=\"type\">Sectiunea cazului\n                    <select name=\"type\" id=\"type\">\n                        <option value=\"\">Alege</option>\n                            <option value=\"approved\" selected>Aprobat</option>\n                            <option value=\"resolved\">Rezolvat</option>\n                            <option value=\"pending\">In asteptare</option>\n                            <option value=\"rejected\">Refuzat</option>\n                    </select>\n                </label>\n            </div>\n        </div>\n";
+    return "        <div class=\"row\">\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-total\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma necesara</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_total\"\n                                                                  id=\"person-money-total\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_partial\"\n                                                                  id=\"person-money-partial\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"small-12 columns\">\n                <label for=\"type\">Sectiunea cazului\n                    <select name=\"type\" id=\"type\">\n                        <option value=\"\">Alege</option>\n                        <option value=\"approved\" selected>Aprobat</option>\n                        <option value=\"resolved\">Rezolvat</option>\n                        <option value=\"pending\">In asteptare</option>\n                        <option value=\"rejected\">Refuzat</option>\n                    </select>\n                </label>\n            </div>\n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
@@ -14579,8 +14583,8 @@ module.exports = Backbone.View.extend({
     events: function events() {
         return {
             'change #image-upload-input': 'onChangeImageUpload',
-            'click .close-button': 'close' /*,
-                                           'click #submit-button': 'onSubmitClick'*/
+            'click .close-button': 'close',
+            'click #submit-button': 'onSubmitClick'
         };
     },
 
@@ -14592,7 +14596,7 @@ module.exports = Backbone.View.extend({
     },
 
     initialize: function initialize() {
-        //this.listenTo(this.model, 'change', this.render);
+        this.invalidFilesMessage = '';
     },
 
     render: function render() {
@@ -15124,7 +15128,7 @@ module.exports = HandlebarsCompiler.template({"compiler":[7,">= 4.0.0"],"main":f
     + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.active : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
     + "\" id=\"panel"
     + alias3(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
-    + "\">\n    <div class=\"row small-up-2 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\n\n    </div>\n    <div class=\"pagination-view-wrapper\">\n\n    </div>\n</div>";
+    + "\">\n    <div class=\"row small-up-1 medium-up-3 large-up-4 thumbnail-posts-wrapper\">\n\n    </div>\n    <div class=\"pagination-view-wrapper\">\n\n    </div>\n</div>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],40:[function(require,module,exports){
@@ -15328,7 +15332,7 @@ var _ = require('underscore');
 var self; //MAKE THIS BETTER
 
 module.exports = Backbone.View.extend({
-    className: 'column view-case-template',
+    className: 'small-1 medium-3 large-up-4 columns view-case-template',
 
     events: {
         'click .thumbnail': 'onThumbClick'
@@ -15417,12 +15421,6 @@ var $ = require('jquery'),
 /*var MainView = require('./views/MainView');*/
 var AppView = require('./AppView');
 var LoadingCover = require('./utils/LoadingCover');
-
-//Backbone.$ = $;
-
-/*var $mainEl = $('.main');
- var mainModel = new Backbone.Model($mainEl.data('raw'));
- var mainView = new MainView({el: $mainEl, model: mainModel});*/
 
 module.exports = Backbone.Router.extend({
 

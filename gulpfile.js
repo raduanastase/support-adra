@@ -23,7 +23,7 @@ elixir.config.js.browserify.transformers.push({
 });
 
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.sass('App.scss');
     
     mix.scripts([
         paths.NODE + 'jquery/dist/jquery.min.js',

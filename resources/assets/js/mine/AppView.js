@@ -17,6 +17,12 @@ const Config = [
 ];
 
 module.exports = Backbone.View.extend({
+    events: function () {
+        return {
+            'click .add-case-button': 'onAddPostButtonClick'
+        }
+    },
+
     initialize: function () {
         this.tabs = [];
 
@@ -37,8 +43,6 @@ module.exports = Backbone.View.extend({
             this.model.attributes
         );
         this.addPostView = new AddPostView({model: this.addPostModel});
-
-        $('.add-case-button').on('click', this.onAddPostButtonClick.bind(this));
     },
 
     render: function () {

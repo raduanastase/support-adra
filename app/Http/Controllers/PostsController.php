@@ -13,7 +13,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::with('attachments')->paginate(10);//get the latest?
+        $posts = Post::with('attachments')->paginate(12);//get the latest?
         return compact('posts');
     }
 

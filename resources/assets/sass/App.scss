@@ -1,5 +1,3 @@
-// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
-
 @import 'vendor/foundation/foundation';
 
 @include foundation-everything(false);
@@ -97,4 +95,14 @@ h6 {
     top: calc(50% - #{48px/2});
     left: calc(50% - #{48px/2});
   }
+}
+
+.posts-view-wrapper {
+  margin-top: 20px;
+}
+
+.add-case-button {
+  position: absolute;
+  top: 15px;
+  right: 30px;
 }
