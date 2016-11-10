@@ -9,7 +9,7 @@ module.exports = Backbone.Model.extend({
     },
 
     urlRoot: function(){
-      return "api/posts";
+      return "/api/posts";
     },
 
     initialize: function () {

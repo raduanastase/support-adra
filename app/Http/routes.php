@@ -20,7 +20,7 @@ Route::get('/', function () {
     }
 
     $data = [
-        'userId' => $user ? $user->id : null,
+        'userId' => $user ? $user->id : -1,
         'counties' => PostsController::counties()
     ];
 

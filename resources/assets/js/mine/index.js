@@ -18,5 +18,5 @@ $("body").on("click", ".back-button", function (event) {
     window.history.back();
 });
 
-Backbone.history.start();
+Backbone.history.start(/*{pushState: true}*/);//todo find out why are there backend issues with this alternative
 $(document).foundation();

@@ -14530,7 +14530,7 @@ module.exports = Backbone.Model.extend({
     },
 
     urlRoot: function urlRoot() {
-        return "api/posts";
+        return "/api/posts";
     },
 
     initialize: function initialize() {
@@ -14550,7 +14550,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias1(container.lambda(blockParams[0][0], depth0))
     + "</option>\n";
 },"3":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"row\">\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-total\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma necesara</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_total\"\n                                                                  id=\"person-money-total\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_partial\"\n                                                                  id=\"person-money-partial\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n        </div>\n";
+    return "        <div class=\"row\">\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-total\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma necesara</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_total\"\n                                                                  id=\"person-money-total\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n            <div class=\"small-12 medium-6 columns\">\n                <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                    <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person_money_partial\"\n                                                                  id=\"person-money-partial\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n                </label>\n            </div>\n        </div>\n\n        <div class=\"row\">\n            <div class=\"small-12 columns\">\n                <label for=\"type\">Sectiunea cazului\n                    <select name=\"type\" id=\"type\">\n                        <option value=\"\">Alege</option>\n                            <option value=\"approved\" selected>Aprobat</option>\n                            <option value=\"resolved\">Rezolvat</option>\n                            <option value=\"pending\">In asteptare</option>\n                            <option value=\"rejected\">Refuzat</option>\n                    </select>\n                </label>\n            </div>\n        </div>\n";
 },"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data,blockParams) {
     var stack1, helper, alias1=depth0 != null ? depth0 : {};
 
@@ -14667,7 +14667,7 @@ module.exports = Backbone.Model.extend({
     },
 
     urlRoot: function urlRoot() {
-        return "api/posts";
+        return "/api/posts";
     },
 
     initialize: function initialize() {
@@ -14811,7 +14811,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
     + alias4(((helper = (helper = helpers.person_money_total || (depth0 != null ? depth0.person_money_total : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_total","hash":{},"data":data}) : helper)))
     + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n        <div class=\"small-12 medium-6 columns\">\n            <label for=\"person-money-partial\">\n                        <span class=\"row\">\n                            <span class=\"small-12 columns\">Suma stransa</span>\n                        </span>\n                        <span class=\"row\">\n                            <span class=\"small-10 columns\"><input type=\"text\" name=\"person-money-partial\" id=\"person-money-partial\" value=\""
     + alias4(((helper = (helper = helpers.person_money_partial || (depth0 != null ? depth0.person_money_partial : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"person_money_partial","hash":{},"data":data}) : helper)))
-    + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns text-center\">\n            <button class=\"button save-button\" value=\"Salveaza\" type=\"submit\">Salveaza</button>\n        </div>\n    </div>\n</form>";
+    + "\"></span>\n                            <span class=\"small-2 columns\">RON</span>\n                        </span>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns\">\n            <label for=\"type\">Sectiunea cazului\n                <select name=\"type\" id=\"type\">\n                    <option value=\"\">Alege</option>\n                    <option value=\"approved\">Aprobat</option>\n                    <option value=\"resolved\">Rezolvat</option>\n                    <option value=\"pending\">In asteptare</option>\n                    <option value=\"rejected\">Refuzat</option>\n                </select>\n            </label>\n        </div>\n    </div>\n\n    <div class=\"row\">\n        <div class=\"small-12 columns text-center\">\n            <button class=\"button save-button\" value=\"Salveaza\" type=\"submit\">Salveaza</button>\n        </div>\n    </div>\n</form>";
 },"useData":true});
 
 },{"hbsfy/runtime":21}],33:[function(require,module,exports){
@@ -14838,6 +14838,8 @@ module.exports = Backbone.View.extend({
 
     render: function render() {
         this.$el.html(template(this.model.attributes));
+
+        this.$('#type').val(this.model.get('type'));
 
         return this;
     },
@@ -14873,12 +14875,9 @@ module.exports = Backbone.View.extend({
             person_address: this.$('#person-address').val(),
             person_description: this.$('#person-description').val(),
             person_money_total: this.$('#person-money-total').val(),
-            person_money_partial: this.$('#person-money-partial').val()
+            person_money_partial: this.$('#person-money-partial').val(),
+            type: this.$('#type').val()
         });
-
-        //I don't know what happens if I don't unset this values
-        //this.model.unset('counties');
-        //this.model.unset('loggedIn');
 
         this.model.save(null, {
             success: function () {
@@ -14939,7 +14938,7 @@ module.exports = HandlebarsCompiler.template({"1":function(container,depth0,help
 
   return "            <li class=\""
     + alias3((helpers.sif || (depth0 && depth0.sif) || alias2).call(alias1,(depth0 != null ? depth0.is_cover_image : depth0),"is-active","",{"name":"sif","hash":{},"data":data}))
-    + " orbit-slide\">\n                <img class=\"orbit-image\" src=\""
+    + " orbit-slide\">\n                <img class=\"orbit-image\" src=\"/"
     + alias3(((helper = (helper = helpers.path || (depth0 != null ? depth0.path : depth0)) != null ? helper : alias2),(typeof helper === "function" ? helper.call(alias1,{"name":"path","hash":{},"data":data}) : helper)))
     + "\">\n            </li>\n";
 },"4":function(container,depth0,helpers,partials,data) {
@@ -15407,8 +15406,8 @@ $("body").on("click", ".back-button", function (event) {
     window.history.back();
 });
 
-Backbone.history.start();
-$(document).foundation();
+Backbone.history.start(); //todo find out why are there backend issues with this alternative
+/*{pushState: true}*/$(document).foundation();
 
 },{"./router":47,"./utils/HandlebarsHelpers":48,"backbone":1}],47:[function(require,module,exports){
 "use strict";

@@ -39,7 +39,9 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        $request->merge(["type" => "pending"]);
+        if (!$request->has("type")) {
+            $request->merge(["type" => "pending"]);
+        }
 
         $post = Post::create($request->all());
 

@@ -20,6 +20,8 @@ module.exports = Backbone.View.extend({
     render: function () {
         this.$el.html(template(this.model.attributes));
 
+        this.$('#type').val(this.model.get('type'));
+
         return this;
     },
 
@@ -54,12 +56,9 @@ module.exports = Backbone.View.extend({
             person_address: this.$('#person-address').val(),
             person_description: this.$('#person-description').val(),
             person_money_total: this.$('#person-money-total').val(),
-            person_money_partial: this.$('#person-money-partial').val()
+            person_money_partial: this.$('#person-money-partial').val(),
+            type: this.$('#type').val()
         });
-
-        //I don't know what happens if I don't unset this values
-        //this.model.unset('counties');
-        //this.model.unset('loggedIn');
 
         this.model.save(null, {
             success: function () {
