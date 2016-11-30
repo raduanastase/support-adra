@@ -1,5 +1,6 @@
 var Backbone = require('backbone'),
     template = require("./PostView.hbs");
+var LoadingCover = require('../utils/LoadingCover');
 var ReadPostView = require("./PostView/ReadPostView");
 var EditPostView = require("./PostView/EditPostView");
 
@@ -47,6 +48,7 @@ module.exports = Backbone.View.extend({
     },
 
     delete: function () {
+        LoadingCover.cover();
         this.model.destroy();
         this.close();
         location.reload();

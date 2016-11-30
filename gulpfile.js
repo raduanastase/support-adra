@@ -27,7 +27,6 @@ elixir(function(mix) {
     
     mix.scripts([
         paths.NODE + 'jquery/dist/jquery.min.js',
-        'vendor/foundation/foundation.core.js',
         'vendor/foundation/*.js'
     ]);
 
