@@ -1,8 +1,10 @@
 // @flow
-import React, {PureComponent} from 'react';
-import logo from './logo.svg';
-import styles from './App.css';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import React from 'react';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Routes from './Routes';
+import Header from './components/Header';
+import Home from './Home';
+import About from './About';
 
 const App = () => (
   <Router>
@@ -11,45 +13,10 @@ const App = () => (
 
       <hr/>
 
-      <Route exact path="/" component={Home}/>
-      <Route exact path="/about" component={About}/>
+      <Route exact path={Routes.HOME} component={Home}/>
+      <Route exact path={Routes.ABOUT} component={About}/>
     </div>
   </Router>
 );
-
-const Header = () => (
-  <div>
-    <ul>
-      <li><Link to="/">Home</Link></li>
-      <li><Link to="/about">About</Link></li>
-    </ul>
-  </div>
-);
-
-class Home extends PureComponent<{}, {}> {
-  render() {
-    return (
-      <div className={styles.App}>
-        <header className={styles.header}>
-          <img src={logo} className={styles.logo} alt="logo" />
-          <h1 className={styles.title}>Welcome to React</h1>
-        </header>
-        <p className={styles.intro}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
-
-class About extends PureComponent<{}, {}> {
-  render() {
-    return (
-      <div className={styles.App}>
-        ABOUT
-      </div>
-    );
-  }
-}
 
 export default App;
