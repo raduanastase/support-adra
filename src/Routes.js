@@ -8,4 +8,5 @@ export default {
   UNRESOLVED_CASES: '/cazuri-nerezolvate',
   SUBMITTED_CASES: '/cazuri-trimise',
   CASE: '/case/:caseId',
+  API_CASES: 'https://private-anon-3d75cfe8aa-supportadraapi.apiary-mock.com/api/v1/cases',
 };

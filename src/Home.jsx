@@ -1,18 +1,21 @@
 // @flow
 import React, {PureComponent} from 'react';
 import styles from './Home.css';
+import 'whatwg-fetch';
+import Routes from './Routes';
 
 export default class Home extends PureComponent<{}, {}> {
+  async componentDidMount() {
+    const response = await fetch(Routes.API_CASES);
+    const jsonData = await response.json();
+
+    console.log(jsonData);
+  }
+
   render() {
     return (
       <div className={styles.App}>
-        <header className={styles.header}>
-          <img className={styles.logo} alt="logo" />
-          <h1 className={styles.title}>Welcome to React</h1>
-        </header>
-        <p className={styles.intro}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
       </div>
     );
   }
