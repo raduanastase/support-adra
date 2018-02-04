@@ -1,0 +1,13 @@
+.main {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.page {
+    display: inline-block;
+    margin: 5px;
+}
+
+.link {
+    cursor: pointer;
+}

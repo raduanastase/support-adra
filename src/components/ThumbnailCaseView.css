@@ -1,0 +1,11 @@
+.main {
+    border: 1px solid grey;
+    padding: 10px;
+    width: 300px;
+    display: inline-block;
+    margin: 20px;
+}
+
+.image {
+    width: 100%;
+}
